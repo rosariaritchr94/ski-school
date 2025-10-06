@@ -1,0 +1,440 @@
+
+====== Project root ======
+/home/rosariarit/dev/ski-school
+
+====== Node & npm versions ======
+v22.18.0
+10.9.3
+
+====== Package.json name & scripts ======
+{
+  name: 'ski-school',
+  version: '0.1.0',
+  type: undefined,
+  scripts: { dev: 'next dev', build: 'next build', start: 'next start' }
+}
+
+====== Key dependency versions (installed) ======
+ski-school@0.1.0 /home/rosariarit/dev/ski-school
+├── @prisma/client@6.13.0
+├── @tailwindcss/forms@0.5.10
+├── autoprefixer@10.4.21
+├── next@14.1.0
+├── postcss@8.5.6
+├── prisma@6.13.0
+├── react-dom@18.2.0
+├── react@18.2.0
+├── tailwindcss-animate@1.0.7
+├── tailwindcss@3.4.14
+└── typescript@5.9.2
+
+
+====== .env keys (valori nascosti) ======
+DATABASE_URL=***hidden***
+NEXTAUTH_URL=***hidden***
+NEXTAUTH_SECRET=***hidden***
+
+====== Config files presence ======
+✓ tailwind.config.js
+— tailwind.config.ts (missing)
+✓ postcss.config.js
+✓ next.config.mjs
+— next.config.js (missing)
+— next.config.ts (missing)
+✓ tsconfig.json
+
+====== Tailwind config (first 80 lines if present) ======
+--- tailwind.config.js ---
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/app/**/*.{ts,tsx}',
+    './src/components/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  theme: {
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: { '2xl': '1200px' },
+    },
+    extend: {
+      colors: {
+        brand: {
+          50:  '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+        },
+      },
+      borderRadius: {
+        xl: '1rem',
+        '2xl': '1.5rem',
+      },
+      boxShadow: {
+        card: '0 10px 25px rgba(2,132,199,0.10)',
+      },
+    },
+  },
+  plugins: [require('@tailwindcss/forms'), require('tailwindcss-animate')],
+}
+
+====== PostCSS config ======
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+====== Next config (first 120 lines) ======
+--- next.config.mjs ---
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  // qui puoi aggiungere altre opzioni se servono
+};
+
+export default nextConfig;
+
+====== TS config (first 120 lines) ======
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+====== Prisma schema (first 200 lines) ======
+// ---------- Generators & Datasource ----------
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Enums ----------
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum Currency {
+  EUR
+  USD
+}
+
+// ---------- Models ----------
+model Booking {
+  id String @id @default(cuid())
+
+  // --- Instructor (N:1) ---
+  instructorId String
+  instructor   Instructor @relation(fields: [instructorId], references: [id])
+
+  // --- LessonType (N:1) ---
+  lessonTypeId String
+  lessonType   LessonType @relation(fields: [lessonTypeId], references: [id])
+
+  // --- Payment (1:1 opzionale) ---
+  paymentId String?  @unique
+  payment   Payment? @relation(fields: [paymentId], references: [id])
+
+  date        DateTime
+  durationMin Int
+  notes       String?  @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([instructorId])
+  @@index([lessonTypeId])
+}
+
+model Instructor {
+  id     String @id @default(cuid())
+  userId String @unique
+
+  // Back-relation verso Booking
+  bookings Booking[]
+
+  firstName String?
+  lastName  String?
+  bio       String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id String @id @default(cuid())
+
+  // Back-relation 1:1 (l’altro lato è Booking.payment)
+  booking Booking?
+
+  amountCents       Int
+  currency          Currency      @default(EUR)
+  status            PaymentStatus @default(PENDING)
+  provider          String
+  providerPaymentId String?       @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LessonType {
+  id          String  @id @default(cuid())
+  name        String
+  description String? @db.Text
+  priceCents  Int
+
+  // Back-relation: un tipo lezione può avere molte prenotazioni
+  bookings Booking[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name])
+}
+
+====== Project tree (key folders) ======
+(tip: install 'tree' for nicer output: sudo apt install tree)
+.
+./src
+./src/lib
+./src/app
+./src/app/(site)
+./src/app/maestri
+./src/app/contatti
+./src/app/api
+./src/app/prenota
+./src/app/lezioni
+./src/components
+./.next
+./prisma
+./prisma/migrations
+./prisma/migrations/20250810095545_init_schema
+./node_modules
+./.git
+./public
+./scripts
+
+====== API routes under src/app/api (up to 3 levels) ======
+src/app/api/lesson-types/route.ts
+src/app/api/availability/route.ts
+src/app/api/bookings/book/route.ts
+src/app/api/bookings/route.ts
+src/app/api/instructors/route.ts+
+src/app/api/instructors/route.ts
+
+====== (site) pages ======
+src/app/(site)/maestri/page.tsx
+src/app/(site)/contatti/page.tsx
+src/app/(site)/prenota/page.tsx
+src/app/(site)/lezioni/page.tsx
+
+====== globals.css presence & size ======
+33 src/app/globals.css
+--- first 80 lines ---
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base */
+@layer base {
+  :root {
+    --bg: 248 250 252; /* slate-50 */
+    --fg: 15 23 42;    /* slate-900 */
+    --card: 255 255 255;
+  }
+  html, body { height: 100%; }
+  body { @apply bg-[rgb(var(--bg))] text-[rgb(var(--fg))] antialiased; }
+}
+
+/* Componenti rapidi */
+@layer components {
+  .container-page { @apply container py-8 md:py-12; }
+
+  .card   { @apply bg-[rgb(var(--card))] rounded-2xl shadow-card border border-slate-100; }
+  .card-p { @apply p-5 md:p-6; }
+
+  .btn { @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium transition; }
+  .btn-primary { @apply bg-brand-600 text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/50; }
+  .btn-ghost { @apply bg-transparent hover:bg-slate-100; }
+
+  .chip { @apply inline-flex items-center rounded-full px-3 py-1 text-sm bg-slate-100; }
+}
+
+/* Utility extra */
+@layer utilities {
+  .grid-auto-fit { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+}
+
+====== Root layout import of globals.css (grep) ======
+2:import './globals.css';
+
+====== (site) layout presence ======
+src/app/(site)/layout.tsx missing
+
+====== Check for /api/bookings route ======
+total 16
+drwxr-xr-x 3 rosariarit rosariarit 4096 Aug 10 16:50 .
+drwxr-xr-x 6 rosariarit rosariarit 4096 Aug 10 16:50 ..
+drwxr-xr-x 2 rosariarit rosariarit 4096 Aug 10 15:34 book
+-rw-r--r-- 1 rosariarit rosariarit  510 Aug 10 12:01 route.ts
+
+====== Instructors & Lesson Types handlers (first 60 lines) ======
+--- src/app/api/instructors/route.ts ---
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+export async function GET() {
+  try {
+    const instructors = await prisma.instructor.findMany({
+      orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }],
+      select: { id: true, firstName: true, lastName: true },
+    });
+    return NextResponse.json(instructors);
+  } catch (e) {
+    console.error('Errore /api/instructors:', e);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
+--- src/app/api/instructors/route.ts+ ---
+import { prisma } from '@/lib/prisma';
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  try {
+    const instructors = await prisma.instructor.findMany({
+      orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }]
+    });
+
+    return NextResponse.json(instructors);
+  } catch (error) {
+    console.error('Errore fetch maestri:', error);
+    return NextResponse.json({ error: 'Errore server' }, { status: 500 });
+  }
+}
+--- src/app/api/lesson-types/route.ts ---
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+export async function GET() {
+  try {
+    const items = await prisma.lessonType.findMany({
+      orderBy: { priceCents: 'asc' },
+      select: { id: true, name: true, priceCents: true },
+    });
+    return NextResponse.json(items);
+  } catch (e) {
+    console.error('Errore /api/lesson-types:', e);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
+
+====== Availability & Bookings handlers (first 80 lines) ======
+--- src/app/api/availability/route.ts ---
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+// GET /api/availability?instructorId=...&date=YYYY-MM-DD
+export async function GET(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const instructorId = searchParams.get('instructorId');
+    const dateStr = searchParams.get('date');
+
+    if (!instructorId || !dateStr) {
+      return NextResponse.json({ error: 'Missing params' }, { status: 400 });
+    }
+
+    const dayStart = new Date(`${dateStr}T00:00:00.000Z`);
+    const dayEnd = new Date(`${dateStr}T23:59:59.999Z`);
+
+    const bookings = await prisma.booking.findMany({
+      where: { instructorId, date: { gte: dayStart, lte: dayEnd } },
+      select: { date: true },
+      orderBy: { date: 'asc' },
+    });
+
+    const occupied = bookings.map((b) => {
+      const hh = new Date(b.date).toISOString().substring(11, 13);
+      return `${hh}:00`;
+    });
+
+    return NextResponse.json({ occupied });
+  } catch (e) {
+    console.error('Errore /api/availability:', e);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
+--- src/app/api/bookings/route.ts ---
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+export async function GET() {
+  try {
+    const bookings = await prisma.booking.findMany({
+      include: {
+        instructor: true,
+        lessonType: true,
+        payment: true,
+      },
+    });
+
+    return NextResponse.json(bookings);
+  } catch (error) {
+    console.error('Error fetching bookings:', error);
+    return NextResponse.json({ error: 'Failed to fetch bookings' }, { status: 500 });
+  }
+}
+
+====== Git status (if repo) ======
+## main
+ M .gitignore
+ D next.config.ts
+ M package-lock.json
+ M package.json
+ M src/app/globals.css
+ M src/app/layout.tsx
+ M src/app/page.tsx
+?? next.config.mjs
+?? package.jonson
+?? postcss.config.js
+?? prisma/
+?? scan-report-20250810-171027.txt
+?? scripts/
+?? src/app/(site)/
+?? src/app/api/
+?? src/components/
+?? src/lib/
+?? tailwind.config.js
