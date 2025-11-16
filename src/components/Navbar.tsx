@@ -47,11 +47,11 @@ export default function Navbar() {
             className="inline-flex sm:hidden items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-white">
-              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </button>
 
-          {/* LOGO (come il tuo) */}
+          {/* LOGO */}
           <Link href="/" className="shrink-0" aria-label="Home">
             <img
               src="/assets/logos/logo-navbar.png"
@@ -61,10 +61,10 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* LINEA lunga (solo da sm in su, così su mobile non ruba spazio) */}
+          {/* LINEA lunga (solo da sm in su) */}
           <div className="hidden sm:flex h-[2px] bg-white/70 flex-1" />
 
-          {/* MENU destra (come il tuo, visibile da sm in su) */}
+          {/* MENU destra */}
           <div className="ml-auto flex items-center gap-4 md:gap-5">
             {navLinks.map((item) => (
               <Link
@@ -83,9 +83,11 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* PRENOTA (identico al tuo; resta visibile anche su mobile se vuoi) */}
-            <Link
-              href="/prenota"
+            {/* PRENOTA (desktop) */}
+            <a
+              href="https://scuolascigranparadiso.beebeeboard.com/scuolesci_ecommerce/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 inline-flex items-center
                 rounded-lg
@@ -102,7 +104,7 @@ export default function Navbar() {
               "
             >
               Prenota
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -134,7 +136,7 @@ export default function Navbar() {
             className="inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-white">
-              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
           </button>
         </div>
@@ -153,9 +155,15 @@ export default function Navbar() {
         </nav>
 
         <div className="mt-auto p-4 border-t border-white/10">
-          <Link href="/prenota" onClick={() => setOpen(false)} className="btn btn-accent w-full text-[11px]">
+          <a
+            href="https://scuolascigranparadiso.beebeeboard.com/scuolesci_ecommerce/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="btn btn-accent w-full text-[11px]"
+          >
             Prenota ora
-          </Link>
+          </a>
         </div>
       </aside>
     </nav>

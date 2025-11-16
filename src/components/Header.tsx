@@ -19,7 +19,7 @@ export default function Header() {
           <Image src="/assets/logos/logo-navbar.png" alt="Logo" width={28} height={28} />
         </Link>
         <nav className="hidden md:flex items-center gap-6 font-sofia uppercase tracking-wide text-sm">
-          {nav.map(n => (
+          {nav.map((n) => (
             <Link
               key={n.href}
               href={n.href}
@@ -29,7 +29,16 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <Link href="/prenota" className="btn btn-accent">Prenota</Link>
+
+        {/* QUI: link ESTERNO, NON /prenota */}
+        <a
+          href="https://scuolascigranparadiso.beebeeboard.com/scuolesci_ecommerce/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-accent"
+        >
+          Prenota
+        </a>
       </div>
       <div className="h-px w-full bg-white/15" />
     </header>

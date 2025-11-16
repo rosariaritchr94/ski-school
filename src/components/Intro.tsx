@@ -49,7 +49,7 @@ export default function Intro() {
           <p className="text-[12px] tracking-[0.35em] text-[#37C6E6] uppercase">
             The strongest
           </p>
-          <h2 className="mt-2 text-[28px] leading-[1.1] md:text-[34px] font-extrabold text-[#37C6E6] uppercase">
+          <h2 className="mt-2 text-[100px] leading-[1.1] md:text-[100px] font-extrabold text-[#37C6E6] uppercase">
             Ski School in<br/>Aosta Valley
           </h2>
           <p className="mt-4 text-[13px] leading-relaxed text-black/80">
@@ -59,9 +59,15 @@ export default function Intro() {
           </p>
           <div className="mt-4 flex items-center gap-2">
             <a href="/lezioni" className="btn btn-accent">Richiedi lezione</a>
-            <a href="/prenota" className="btn border border-black/20 text-black hover:bg-black hover:text-white">
-              Prenota
-            </a>
+           <a
+  href="https://scuolascigranparadiso.beebeeboard.com/scuolesci_ecommerce/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn border border-black/20 text-black hover:bg-black hover:text-white"
+>
+  Prenota
+</a>
+
           </div>
         </div>
 
