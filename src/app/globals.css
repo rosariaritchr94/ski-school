@@ -257,26 +257,43 @@
   }
   .slice-black::before{
     content:"";
-    position:absolute; left:0; right:0; top:0; bottom:0;
+    position:absolute;
+    left:0;
+    right:0;
+    top:-45px;   /* alza la montagna nera verso il bordo blu */
+    bottom:0;
     z-index:-1;                 /* dietro ai pannelli neri */
     pointer-events: none;
     background: url("/assets/slices/MONTAGNA5.png") center top / cover no-repeat;
   }
 
-  /* 3) CONTATTI — bianco (MONTAGNA6.png) */
+   /* 3) CONTATTI — bianco (MONTAGNA6.png) */
   .slice-white{
     position: relative;
+    z-index: 7; /* sopra la slice-black che ha z-index: 6 */
     background: transparent;
-    min-height: 520px;
-    padding-top: clamp(24px, 5vw, 80px);
+
+    /* faccio risalire la sezione contatti dentro il blocco nero */
+    margin-top: -110px;
+    padding-top: calc(110px + clamp(24px, 5vw, 80px));
     padding-bottom: clamp(36px, 7vw, 120px);
+
+    min-height: 520px;
     isolation: isolate;
   }
+
   .slice-white::before{
     content:"";
-    position:absolute; inset:0; z-index:-1;
+    position:absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
     background: url("/assets/slices/MONTAGNA6.png") center top / cover no-repeat;
   }
+
+
 }
 
 /* ====== PAGINA LEZIONI ====== */
