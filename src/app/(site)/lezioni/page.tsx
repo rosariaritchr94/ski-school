@@ -1,4 +1,6 @@
 // src/app/(site)/lezioni/page.tsx
+import Image from "next/image";
+
 export const metadata = { title: "Lezioni – Gran Paradiso" };
 
 export default function LezioniPage() {
@@ -11,7 +13,9 @@ export default function LezioniPage() {
             <h1
               className="
                 font-sofia
-                text-4xl md:text-6xl
+                mt-2
+                text-[38px] sm:text-[48px] lg:text-[80px]
+                leading-[1.05]
                 font-extrabold
                 tracking-[0.02em]
                 uppercase
@@ -21,7 +25,7 @@ export default function LezioniPage() {
               Lezioni
             </h1>
 
-            <p className="mt-8 text-white/90 uppercase tracking-[0.22em]">
+            <p className="mt-6 text-[11px] sm:text-[12px] text-white/80 uppercase tracking-[0.22em]">
               Foto sfondo
             </p>
             <p className="text-[10px] tracking-[0.28em] text-white/70 uppercase">
@@ -37,15 +41,16 @@ export default function LezioniPage() {
           {/* TESTO + FOTO */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Testi */}
-            <div className="max-w-[560px]">
+            <div className="max-w-[620px]">
               <h2
                 className="
                   font-sofia
-                  text-white
-                  text-[30px] md:text-[40px]
+                  mt-2
+                  text-[38px] sm:text-[48px] lg:text-[80px]
+                  leading-[1.05]
                   font-extrabold
                   uppercase
-                  leading-tight
+                  text-white
                 "
               >
                 Lezioni
@@ -57,9 +62,11 @@ export default function LezioniPage() {
                 className="
                   font-oswald
                   mt-4
-                  text-[14px] md:text-[15px]
+                  text-[16px] sm:text-[18px] lg:text-[20px]
+                  leading-relaxed
                   text-white/80
                 "
+                style={{ textAlign: "justify" }}
               >
                 Cosa c’è di meglio di una lezione personalizzata e su misura
                 per poter scoprire i segreti nascosti dello sci e dello
@@ -86,59 +93,148 @@ export default function LezioniPage() {
               </div>
             </div>
 
-            {/* Foto a destra (riempita in futuro) */}
+            {/* Foto a destra (box bianco, da riempire più avanti) */}
             <div className="foto-box aspect-[4/3]" />
           </div>
 
-          {/* PERIODI E TARIFFE */}
-          <div className="mt-10 md:mt-14">
-            <h3
+          {/* CARDS PERIODI – VARIANTE 2 TEMATICA (ROSSO / AZZURRI) */}
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
+            {/* VACANZE DI NATALE – ROSSO NATALE */}
+            <article
               className="
-                font-sofia
-                text-white
-                text-[22px] md:text-[26px]
-                font-extrabold
-                uppercase
+                bg-[#B91C1C]
+                rounded-[12px]
+                shadow-[0_18px_40px_rgba(0,0,0,.45)]
+                px-6 py-6 md:px-7 md:py-7
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                min-h-[220px]
               "
             >
-              Periodi e tariffe
-            </h3>
-
-            <div className="mt-4 grid md:grid-cols-[minmax(0,220px)_minmax(0,1fr)] gap-6 font-oswald text-[13px] md:text-[14px] text-white">
-              {/* Nomi periodi */}
-              <div className="space-y-3">
-                <div className="uppercase tracking-[0.18em] text-[#37C6E6] text-[11px]">
+              <h4
+                className="
+                  font-sofia
+                  font-extrabold
+                  text-white
+                  text-[22px] sm:text-[24px] lg:text-[26px]
+                  uppercase
+                  tracking-[0.08em]
+                  mb-3
+                "
+              >
+                <span className="inline-block border-b-2 border-white pb-1">
                   Vacanze di Natale
-                </div>
-                <div className="uppercase tracking-[0.18em] text-[#37C6E6] text-[11px]">
-                  Alta stagione
-                </div>
-                <div className="uppercase tracking-[0.18em] text-[#37C6E6] text-[11px]">
-                  Bassa stagione
-                </div>
-              </div>
+                </span>
+              </h4>
 
-              {/* Date periodi */}
-              <div className="space-y-3">
-                <p>
-                  Dal 26/12/2025 al 06/01/2026
-                </p>
-                <p>
-                  Dal 06/12/2025 al 25/12/2025
-                  <br />
-                  Dal 01/01/2026 al 11/01/2026
-                  <br />
-                  Dal 07/02/2026 al 13/03/2026
-                  <br />
-                  e tutti i weekend
-                </p>
-                <p>
-                  Dal 12/01/2026 al 06/02/2026
-                  <br />
-                  Dal 02/03/2026 a fine stagione
-                </p>
-              </div>
-            </div>
+              <p
+                className="
+                  font-oswald
+                  text-white
+                  text-[16px] sm:text-[18px] lg:text-[20px]
+                  leading-relaxed
+                "
+              >
+                Dal 26/12/2025 al 06/01/2026
+              </p>
+            </article>
+
+            {/* ALTA STAGIONE – AZZURRO MEDIO */}
+            <article
+              className="
+                bg-[#1DB0D5]
+                rounded-[12px]
+                shadow-[0_18px_40px_rgba(0,0,0,.45)]
+                px-6 py-6 md:px-7 md:py-7
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                min-h-[220px]
+              "
+            >
+              <h4
+                className="
+                  font-sofia
+                  font-extrabold
+                  text-white
+                  text-[22px] sm:text-[24px] lg:text-[26px]
+                  uppercase
+                  tracking-[0.08em]
+                  mb-3
+                "
+              >
+                <span className="inline-block border-b-2 border-white pb-1">
+                  Alta stagione
+                </span>
+              </h4>
+
+              <p
+                className="
+                  font-oswald
+                  text-white
+                  text-[16px] sm:text-[18px] lg:text-[20px]
+                  leading-relaxed
+                "
+              >
+                Dal 06/12/2025 al 25/12/2025
+                <br />
+                Dal 01/01/2026 al 11/01/2026
+                <br />
+                Dal 07/02/2026 al 13/03/2026
+                <br />
+                e tutti i weekend
+              </p>
+            </article>
+
+            {/* BASSA STAGIONE – TEAL SCURO */}
+            <article
+              className="
+                bg-[#0E657C]
+                rounded-[12px]
+                shadow-[0_18px_40px_rgba(0,0,0,.45)]
+                px-6 py-6 md:px-7 md:py-7
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                min-h-[220px]
+              "
+            >
+              <h4
+                className="
+                  font-sofia
+                  font-extrabold
+                  text-white
+                  text-[22px] sm:text-[24px] lg:text-[26px]
+                  uppercase
+                  tracking-[0.08em]
+                  mb-3
+                "
+              >
+                <span className="inline-block border-b-2 border-white pb-1">
+                  Bassa stagione
+                </span>
+              </h4>
+
+              <p
+                className="
+                  font-oswald
+                  text-white
+                  text-[16px] sm:text-[18px] lg:text-[20px]
+                  leading-relaxed
+                "
+              >
+                Dal 12/01/2026 al 06/02/2026
+                <br />
+                Dal 02/03/2026 a fine stagione
+              </p>
+            </article>
           </div>
 
           {/* TABELLA LEZIONI PRIVATE */}
@@ -147,7 +243,7 @@ export default function LezioniPage() {
               className="
                 font-sofia
                 text-white
-                text-[22px] md:text-[26px]
+                text-[30px] sm:text-[34px] lg:text-[38px]
                 font-extrabold
                 uppercase
               "
@@ -156,19 +252,20 @@ export default function LezioniPage() {
             </h3>
 
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full border-collapse font-oswald text-[13px] md:text-[14px] text-white">
+              <table className="w-full border-collapse font-oswald text-[15px] sm:text-[17px] lg:text-[19px] text-white">
                 <thead>
                   <tr>
-                    <th className="bg-black px-4 py-3 text-left text-[11px] uppercase tracking-[0.18em]">
+                    <th className="bg-black px-4 py-3 text-left text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
                       Tipo lezione
                     </th>
-                    <th className="bg-[#37C6E6] px-4 py-3 text-center text-[11px] uppercase tracking-[0.18em]">
+                    {/* Vacanze di Natale ROSSO */}
+                    <th className="bg-[#B91C1C] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
                       Vacanze di Natale
                     </th>
-                    <th className="bg-[#1DB0D5] px-4 py-3 text-center text-[11px] uppercase tracking-[0.18em]">
+                    <th className="bg-[#1DB0D5] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
                       Alta stagione
                     </th>
-                    <th className="bg-[#1389A8] px-4 py-3 text-center text-[11px] uppercase tracking-[0.18em]">
+                    <th className="bg-[#1389A8] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
                       Bassa stagione
                     </th>
                   </tr>
@@ -188,7 +285,7 @@ export default function LezioniPage() {
                     {
                       label: "Sci nordico",
                       sub: "fascia oraria 9:00 – 15:00",
-                      prices: ["€ 49", "€ 47", "€ 43"],
+                      prices: ["€ 49", "€ 47", "€ 45"],
                     },
                     {
                       label: "Sci nordico",
@@ -197,11 +294,13 @@ export default function LezioniPage() {
                     },
                   ].map((row, idx) => (
                     <tr key={idx} className="bg-black/70">
-                      <td className="border border-white/15 px-4 py-3">
-                        <div className="uppercase text-[11px] tracking-[0.16em]">
+                      <td className="border border-white/15 px-4 py-3 align-top">
+                        <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
                           {row.label}
                         </div>
-                        <div className="text-[11px] text-white/70">{row.sub}</div>
+                        <div className="text-[13px] text-white/70">
+                          {row.sub}
+                        </div>
                       </td>
                       {row.prices.map((price, j) => (
                         <td
@@ -217,11 +316,28 @@ export default function LezioniPage() {
               </table>
             </div>
 
-            <p className="mt-3 text-[11px] md:text-[12px] text-white/60 font-oswald">
-              *Supplemento di 10 € per persona aggiuntiva. Accurati i periodi di{" "}
-              <span className="uppercase tracking-[0.16em]">Vacanze di Natale</span>,{" "}
-              <span className="uppercase tracking-[0.16em]">Alta stagione</span> e{" "}
-              <span className="uppercase tracking-[0.16em]">Bassa stagione</span>.
+            <p
+              className="
+                mt-3
+                font-oswald
+                text-[14px] sm:text-[16px] lg:text-[18px]
+                leading-relaxed
+                text-white/60
+              "
+            >
+              *Supplemento per ogni persona aggiunta:{" "}
+              <span className="uppercase tracking-[0.16em] text-[#B91C1C]">
+                Natale
+              </span>{" "}
+              18 € |{" "}
+              <span className="uppercase tracking-[0.16em] text-[#1DB0D5]">
+                Alta stagione
+              </span>{" "}
+              17 € |{" "}
+              <span className="uppercase tracking-[0.16em] text-[#1389A8]">
+                Bassa stagione
+              </span>{" "}
+              13 €.
             </p>
           </div>
         </div>
@@ -236,15 +352,16 @@ export default function LezioniPage() {
             <div className="foto-box aspect-[4/3]" />
 
             {/* Testo */}
-            <div className="max-w-[560px]">
+            <div className="max-w-[620px]">
               <h2
                 className="
                   font-sofia
-                  text-white
-                  text-[30px] md:text-[40px]
+                  mt-2
+                  text-[38px] sm:text-[48px] lg:text-[80px]
+                  leading-[1.05]
                   font-extrabold
                   uppercase
-                  leading-tight
+                  text-white
                 "
               >
                 Lezioni di
@@ -256,9 +373,11 @@ export default function LezioniPage() {
                 className="
                   font-oswald
                   mt-4
-                  text-[14px] md:text-[15px]
+                  text-[16px] sm:text-[18px] lg:text-[20px]
+                  leading-relaxed
                   text-white/90
                 "
+                style={{ textAlign: "justify" }}
               >
                 Una soluzione adatta a tutti coloro che vogliono condividere con
                 nuovi amici la passione per lo sci o per lo snowboard. Ideale
@@ -286,7 +405,7 @@ export default function LezioniPage() {
               className="
                 font-sofia
                 text-white
-                text-[22px] md:text-[26px]
+                text-[30px] sm:text-[34px] lg:text-[38px]
                 font-extrabold
                 uppercase
               "
@@ -298,7 +417,8 @@ export default function LezioniPage() {
               className="
                 font-oswald
                 mt-3
-                text-[13px] md:text-[14px]
+                text-[16px] sm:text-[18px] lg:text-[20px]
+                leading-relaxed
                 text-white/90
                 max-w-[900px]
               "
@@ -313,7 +433,7 @@ export default function LezioniPage() {
                 font-sofia
                 mt-6
                 text-white
-                text-[18px] md:text-[20px]
+                text-[26px] sm:text-[30px] lg:text-[32px]
                 font-extrabold
                 uppercase
               "
@@ -321,72 +441,107 @@ export default function LezioniPage() {
               Lezioni collettive
             </h4>
 
+            {/* TABELLA A 3 COLONNE / 4 RIGHE */}
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full border-collapse font-oswald text-[13px] md:text-[14px] text-white">
+              <table className="w-full border-collapse font-oswald text-[15px] sm:text-[17px] lg:text-[19px] text-white">
                 <thead>
                   <tr>
-                    <th className="bg-black/70 px-4 py-3 text-left text-[11px] uppercase tracking-[0.18em]">
+                    <th className="bg-black/70 px-4 py-3 text-left text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
                       Tipo lezione
                     </th>
-                    <th className="bg-[#37C6E6] px-4 py-3 text-center text-[11px] uppercase tracking-[0.18em]">
-                      1 giorno
+                    <th className="bg-[#1DB0D5] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
+                      Pacchetto
                     </th>
-                    <th className="bg-[#1DB0D5] px-4 py-3 text-center text-[11px] uppercase tracking-[0.18em]">
-                      3 giorni
-                    </th>
-                    <th className="bg-[#1389A8] px-4 py-3 text-center text-[11px] uppercase tracking-[0.18em]">
-                      6 giorni
-                    </th>
-                    <th className="bg-[#0E657C] px-4 py-3 text-center text-[11px] uppercase tracking-[0.18em]">
-                      7 giorni
+                    <th className="bg-[#1389A8] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
+                      Tariffa
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    {
-                      label: "Sci alpino",
-                      sub: "seggiovia 10:00 – 12:00",
-                      prices: ["€ 60", "€ 155", "€ 230", "€ 260"],
-                    },
-                    {
-                      label: "Sci alpino",
-                      sub: "seggiovia 11:00 – 13:00",
-                      prices: ["€ 60", "€ 155", "€ 230", "€ 260"],
-                    },
-                    {
-                      label: "Sci alpino",
-                      sub: "baby park 11:00 – 13:00",
-                      prices: ["€ 60", "€ 155", "€ 230", "€ 260"],
-                    },
-                    {
-                      label: "Sci nordico",
-                      sub: "13:00 – 15:00",
-                      prices: ["€ 60", "€ 155", "€ 230", "€ 310"],
-                    },
-                  ].map((row, idx) => (
-                    <tr key={idx} className="bg-black/60">
-                      <td className="border border-white/15 px-4 py-3">
-                        <div className="uppercase text-[11px] tracking-[0.16em]">
-                          {row.label}
-                        </div>
-                        <div className="text-[11px] text-white/70">{row.sub}</div>
-                      </td>
-                      {row.prices.map((price, j) => (
-                        <td
-                          key={j}
-                          className="border border-white/15 px-4 py-3 text-center"
-                        >
-                          {price}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
+                  {/* RIGA 1 */}
+                  <tr className="bg-black/60">
+                    <td className="border border-white/15 px-4 py-3 align-top">
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci alpino
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        seggiovia 10:00 – 12:00
+                      </div>
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      1 giorno
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      60 €
+                    </td>
+                  </tr>
+
+                  {/* RIGA 2 */}
+                  <tr className="bg-black/60">
+                    <td className="border border-white/15 px-4 py-3 align-top">
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci alpino
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        seggiovia 11:00 – 13:00
+                      </div>
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      3 giorni
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      155 €
+                    </td>
+                  </tr>
+
+                  {/* RIGA 3 */}
+                  <tr className="bg-black/60">
+                    <td className="border border-white/15 px-4 py-3 align-top">
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci alpino
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        baby park 11:00 – 13:00
+                      </div>
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      5 giorni
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      230 €
+                    </td>
+                  </tr>
+
+                  {/* RIGA 4 */}
+                  <tr className="bg-black/60">
+                    <td className="border border-white/15 px-4 py-3 align-top">
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci nordico
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        13:00 – 15:00
+                      </div>
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      7 giorni
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      310 €
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
 
-            <p className="mt-3 text-[11px] md:text-[12px] text-white/80 font-oswald">
+            <p
+              className="
+                mt-3
+                font-oswald
+                text-[14px] sm:text-[16px] lg:text-[18px]
+                leading-relaxed
+                text-white/80
+              "
+            >
               *Sconto del 10% sul secondo figlio iscritto allo stesso corso.
             </p>
           </div>
@@ -398,29 +553,38 @@ export default function LezioniPage() {
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             {/* Testo assicurazione */}
-            <div className="max-w-[560px]">
+            <div className="max-w-[620px]">
               <h2
                 className="
                   font-sofia
-                  text-white
-                  text-[24px] md:text-[30px]
+                  mt-2
+                  text-[38px] sm:text-[48px] lg:text-[80px]
+                  leading-[1.05]
                   font-extrabold
                   uppercase
-                  leading-snug
+                  text-white
                 "
               >
-                Assicurazione Snowcare –
+                Assicurazione
                 <br />
-                proteggi la tua prenotazione!
+                Snowcare –
+                <br />
+                <span className="text-[#0E657C]">
+                  proteggi la tua
+                  <br />
+                  prenotazione!
+                </span>
               </h2>
 
               <p
                 className="
                   font-oswald
                   mt-4
-                  text-[13px] md:text-[14px]
+                  text-[16px] sm:text-[18px] lg:text-[20px]
+                  leading-relaxed
                   text-white/80
                 "
+                style={{ textAlign: "justify" }}
               >
                 Con l’assicurazione Snowcare puoi tutelare la tua vacanza e le
                 tue lezioni di sci in caso di infortunio o imprevisti. È una
@@ -432,7 +596,8 @@ export default function LezioniPage() {
                 className="
                   font-oswald
                   mt-3
-                  text-[13px] md:text-[14px]
+                  text-[16px] sm:text-[18px] lg:text-[20px]
+                  leading-relaxed
                   text-white/80
                 "
               >
@@ -441,8 +606,18 @@ export default function LezioniPage() {
               </p>
             </div>
 
-            {/* Foto a destra */}
-            <div className="foto-box aspect-[4/3]" />
+            {/* FOTO SNOWCARE A DESTRA – PIÙ GRANDE */}
+            <div className="w-full flex justify-center md:justify-end">
+              <div className="foto-box relative w-full max-w-[720px] aspect-[16/9] overflow-hidden">
+                <Image
+                  src="/foto/snowcare.jpg"
+                  alt="Assicurazione Snowcare – proteggi la tua prenotazione"
+                  fill
+                  sizes="(min-width: 1024px) 720px, (min-width: 768px) 480px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Cancellazioni e pagamenti */}
@@ -451,7 +626,7 @@ export default function LezioniPage() {
               className="
                 font-sofia
                 text-white
-                text-[22px] md:text-[26px]
+                text-[30px] sm:text-[34px] lg:text-[38px]
                 font-extrabold
                 uppercase
               "
@@ -463,7 +638,8 @@ export default function LezioniPage() {
               className="
                 font-oswald
                 mt-3
-                text-[13px] md:text-[14px]
+                text-[16px] sm:text-[18px] lg:text-[20px]
+                leading-relaxed
                 text-white/80
               "
             >
@@ -478,7 +654,8 @@ export default function LezioniPage() {
               className="
                 font-oswald
                 mt-3
-                text-[13px] md:text-[14px]
+                text-[16px] sm:text-[18px] lg:text-[20px]
+                leading-relaxed
                 text-white/80
               "
             >
@@ -497,22 +674,28 @@ export default function LezioniPage() {
             <h2
               className="
                 font-sofia
+                mt-2
                 text-white
-                text-[26px] md:text-[32px]
+                text-[38px] sm:text-[48px] lg:text-[80px]
+                leading-[1.05]
                 font-extrabold
                 uppercase
               "
             >
-              Orari & luoghi di ritrovo
+              Orari &
+              <br />
+              luoghi di ritrovo
             </h2>
 
             <p
               className="
                 font-oswald
                 mt-4
-                text-[13px] md:text-[14px]
+                text-[16px] sm:text-[18px] lg:text-[20px]
+                leading-relaxed
                 text-white/90
               "
+              style={{ textAlign: "justify" }}
             >
               I punti di ritrovo variano in base al tipo di corso e al livello.
               Nella mappa trovi indicati i luoghi principali di incontro con i
@@ -522,7 +705,7 @@ export default function LezioniPage() {
           </div>
 
           {/* Legenda semplificata */}
-          <div className="mt-6 grid gap-4 md:grid-cols-3 font-oswald text-[12px] md:text-[13px] text-white">
+          <div className="mt-6 grid gap-4 md:grid-cols-3 font-oswald text-[13px] md:text-[14px] text-white">
             <div className="flex items-center gap-2">
               <span className="inline-block w-4 h-4 bg-red-500" />
               Punto scuola sci
