@@ -36,10 +36,11 @@ export default function Safety() {
               "
               style={{ textAlign: "justify" }}
             >
-              I nostri maestri di sci e snowboard di Evolution Pila sono sempre
-              a disposizione: programmi su misura e lezioni di sci e snowboard
-              a bambini ed adulti. Ottimo aspetto, esperienza e sicurezza: per
-              una vacanza indimenticabile a Pila in Valle d’Aosta.
+            I nostri maestri della Scuola di Sci Gran Paradiso
+             sono sempre pronti ad accompagnarti: 
+             programmi personalizzati e lezioni dedicate a bambini e adulti, 
+             all’insegna di professionalità, esperienza e sicurezza. 
+             Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne, nel cuore della Valle d’Aosta.
             </p>
           </div>
 
