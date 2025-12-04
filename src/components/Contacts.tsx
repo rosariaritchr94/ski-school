@@ -1,6 +1,6 @@
 export default function Contacts() {
   return (
-    <section className="slice slice-white">
+    <section id="contatti" className="slice slice-white">
       <div className="container-site">
         {/* Titolo + testo contatti */}
         <div className="grid md:grid-cols-2 gap-10 items-start">
