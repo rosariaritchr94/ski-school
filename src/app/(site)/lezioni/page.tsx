@@ -69,19 +69,37 @@ export default function LezioniPage() {
                 Paradiso. Scegli tra queste attività e prenota la tua lezione:
               </p>
 
-              {/* Icone / discipline (stilizzate) */}
+              {/* Icone / discipline con LOGHI – INGRANDITE */}
               <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
-                <div className="flex items-center gap-2">
-                  <span className="inline-block w-8 h-8 rounded-full border border-white/60" />
-                  Sci alpino
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/assets/logos/logo_alpino.png"
+                    alt="Sci alpino"
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 object-contain"
+                  />
+                  <span>Sci alpino</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="inline-block w-8 h-8 rounded-full border border-white/60" />
-                  Snowboard
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/assets/logos/logo_snowboard.png"
+                    alt="Snowboard"
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 object-contain"
+                  />
+                  <span>Snowboard</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="inline-block w-8 h-8 rounded-full border border-white/60" />
-                  Sci nordico
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/assets/logos/logo_fondo.png"
+                    alt="Sci nordico"
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 object-contain"
+                  />
+                  <span>Sci nordico</span>
                 </div>
               </div>
             </div>
@@ -378,7 +396,7 @@ export default function LezioniPage() {
                 amanti delle piste più impegnative.
               </p>
 
-              {/* Icone / discipline */}
+              {/* Icone / discipline (qui lascio i cerchi come prima) */}
               <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
                 <div className="flex items-center gap-2">
                   <span className="inline-block w-8 h-8 rounded-full border border-white/60" />
