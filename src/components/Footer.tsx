@@ -1,10 +1,14 @@
 // src/components/Footer.tsx
+import Image from "next/image";
+
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-black py-10">
       <div className="container-site">
         <div className="flex flex-col items-center gap-6">
-          {/* social dots */}
+          {/* pallini social */}
           <div className="flex items-center gap-2">
             {["•", "•", "•", "•"].map((d, i) => (
               <span
@@ -16,7 +20,7 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* nav footer */}
+          {/* nav footer (senza PREZZI e CONTATTI) */}
           <nav className="flex flex-wrap items-center justify-center gap-4 text-[11px] uppercase tracking-[0.22em] text-white/70">
             <a href="/" className="hover:text-white">
               Home
@@ -27,17 +31,29 @@ export default function Footer() {
             <a href="/maestri" className="hover:text-white">
               Maestri
             </a>
-            {/* Niente PREZZI, niente CONTATTI */}
           </nav>
 
-          {/* loghi bassi */}
+          {/* LOGHI IN FONDO */}
           <div className="flex items-center gap-10 opacity-90">
-            <img src="/assets/logos/logo-1.png" alt="" className="h-12 w-auto" />
-            <img src="/assets/logos/logo-2.png" alt="" className="h-12 w-auto" />
+            <Image
+              src="/assets/logos/LOGO_scuolasci1.png"
+              alt="Associazione Valdostana Maestri di Sci"
+              width={80}
+              height={80}
+              className="h-16 w-auto"
+            />
+            <Image
+              src="/assets/logos/LOGO_scuolasci2.png"
+              alt="Associazione Valdostana Maestri di Sci - Gran Paradiso"
+              width={80}
+              height={80}
+              className="h-16 w-auto"
+            />
           </div>
 
           <p className="mt-2 text-[10px] text-white/50 text-center">
-            © {new Date().getFullYear()} Scuola di Sci &amp; Snowboard Gran Paradiso — tutti i diritti riservati
+            © {year} Scuola di Sci &amp; Snowboard Gran Paradiso — tutti i diritti
+            riservati
           </p>
         </div>
       </div>
