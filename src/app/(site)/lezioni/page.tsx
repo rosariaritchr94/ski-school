@@ -104,8 +104,16 @@ export default function LezioniPage() {
               </div>
             </div>
 
-            {/* Foto a destra (box bianco, da riempire più avanti) */}
-            <div className="foto-box aspect-[4/3]" />
+            {/* Foto a destra – LEZIONI INDIVIDUALI */}
+            <div className="foto-box relative aspect-[4/3] overflow-hidden">
+              <Image
+                src="/foto/1.jpg"
+                alt="Lezione individuale di sci a Cogne"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 520px, 100vw"
+              />
+            </div>
           </div>
 
           {/* CARDS PERIODI – VARIANTE 2 TEMATICA (ROSSO / AZZURRI) */}
@@ -359,8 +367,16 @@ export default function LezioniPage() {
         <div className="container-site">
           {/* FOTO + TESTO */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-            {/* Foto grande a sinistra */}
-            <div className="foto-box aspect-[4/3]" />
+            {/* Foto grande a sinistra – LEZIONI DI GRUPPO */}
+            <div className="foto-box relative aspect-[4/3] overflow-hidden">
+              <Image
+                src="/foto/4.jpg"
+                alt="Lezioni di gruppo sulle piste di Cogne"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 520px, 100vw"
+              />
+            </div>
 
             {/* Testo */}
             <div className="max-w-[620px]">
