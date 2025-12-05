@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,25 +13,36 @@ const nav = [
 
 export default function Header() {
   const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-[100] bg-black">
       <div className="container-site flex h-16 items-center justify-between">
+        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/assets/logos/logo-navbar.png" alt="Logo" width={28} height={28} />
+          <Image
+            src="/assets/logos/logo-navbar.png"
+            alt="Logo"
+            width={28}
+            height={28}
+          />
         </Link>
+
+        {/* MENU DESKTOP */}
         <nav className="hidden md:flex items-center gap-6 font-sofia uppercase tracking-wide text-sm">
           {nav.map((n) => (
             <Link
               key={n.href}
               href={n.href}
-              className={`hover:opacity-80 ${pathname === n.href ? "text-white" : "text-white/80"}`}
+              className={`hover:opacity-80 ${
+                pathname === n.href ? "text-white" : "text-white/80"
+              }`}
             >
               {n.label}
             </Link>
           ))}
         </nav>
 
-        {/* QUI: link ESTERNO, NON /prenota */}
+        {/* BOTTONE PRENOTA (link esterno) */}
         <a
           href="https://scuolascigranparadiso.beebeeboard.com/scuolesci_ecommerce/"
           target="_blank"
@@ -40,7 +52,10 @@ export default function Header() {
           Prenota
         </a>
       </div>
-      <div className="h-px w-full bg-white/15" />
+
+      {/* ⚠️ RIMOSSA la riga sotto il menu:
+          <div className="h-px w-full bg-white/15" />
+      */}
     </header>
   );
 }

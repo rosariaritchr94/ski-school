@@ -8,12 +8,15 @@ import { sofia, oswald } from "@/app/fonts";
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="it" className={`${sofia.variable} ${oswald.variable}`}>
-      <body className="bg-black text-white font-sofia">
+      <body className="bg-[#101010] text-white font-sofia">
+        {/* Navbar fissa in alto */}
         <Navbar />
-        {/* spazio sotto la navbar fissa */}
-        <main className="pt-[72px] sm:pt-[80px]">
+
+        {/* Spazio sotto la navbar fissa (altezza navbar mobile/desktop) */}
+        <main className="pt-[60px] md:pt-[72px]">
           {children}
         </main>
+
         <Footer />
       </body>
     </html>

@@ -69,46 +69,46 @@ export default function LezioniPage() {
                 Paradiso. Scegli tra queste attività e prenota la tua lezione:
               </p>
 
-              {/* Icone / discipline con LOGHI – INGRANDITE */}
+              {/* Icone / discipline con LOGHI (versione A) */}
               <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <Image
                     src="/assets/logos/logo_alpino.png"
                     alt="Sci alpino"
-                    width={48}
-                    height={48}
-                    className="h-12 w-12 object-contain"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
                   />
-                  <span>Sci alpino</span>
+                  Sci alpino
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <Image
                     src="/assets/logos/logo_snowboard.png"
                     alt="Snowboard"
-                    width={48}
-                    height={48}
-                    className="h-12 w-12 object-contain"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
                   />
-                  <span>Snowboard</span>
+                  Snowboard
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <Image
                     src="/assets/logos/logo_fondo.png"
                     alt="Sci nordico"
-                    width={48}
-                    height={48}
-                    className="h-12 w-12 object-contain"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
                   />
-                  <span>Sci nordico</span>
+                  Sci nordico
                 </div>
               </div>
             </div>
 
-            {/* Foto a destra – LEZIONI INDIVIDUALI */}
+            {/* Foto a destra */}
             <div className="foto-box relative aspect-[4/3] overflow-hidden">
               <Image
                 src="/foto/1.jpg"
-                alt="Lezione individuale di sci a Cogne"
+                alt="Lezioni individuali di sci a Cogne"
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 520px, 100vw"
@@ -277,7 +277,6 @@ export default function LezioniPage() {
                     <th className="bg-black px-4 py-3 text-left text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
                       Tipo lezione
                     </th>
-                    {/* Vacanze di Natale ROSSO */}
                     <th className="bg-[#B91C1C] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
                       Vacanze di Natale
                     </th>
@@ -367,11 +366,11 @@ export default function LezioniPage() {
         <div className="container-site">
           {/* FOTO + TESTO */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-            {/* Foto grande a sinistra – LEZIONI DI GRUPPO */}
+            {/* Foto grande a sinistra */}
             <div className="foto-box relative aspect-[4/3] overflow-hidden">
               <Image
                 src="/foto/4.jpg"
-                alt="Lezioni di gruppo sulle piste di Cogne"
+                alt="Lezioni di gruppo di sci a Cogne"
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 520px, 100vw"
@@ -412,14 +411,36 @@ export default function LezioniPage() {
                 amanti delle piste più impegnative.
               </p>
 
-              {/* Icone / discipline (qui lascio i cerchi come prima) */}
+              {/* Icone / discipline con LOGHI (versione B) */}
               <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
                 <div className="flex items-center gap-2">
-                  <span className="inline-block w-8 h-8 rounded-full border border-white/60" />
+                  <Image
+                    src="/assets/logos/logo_alpino_b.png"
+                    alt="Sci alpino"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                  />
                   Sci alpino
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-block w-8 h-8 rounded-full border border-white/60" />
+                  <Image
+                    src="/assets/logos/logo_snowboard_b.png"
+                    alt="Snowboard"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                  />
+                  Snowboard
+                </div>
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="/assets/logos/logo_fondo_b.png"
+                    alt="Sci nordico"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                  />
                   Sci nordico
                 </div>
               </div>
@@ -485,7 +506,6 @@ export default function LezioniPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* RIGA 1 */}
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
                       <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
@@ -502,8 +522,6 @@ export default function LezioniPage() {
                       60 €
                     </td>
                   </tr>
-
-                  {/* RIGA 2 */}
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
                       <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
@@ -520,8 +538,6 @@ export default function LezioniPage() {
                       155 €
                     </td>
                   </tr>
-
-                  {/* RIGA 3 */}
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
                       <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
@@ -538,8 +554,6 @@ export default function LezioniPage() {
                       230 €
                     </td>
                   </tr>
-
-                  {/* RIGA 4 */}
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
                       <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">

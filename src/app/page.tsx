@@ -13,7 +13,7 @@ export default function HomePage() {
       <ServicesGrid />
       <Safety />
       <Contacts />
-      {/* NIENTE <Navbar /> QUI, NIENTE <Footer /> QUI */}
+      {/* niente Navbar / Footer qui */}
     </>
   );
 }
