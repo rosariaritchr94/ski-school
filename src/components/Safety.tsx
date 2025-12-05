@@ -1,6 +1,41 @@
+// src/components/Safety.tsx
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+
+const GALLERY = [
+  { src: "/foto/8.jpg", alt: "Scuola sci Gran Paradiso - foto 8" },
+  { src: "/foto/7.jpg", alt: "Scuola sci Gran Paradiso - foto 7" },
+  { src: "/foto/6.jpg", alt: "Scuola sci Gran Paradiso - foto 6" },
+  { src: "/foto/4.jpg", alt: "Scuola sci Gran Paradiso - foto 4" },
+  { src: "/foto/5.jpg", alt: "Scuola sci Gran Paradiso - foto 5" },
+  { src: "/foto/3.jpg", alt: "Scuola sci Gran Paradiso - foto 3" }, // 👈 AGGIUNTA
+  { src: "/foto/2.jpg", alt: "Scuola sci Gran Paradiso - foto 2" },
+  { src: "/foto/1.jpg", alt: "Scuola sci Gran Paradiso - foto 1" },
+];
 
 export default function Safety() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const current = GALLERY[currentIndex];
+
+  const goPrev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? GALLERY.length - 1 : prev - 1
+    );
+  };
+
+  const goNext = () => {
+    setCurrentIndex((prev) =>
+      prev === GALLERY.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const selectImage = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section className="slice slice-black">
       <div className="container-site">
@@ -36,20 +71,22 @@ export default function Safety() {
               "
               style={{ textAlign: "justify" }}
             >
-            I nostri maestri della Scuola di Sci Gran Paradiso
-             sono sempre pronti ad accompagnarti: 
-             programmi personalizzati e lezioni dedicate a bambini e adulti, 
-             all’insegna di professionalità, esperienza e sicurezza. 
-             Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne, nel cuore della Valle d’Aosta.
+              I nostri maestri della Scuola di Sci Gran Paradiso
+              sono sempre pronti ad accompagnarti:
+              programmi personalizzati e lezioni dedicate a bambini e adulti,
+              all’insegna di professionalità, esperienza e sicurezza.
+              Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne,
+              nel cuore della Valle d’Aosta.
             </p>
           </div>
 
-          {/* FOTO GRUPPO BAMBINI */}
+          {/* FOTO GRANDE – SLIDER */}
           <div className="w-full">
             <div className="relative aspect-[4/3] w-full rounded-[12px] overflow-hidden bg-white shadow-2xl shadow-black/50">
               <Image
-                src="/foto/gruppo_bambini.png" // <--- aggiorna se usi .jpg
-                alt="Maestro di sci con gruppo di bambini sulle piste"
+                key={current.src}
+                src={current.src}
+                alt={current.alt}
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 520px, 100vw"
@@ -61,28 +98,49 @@ export default function Safety() {
 
         {/* thumbnails + frecce */}
         <div className="mt-8 md:mt-10 flex items-center justify-center gap-3">
+          {/* FRECCIA SINISTRA */}
           <button
-            aria-label="precedente"
+            type="button"
+            onClick={goPrev}
+            aria-label="Foto precedente"
             className="h-8 w-8 grid place-items-center rounded-full border border-white/50 text-white/80 hover:bg-white hover:text-black"
           >
             ‹
           </button>
 
-          <div className="flex gap-3">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="h-[62px] w-[110px] rounded-[10px] bg-white/90 shadow-md shadow-black/40 grid place-items-center"
-              >
-                <span className="text-[10px] uppercase tracking-[0.22em] text-black/70">
-                  Foto
-                </span>
-              </div>
-            ))}
+          {/* THUMBNAILS SCORREVOLI */}
+          <div className="flex gap-3 overflow-x-auto py-1 px-1 max-w-full">
+            {GALLERY.map((img, index) => {
+              const isActive = index === currentIndex;
+              return (
+                <button
+                  key={img.src}
+                  type="button"
+                  onClick={() => selectImage(index)}
+                  className={`
+                    relative h-[62px] w-[110px] rounded-[10px] overflow-hidden
+                    shadow-md shadow-black/40 shrink-0
+                    border
+                    ${isActive ? "border-[rgb(var(--accent))]" : "border-white/40"}
+                  `}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover"
+                    sizes="110px"
+                  />
+                </button>
+              );
+            })}
           </div>
 
+          {/* FRECCIA DESTRA */}
           <button
-            aria-label="successiva"
+            type="button"
+            onClick={goNext}
+            aria-label="Foto successiva"
             className="h-8 w-8 grid place-items-center rounded-full border border-white/50 text-white/80 hover:bg-white hover:text-black"
           >
             ›

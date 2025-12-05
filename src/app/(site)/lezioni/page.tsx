@@ -6,7 +6,7 @@ export const metadata = { title: "Lezioni – Gran Paradiso" };
 export default function LezioniPage() {
   return (
     <main>
-      {/* HERO GRIGIO CON FOTO DI SFONDO */}
+      {/* HERO CON FOTO DI SFONDO */}
       <section className="lezioni-hero">
         <div className="inner">
           <div className="container-site text-center">
@@ -24,13 +24,6 @@ export default function LezioniPage() {
             >
               Lezioni
             </h1>
-
-            <p className="mt-6 text-[11px] sm:text-[12px] text-white/80 uppercase tracking-[0.22em]">
-              Foto sfondo
-            </p>
-            <p className="text-[10px] tracking-[0.28em] text-white/70 uppercase">
-              (con gradiente scuro per far risaltare il titolo)
-            </p>
           </div>
         </div>
       </section>

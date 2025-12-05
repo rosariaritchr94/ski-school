@@ -388,9 +388,20 @@
 @layer components {
   .lezioni-hero {
     position: relative;
-    background: #7a7a7a;
+    /* fallback sotto l’immagine */
+    background-color: #7a7a7a;
+
+    /* immagine di sfondo HERO LEZIONI */
+    background-image: url("/foto/LEZIONI .jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* qui regoli l’inquadratura: center (orizzontale) / 70% (verticale) */
+    background-position: center 70%;
+
     isolation: isolate;
   }
+
   .lezioni-hero::before {
     content: "";
     position: absolute;
@@ -402,6 +413,7 @@
     );
     z-index: 0;
   }
+
   .lezioni-hero .inner {
     position: relative;
     z-index: 1;
@@ -423,6 +435,7 @@
     padding-bottom: clamp(48px, 7vw, 120px);
     isolation: isolate;
   }
+
   .lezioni-blue::before {
     content: "";
     position: absolute;
@@ -435,6 +448,7 @@
   .pill {
     @apply inline-flex items-center rounded bg-[#37C6E6] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#001018];
   }
+
   .price {
     @apply mt-1 text-[13px] font-semibold;
   }

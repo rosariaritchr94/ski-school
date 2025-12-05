@@ -12,18 +12,16 @@ type Card = {
 
 const CARDS: Card[] = [
   {
-    key: "lezioni-individuali",
-    title: "LEZIONI INDIVIDUALI",
-    text: "Una lezione personalizzata e su misura per poter scoprire i segreti nascosti dello sci e dello snowboard.",
+    key: "lezioni-private",
+    title: "LEZIONI private",
+    text: "Lezioni personalizzate con maestro dedicato, per bambini e adulti, per imparare e migliorare la tecnica nello sci, nello snowboard e nello sci di fondo.",
     image: "/foto/foto_lezione.jpg",
   },
   {
     key: "webcam-live",
     title: "WEBCAM LIVE",
     text: "Scegli tra le 6 webcam a disposizione per dare un ultimo sguardo alle piste prima di partire per la tua giornata sulla neve.",
-    // 👇 immagine di anteprima salvata in /public/foto/webcam_cogne.png
     image: "/foto/webcam_cogne.png",
-    // 👇 link esterno alla pagina delle webcam (scegli quella che preferisci)
     href: "https://www.skilife.ski/cogne/webcam/",
     // oppure:
     // href: "https://www.skylinewebcams.com/it/webcam/italia/valle-daosta/aosta/cogne-gran-paradiso.html",
@@ -31,7 +29,7 @@ const CARDS: Card[] = [
   {
     key: "lezione-di-gruppo",
     title: "LEZIONE DI GRUPPO",
-    text: "Una soluzione adatta a tutti coloro che vogliono condividere con nuovi amici la passione per lo sci o per lo snowboard.",
+    text: "Lezioni per gruppi organizzati (anticipatamente), con tariffe dedicate a scuole, associazioni o gruppi che desiderano avvicinarsi allo sci, allo snowboard o allo sci di fondo.",
     image: "/foto/lezione_collettiva.jpg",
   },
   {
@@ -85,8 +83,8 @@ export default function ServicesGrid() {
               "
             >
               {/* IMMAGINE (eventualmente cliccabile) */}
-              {c.image && (
-                c.href ? (
+              {c.image &&
+                (c.href ? (
                   <a
                     href={c.href}
                     target="_blank"
@@ -97,8 +95,7 @@ export default function ServicesGrid() {
                   </a>
                 ) : (
                   imageBlock
-                )
-              )}
+                ))}
 
               {/* TITOLO */}
               <header>
@@ -130,6 +127,14 @@ export default function ServicesGrid() {
                 "
               >
                 {c.text}
+                {c.key === "lezione-di-gruppo" && (
+                  <>
+                    <br />
+                    <span className="block mt-1 text-center text-[rgb(var(--accent))] font-semibold">
+                      RICHIEDI IL TUO PREVENTIVO.
+                    </span>
+                  </>
+                )}
               </p>
             </article>
           );
