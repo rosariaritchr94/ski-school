@@ -80,7 +80,7 @@
 /* ======= BREAKPOINTS DESKTOP/TABLET ======= */
 @media (min-width: 768px) {
   :root {
-    --hero-shift: 72px;
+    --hero-shift: -8px;
     --mtn-height: 420px;
     --mtn-bottom: -80px;
     --logo-size: 120px;
@@ -99,7 +99,7 @@
 }
 @media (min-width: 1024px) {
   :root {
-    --hero-shift: 88px;
+    --hero-shift: -16px;
     --mtn-height: 520px;
     --mtn-bottom: -100px;
     --logo-size: 130px;
@@ -118,7 +118,7 @@
 }
 @media (min-width: 1280px) {
   :root {
-    --hero-shift: 96px;
+    --hero-shift: -20px;
     --mtn-height: 560px;
     --mtn-bottom: -110px;
     --logo-size: 130px;
@@ -137,7 +137,7 @@
 }
 @media (min-width: 1536px) {
   :root {
-    --hero-shift: 96px;
+    --hero-shift: -20px;
     --mtn-height: 560px;
     --mtn-bottom: -110px;
     --logo-size: 140px;
@@ -159,7 +159,7 @@
 @layer base {
   @media (max-width: 767px) {
     :root {
-      /* Hero leggermente adattato al verticale */
+      /* Hero smartphone */
       --hero-shift: 64px;
       --mtn-height: 300px;
       --mtn-bottom: -64px;
@@ -168,13 +168,13 @@
       --intro-pullup: 220px;
 
       /* MONTAGNA AZZURRA (servizi) – ALZATA UN PO' */
-      --blue-lift: 360px;   /* prima 260 → ora come desktop */
+      --blue-lift: 360px;
       --blue-top: 10px;
       --blue-factor: 0.70;
 
       /* MONTAGNA NERA (safety) – ABBASSATA UN PO' */
-      --black-lift: 200px;  /* prima 230 → meno sovrapposizione */
-      --black-factor: 0.46; /* un filo più morbido */
+      --black-lift: 200px;
+      --black-factor: 0.46;
       --black-top: 30px;
     }
   }
@@ -277,6 +277,18 @@
     height: var(--logo-size);
     display: block;
   }
+
+  /* HERO: contenitore del titolo 
+     - meno padding-top → titolo più alto
+     - un po' più padding-bottom per riempire sotto
+  */
+ .hero-main {
+  min-height: clamp(280px, 56vh, 460px);          /* meno alto */
+  padding-top: clamp(0px, 1vh, 8px);              /* quasi niente spazio sopra */
+  padding-bottom: clamp(36px, 10vh, 64px);        /* un filo meno anche sotto */
+  @apply flex flex-col items-center justify-start text-center;
+}
+
 
   /* Navbar utility */
   .nav-solid {
@@ -519,14 +531,12 @@
 /* ===== MOBILE: aggiustamenti extra per montagna bianca e nera ===== */
 @layer components {
   @media (max-width: 767px) {
-    /* MONTAGNA NERA: ancora un filo più bassa rispetto alla sezione azzurra */
     .slice-black::before {
-      top: -20px; /* prima -45px: meno sovrapposizione su FONDO E TELEMARK */
+      top: -20px;
     }
 
-    /* MONTAGNA BIANCA (contatti): abbassata per non coprire le foto */
     .slice-white {
-      margin-top: -40px; /* prima -110px */
+      margin-top: -40px;
       padding-top: calc(80px + clamp(24px, 5vw, 80px));
     }
   }
