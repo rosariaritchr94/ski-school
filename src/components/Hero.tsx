@@ -53,20 +53,13 @@ export default function Hero() {
       {/* TITOLI */}
       <div
         className="
-          container-site
+          container-site text-center
           pt-[var(--title-offset)]
-          pb-[440px] md:pb-[560px] lg:pb-[760px] xl:pb-[800px] 2xl:pb-[840px]
+          pb-[360px] md:pb-[560px] lg:pb-[760px] xl:pb-[800px] 2xl:pb-[840px]
+          flex flex-col items-center
         "
       >
-        {/* SOLO LA SCRITTA viene spostata verso l'alto */}
-        <div
-          className="
-            relative max-w-3xl mx-auto
-            transform
-            -translate-y-6 sm:-translate-y-8 md:-translate-y-12 lg:-translate-y-14
-            text-center
-          "
-        >
+        <div className="relative -mt-6 sm:-mt-8 lg:-mt-10 xl:-mt-12">
           <p className="heading text-[19px] tracking-[0.50em] text-[rgb(var(--accent))]">
             Scuola di Sci & Snowboard
           </p>
@@ -84,7 +77,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* MONTAGNE (invariato) */}
+      {/* MONTAGNE */}
       <div className="mtn-wrap">
         <div className="mtn z-10 mtn--scuro">
           <img
@@ -112,7 +105,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* LOGO CENTRALE (invariato) */}
+      {/* LOGO CENTRALE */}
       <div className="hero-logo">
         <img
           src="/assets/logos/logo-centrale.png"
