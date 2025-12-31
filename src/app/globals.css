@@ -14,7 +14,7 @@
     --bianco-delta: 0px;
     --logo-delta:  0px;
 
-    /* HERO (valori base) */
+    /* HERO (valori base, usati soprattutto su mobile) */
     --hero-shift: 60px;
     --mtn-height: 320px;
     --mtn-bottom: -56px;
@@ -156,29 +156,24 @@
   }
 }
 
-/* ===== MOBILE: taratura smartphone (titolo + montagne + logo + intro) ===== */
+/* ===== MOBILE: stessi effetti, ma tarati per smartphone ===== */
 @layer base {
   @media (max-width: 767px) {
     :root {
-      /* Montagne e logo un po' più in alto */
+      /* Hero per smartphone */
       --hero-shift: 64px;
       --mtn-height: 300px;
       --mtn-bottom: -64px;
       --logo-size: 110px;
-      --logo-delta: -24px;
 
-      /* Titolo HERO più in alto */
-      --title-offset: 4.25rem;
+      --intro-pullup: 220px;
 
-      /* INTRO PIÙ BASSA → THE WILD SIDE più giù */
-      --intro-pullup: 150px;  /* prima 180px */
-
-      /* MONTAGNA AZZURRA (servizi) */
+      /* MONTAGNA AZZURRA (servizi) – ALZATA UN PO' */
       --blue-lift: 360px;
       --blue-top: 10px;
       --blue-factor: 0.70;
 
-      /* MONTAGNA NERA (safety) */
+      /* MONTAGNA NERA (safety) – ABBASSATA UN PO' */
       --black-lift: 200px;
       --black-factor: 0.46;
       --black-top: 30px;
@@ -186,7 +181,7 @@
   }
 }
 
-/* ======= MICRO-FIX DESKTOP ======= */
+/* ======= MICRO-FIX ======= */
 @media (min-width: 1366px) and (max-width: 1535px) {
   :root {
     --bianco-delta: 38px;
@@ -402,10 +397,15 @@
 @layer components {
   .lezioni-hero {
     position: relative;
-    background-color: #7a7a7a;
+    /* nero identico al resto del sito */
+    background-color: #101010;
+
+    /* immagine di sfondo HERO LEZIONI */
     background-image: url("/foto/Screenshot-2025-12-05-alle-12.00.53.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+
+    /* inquadratura */
     background-position: center 70%;
     isolation: isolate;
   }
@@ -414,10 +414,11 @@
     content: "";
     position: absolute;
     inset: 0;
+    /* gradiente verso lo stesso nero di fondo */
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.45),
-      rgba(0, 0, 0, 0.45)
+      #101010
     );
     z-index: 0;
   }
@@ -429,8 +430,9 @@
     padding-bottom: clamp(28px, 8vw, 80px);
   }
 
+  /* BLOCCO NERO PRINCIPALE (stesso nero dell’hero) */
   .lezioni-black {
-    background: #0b0b0b;
+    background: #000000;
     padding-top: clamp(36px, 6vw, 88px);
     padding-bottom: clamp(36px, 6vw, 88px);
   }
@@ -524,15 +526,17 @@
   }
 }
 
-/* ===== MOBILE: extra fix per montagna bianca e nera ===== */
+/* ===== MOBILE: aggiustamenti extra per montagna bianca e nera ===== */
 @layer components {
   @media (max-width: 767px) {
+    /* MONTAGNA NERA: ancora un filo più bassa rispetto alla sezione azzurra */
     .slice-black::before {
-      top: -20px;
+      top: -20px; /* prima -45px */
     }
 
+    /* MONTAGNA BIANCA (contatti): abbassata per non coprire le foto */
     .slice-white {
-      margin-top: -40px;
+      margin-top: -40px; /* prima -110px */
       padding-top: calc(80px + clamp(24px, 5vw, 80px));
     }
   }

@@ -20,7 +20,7 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* nav footer (senza PREZZI e CONTATTI) */}
+          {/* nav footer */}
           <nav className="flex flex-wrap items-center justify-center gap-4 text-[11px] uppercase tracking-[0.22em] text-white/70">
             <a href="/" className="hover:text-white">
               Home
@@ -32,6 +32,29 @@ export default function Footer() {
               Maestri
             </a>
           </nav>
+
+          {/* LINK LEGALI IUBENDA */}
+          <div className="flex flex-wrap justify-center gap-4 text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-white/60">
+            <a
+              href="https://www.iubenda.com/privacy-policy/96490447"
+              className="iubenda-black iubenda-noiframe iubenda-embed hover:underline"
+              title="Privacy Policy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Privacy Policy
+            </a>
+
+            <a
+              href="https://www.iubenda.com/privacy-policy/96490447/cookie-policy"
+              className="iubenda-black iubenda-noiframe iubenda-embed hover:underline"
+              title="Cookie Policy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Cookie Policy
+            </a>
+          </div>
 
           {/* LOGHI IN FONDO */}
           <div className="flex items-center gap-10 opacity-90">
