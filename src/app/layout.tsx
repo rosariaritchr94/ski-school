@@ -1,24 +1,46 @@
 // src/app/layout.tsx
 import "@/app/globals.css";
 import type { ReactNode } from "react";
-import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { sofia, oswald } from "@/app/fonts";
+import Script from "next/script";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="it" className={`${sofia.variable} ${oswald.variable}`}>
-      <head>
-        {/* Loader globale di Iubenda: serve per i link Privacy/Cookie Policy */}
+      <body className="bg-[#101010] text-white font-sofia">
+        {/* IUBENDA – Privacy Controls & Cookie Solution */}
+        <Script
+          id="iubenda-embed"
+          strategy="beforeInteractive"
+          src="https://embeds.iubenda.com/widgets/1524e6ba-1e10-4ff8-b085-102f744ee34c.js"
+        />
         <Script
           id="iubenda-js"
-          src="https://cdn.iubenda.com/iubenda.js"
-          strategy="lazyOnload"
+          strategy="beforeInteractive"
+          // è lo stesso codice che ti dà Iubenda per caricare iubenda.js
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function (w, d) {
+                var loader = function () {
+                  var s = d.createElement("script"),
+                      tag = d.getElementsByTagName("script")[0];
+                  s.src = "https://cdn.iubenda.com/iubenda.js";
+                  tag.parentNode.insertBefore(s, tag);
+                };
+                if (w.addEventListener) {
+                  w.addEventListener("load", loader, false);
+                } else if (w.attachEvent) {
+                  w.attachEvent("onload", loader);
+                } else {
+                  w.onload = loader;
+                }
+              })(window, document);
+            `,
+          }}
         />
-      </head>
 
-      <body className="bg-[#101010] text-white font-sofia">
         {/* Navbar fissa in alto */}
         <Navbar />
 
