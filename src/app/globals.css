@@ -146,7 +146,7 @@
   /* ===== MOBILE ===== */
   @media (max-width: 767px) {
     :root {
-      --title-offset: 4.25rem;
+      --title-offset: 6.25rem;
       --hero-pad-bottom: 440px;
 
       --hero-shift: 32px;
