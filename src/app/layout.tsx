@@ -8,8 +8,15 @@ import Script from "next/script";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="it" className={`${sofia.variable} ${oswald.variable}`}>
-      <body className="bg-[#101010] text-white font-sofia">
+    <html
+      lang="it"
+      className={`${sofia.variable} ${oswald.variable}`}
+      suppressHydrationWarning
+    >
+      <body
+        className="bg-[#101010] text-white font-sofia"
+        suppressHydrationWarning
+      >
         {/* IUBENDA – Privacy Controls & Cookie Solution */}
         <Script
           id="iubenda-embed"
@@ -18,39 +25,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
         <Script
           id="iubenda-js"
-          strategy="beforeInteractive"
-          // è lo stesso codice che ti dà Iubenda per caricare iubenda.js
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function (w, d) {
-                var loader = function () {
-                  var s = d.createElement("script"),
-                      tag = d.getElementsByTagName("script")[0];
-                  s.src = "https://cdn.iubenda.com/iubenda.js";
-                  tag.parentNode.insertBefore(s, tag);
-                };
-                if (w.addEventListener) {
-                  w.addEventListener("load", loader, false);
-                } else if (w.attachEvent) {
-                  w.attachEvent("onload", loader);
-                } else {
-                  w.onload = loader;
-                }
-              })(window, document);
-            `,
-          }}
+          strategy="lazyOnload"
+          src="https://cdn.iubenda.com/iubenda.js"
         />
 
-        {/* Navbar fissa in alto */}
         <Navbar />
 
-        {/* Spazio sotto la navbar fissa (altezza navbar mobile/desktop) */}
-        <main className="pt-[60px] md:pt-[72px]">
-          {children}
-        </main>
+        {/* ✅ spazio sotto la navbar fixed */}
+        <main className="page-wrap">{children}</main>
 
         <Footer />
       </body>
     </html>
   );
 }
+

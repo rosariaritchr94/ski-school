@@ -55,14 +55,15 @@ export default function Hero() {
         className="
           container-site text-center
           pt-[var(--title-offset)]
-          pb-[360px] md:pb-[560px] lg:pb-[760px] xl:pb-[800px] 2xl:pb-[840px]
+          pb-[var(--hero-pad-bottom)]
           flex flex-col items-center
         "
       >
-        <div className="relative -mt-6 sm:-mt-8 lg:-mt-10 xl:-mt-12">
+        <div className="relative -mt-6 sm:-mt-8 lg:-mt-10 xl:-mt-12 z-20">
           <p className="heading text-[19px] tracking-[0.50em] text-[rgb(var(--accent))]">
             Scuola di Sci & Snowboard
           </p>
+
           <h1
             className="
               mt-3 md:mt-4 lg:mt-5
@@ -105,12 +106,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* LOGO CENTRALE */}
+      {/* LOGO CENTRALE (sempre sopra a tutto via CSS z-index: 999) */}
       <div className="hero-logo">
         <img
           src="/assets/logos/logo-centrale.png"
           alt="Logo Gran Paradiso"
-          className="block"
           draggable="false"
         />
       </div>

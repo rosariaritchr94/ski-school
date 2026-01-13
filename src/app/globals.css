@@ -10,11 +10,14 @@
     --accent: 55 198 230; /* CTA azzurro */
     --mtn-dark: 29 138 165;
 
+    /* Navbar height (per layout fixed) */
+    --nav-h: 60px;
+
     /* Micro-fix */
     --bianco-delta: 0px;
-    --logo-delta:  0px;
+    --logo-delta: 0px;
 
-    /* HERO (valori base, usati soprattutto su mobile) */
+    /* HERO */
     --hero-shift: 60px;
     --mtn-height: 320px;
     --mtn-bottom: -56px;
@@ -23,9 +26,9 @@
     --k-scuro: 0.6667;
     --k-chiaro: 0.6167;
     --k-bianco: 0.4667;
-    --k-logo:  1.0833;
+    --k-logo: 1.0833;
 
-    /* Parallax (set da JS) */
+    /* Parallax */
     --p-scuro: 0px;
     --p-chiaro: 0px;
     --p-bianco: 0px;
@@ -35,6 +38,9 @@
 
     /* Offset titoli hero */
     --title-offset: 6.5rem;
+
+    /* Spazio sotto ai titoli */
+    --hero-pad-bottom: 360px;
 
     /* Intro bianca */
     --intro-pullup: 220px;
@@ -51,6 +57,119 @@
     --black-top: 28px;
   }
 
+  @media (min-width: 768px) {
+    :root {
+      --nav-h: 72px;
+
+      --hero-shift: -8px;
+      --mtn-height: 420px;
+      --mtn-bottom: -80px;
+      --logo-size: 120px;
+      --title-offset: 9rem;
+      --hero-pad-bottom: 560px;
+
+      --intro-pullup: 260px;
+
+      --blue-lift: 340px;
+      --blue-top: 10px;
+      --blue-factor: 0.5;
+
+      --black-lift: 260px;
+      --black-factor: 0.5;
+      --black-top: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --hero-shift: -16px;
+      --mtn-height: 520px;
+      --mtn-bottom: -100px;
+      --logo-size: 130px;
+      --title-offset: 10rem;
+      --hero-pad-bottom: 760px;
+
+      --intro-pullup: 300px;
+
+      --blue-lift: 380px;
+      --blue-top: 12px;
+      --blue-factor: 0.52;
+
+      --black-lift: 300px;
+      --black-factor: 0.48;
+      --black-top: 34px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --hero-shift: -20px;
+      --mtn-height: 560px;
+      --mtn-bottom: -110px;
+      --logo-size: 130px;
+      --title-offset: 11rem;
+      --hero-pad-bottom: 800px;
+
+      --intro-pullup: 320px;
+
+      --blue-lift: 420px;
+      --blue-top: 14px;
+      --blue-factor: 0.54;
+
+      --black-lift: 340px;
+      --black-factor: 0.45;
+      --black-top: 36px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    :root {
+      --hero-shift: -20px;
+      --mtn-height: 560px;
+      --mtn-bottom: -110px;
+      --logo-size: 140px;
+      --title-offset: 11.5rem;
+      --hero-pad-bottom: 840px;
+
+      --intro-pullup: 320px;
+
+      --blue-lift: 420px;
+      --blue-top: 16px;
+      --blue-factor: 0.54;
+
+      --black-lift: 340px;
+      --black-factor: 0.45;
+      --black-top: 40px;
+    }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 767px) {
+    :root {
+      --title-offset: 4.25rem;
+      --hero-pad-bottom: 440px;
+
+      --hero-shift: 32px;
+      --mtn-height: 300px;
+      --mtn-bottom: -40px;
+      --logo-size: 110px;
+
+      --logo-delta: -48px;
+      --bianco-delta: -26px;
+
+      --intro-pullup: 280px;
+      --intro-threshold: 270px;
+
+      --blue-lift: 380px;
+      --blue-factor: 0.70;
+      --blue-top: 8px;
+
+      --black-lift: 240px;
+      --black-factor: 0.08;
+      --black-top: 26px;
+    }
+  }
+
   html,
   body {
     height: 100%;
@@ -65,119 +184,17 @@
   .font-sofia {
     font-family: var(--font-sofia), system-ui, sans-serif;
   }
+
   .font-oswald {
     font-family: var(--font-oswald), system-ui, sans-serif;
   }
+
   h1,
   h2,
   h3,
   h4,
   .heading {
     @apply font-sofia uppercase;
-  }
-}
-
-/* ======= BREAKPOINTS DESKTOP/TABLET ======= */
-@media (min-width: 768px) {
-  :root {
-    /* montagne un po' più su → meno nero visibile */
-    --hero-shift: -8px;
-    --mtn-height: 420px;
-    --mtn-bottom: -80px;
-    --logo-size: 120px;
-    --title-offset: 9rem;
-
-    --intro-pullup: 260px;
-
-    --blue-lift: 340px;
-    --blue-top: 10px;
-    --blue-factor: 0.5;
-
-    --black-lift: 260px;
-    --black-factor: 0.5;
-    --black-top: 32px;
-  }
-}
-@media (min-width: 1024px) {
-  :root {
-    --hero-shift: -16px;   /* ancora un po' più su */
-    --mtn-height: 520px;
-    --mtn-bottom: -100px;
-    --logo-size: 130px;
-    --title-offset: 10rem;
-
-    --intro-pullup: 300px;
-
-    --blue-lift: 380px;
-    --blue-top: 12px;
-    --blue-factor: 0.52;
-
-    --black-lift: 300px;
-    --black-factor: 0.48;
-    --black-top: 34px;
-  }
-}
-@media (min-width: 1280px) {
-  :root {
-    --hero-shift: -20px;
-    --mtn-height: 560px;
-    --mtn-bottom: -110px;
-    --logo-size: 130px;
-    --title-offset: 11rem;
-
-    --intro-pullup: 320px;
-
-    --blue-lift: 420px;
-    --blue-top: 14px;
-    --blue-factor: 0.54;
-
-    --black-lift: 340px;
-    --black-factor: 0.45;
-    --black-top: 36px;
-  }
-}
-@media (min-width: 1536px) {
-  :root {
-    --hero-shift: -20px;
-    --mtn-height: 560px;
-    --mtn-bottom: -110px;
-    --logo-size: 140px;
-    --title-offset: 11.5rem;
-
-    --intro-pullup: 320px;
-
-    --blue-lift: 420px;
-    --blue-top: 16px;
-    --blue-factor: 0.54;
-
-    --black-lift: 340px;
-    --black-factor: 0.45;
-    --black-top: 40px;
-  }
-}
-
-/* ===== MOBILE: stessi effetti, ma tarati per smartphone ===== */
-@layer base {
-  @media (max-width: 767px) {
-    :root {
-      /* Hero per smartphone */
-      --hero-shift: 64px;
-      --mtn-height: 300px;
-      --mtn-bottom: -64px;
-      --logo-size: 110px;
-
-      --intro-pullup: 220px;
-
-      /* MONTAGNA AZZURRA (servizi) – ALZATA UN PO' */
-      --blue-lift: 360px;
-      --blue-top: 10px;
-      --blue-factor: 0.70;
-
-      /* MONTAGNA NERA (safety) – ABBASSATA UN PO' */
-      --black-lift: 200px;
-      --black-factor: 0.46;
-      --black-top: 30px;
-    }
   }
 }
 
@@ -201,7 +218,7 @@
   }
 }
 
-/* ============ COMPONENTS (HOME) ============ */
+/* ============ COMPONENTS ============ */
 @layer components {
   .container-site {
     @apply mx-auto w-full max-w-[1200px] px-4 md:px-6;
@@ -233,11 +250,16 @@
     overflow: visible;
     transform: translateY(var(--hero-shift));
     will-change: transform;
+
+    /* ✅ montagne sotto */
+    z-index: 10;
   }
+
   .mtn {
     position: absolute;
     inset: 0;
   }
+
   .mtn > img {
     width: 100%;
     height: 100%;
@@ -245,6 +267,7 @@
     object-position: top center;
     display: block;
   }
+
   .mtn--scuro {
     transform: translateY(
       calc(var(--mtn-height) * var(--k-scuro) * -1 + var(--p-scuro))
@@ -264,27 +287,23 @@
     );
   }
 
+  /* ✅ LOGO SEMPRE SOPRA A TUTTO */
   .hero-logo {
     position: absolute;
     left: 50%;
     top: calc(100% - calc(var(--mtn-height) * var(--k-logo)));
     transform: translate(-50%, calc(var(--hero-shift) + var(--logo-delta)));
     pointer-events: none;
-    z-index: 40;
+
+    /* 🔥 sopra intro/blu/nero/contatti */
+    z-index: 999;
     will-change: transform;
   }
+
   .hero-logo img {
     width: var(--logo-size);
     height: var(--logo-size);
     display: block;
-  }
-
-  /* Contenitore del titolo hero */
-  .hero-main {
-    min-height: clamp(320px, 64vh, 520px);
-    padding-top: clamp(40px, 12vh, 80px);
-    padding-bottom: clamp(32px, 8vh, 64px);
-    @apply flex flex-col items-center justify-start text-center;
   }
 
   /* Navbar utility */
@@ -292,19 +311,24 @@
     background: #101010;
   }
 
-  /* ===== Slices (HOME) ===== */
+  /* ===== SLICES ===== */
 
-  /* 0) INTRO — bianco sotto l’hero */
+  /* INTRO (bianco) - deve andare SOPRA le montagne ma SOTTO il logo */
   .slice-intro {
     position: relative;
-    z-index: 1;
+    z-index: 100; /* ✅ sopra montagne */
     background: #ffffff;
 
     margin-top: calc(-1 * var(--intro-pullup));
-    padding-top: max(0px, calc(var(--intro-pullup) - var(--intro-threshold)));
+    padding-top: calc(
+      max(0px, calc(var(--intro-pullup) - var(--intro-threshold))) + 28px
+    );
     padding-bottom: clamp(28px, 6vw, 80px);
+
     isolation: isolate;
   }
+
+  /* “tappo” bianco: dietro al testo */
   .slice-intro::before {
     content: "";
     position: absolute;
@@ -313,13 +337,19 @@
     top: -20px;
     height: 20px;
     background: #ffffff;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .slice-intro > * {
+    position: relative;
     z-index: 1;
   }
 
-  /* 1) SERVIZI — azzurro (MONTAGNA4.png) */
+  /* BLUE (servizi) - deve salire sopra intro e coprire un po’ il reel */
   .slice-blue {
     position: relative;
-    z-index: 5;
+    z-index: 200; /* ✅ sopra intro */
     background: transparent;
 
     margin-top: calc(-1 * var(--blue-lift) * var(--blue-factor));
@@ -328,23 +358,20 @@
 
     isolation: isolate;
   }
+
   .slice-blue::before {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: url("/assets/slices/MONTAGNA4.png") center top / cover
-      no-repeat;
+    background: url("/assets/slices/MONTAGNA4.png") center top / cover no-repeat;
   }
 
-  /* 2) SAFETY — nero (MONTAGNA5.png) con pannelli dentro */
+  /* BLACK (safety) - deve sovrapporre la blu */
   .slice-black {
     position: relative;
-    z-index: 6;
+    z-index: 300; /* ✅ sopra blu */
     background: transparent;
 
     margin-top: calc(-1 * var(--black-lift) * var(--black-factor));
@@ -353,6 +380,7 @@
 
     isolation: isolate;
   }
+
   .slice-black::before {
     content: "";
     position: absolute;
@@ -362,14 +390,13 @@
     bottom: 0;
     z-index: -1;
     pointer-events: none;
-    background: url("/assets/slices/MONTAGNA5.png") center top / cover
-      no-repeat;
+    background: url("/assets/slices/MONTAGNA5.png") center top / cover no-repeat;
   }
 
-  /* 3) CONTATTI — bianco (MONTAGNA6.png) */
+  /* WHITE (contatti) - deve sovrapporre la nera */
   .slice-white {
     position: relative;
-    z-index: 7;
+    z-index: 400; /* ✅ sopra nero */
     background: transparent;
 
     margin-top: -110px;
@@ -383,161 +410,31 @@
   .slice-white::before {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    inset: 0;
     z-index: -1;
-    background: url("/assets/slices/MONTAGNA6.png") center top / cover
-      no-repeat;
+    pointer-events: none;
+    background: url("/assets/slices/MONTAGNA6.png") center top / cover no-repeat;
   }
 }
 
-/* ====== PAGINA LEZIONI ====== */
-@layer components {
-  .lezioni-hero {
-    position: relative;
-    /* nero identico al resto del sito */
-    background-color: #101010;
-
-    /* immagine di sfondo HERO LEZIONI */
-    background-image: url("/foto/Screenshot-2025-12-05-alle-12.00.53.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    /* inquadratura */
-    background-position: center 70%;
-    isolation: isolate;
-  }
-
-  .lezioni-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    /* gradiente verso lo stesso nero di fondo */
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.45),
-      #101010
-    );
-    z-index: 0;
-  }
-
-  .lezioni-hero .inner {
-    position: relative;
-    z-index: 1;
-    padding-top: clamp(72px, 14vw, 160px);
-    padding-bottom: clamp(28px, 8vw, 80px);
-  }
-
-  /* BLOCCO NERO PRINCIPALE (stesso nero dell’hero) */
-  .lezioni-black {
-    background: #000000;
-    padding-top: clamp(36px, 6vw, 88px);
-    padding-bottom: clamp(36px, 6vw, 88px);
-  }
-
-  .lezioni-blue {
-    position: relative;
-    background: transparent;
-    margin-top: -110px;
-    padding-top: calc(110px + clamp(16px, 3vw, 28px));
-    padding-bottom: clamp(48px, 7vw, 120px);
-    isolation: isolate;
-  }
-
-  .lezioni-blue::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: url("/assets/slices/MONTAGNA4.png") center top / cover
-      no-repeat;
-  }
-
-  .pill {
-    @apply inline-flex items-center rounded bg-[#37C6E6] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#001018];
-  }
-
-  .price {
-    @apply mt-1 text-[13px] font-semibold;
-  }
-
-  .foto-box {
-    @apply bg-white rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.35)];
-  }
-}
-
-/* ===== PAGINA MAESTRI ===== */
-@layer components {
-  .maestri-hero {
-    position: relative;
-    background: #7a7a7a;
-    isolation: isolate;
-  }
-  .maestri-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.45),
-      rgba(0, 0, 0, 0.45)
-    );
-    z-index: 0;
-  }
-  .maestri-hero .inner {
-    position: relative;
-    z-index: 1;
-    padding-top: clamp(72px, 14vw, 160px);
-    padding-bottom: clamp(28px, 8vw, 80px);
-  }
-
-  .maestri-black {
-    background: #0b0b0b;
-    padding-top: clamp(36px, 6vw, 88px);
-    padding-bottom: clamp(36px, 6vw, 88px);
-  }
-
-  .maestri-blue {
-    position: relative;
-    background: transparent;
-    margin-top: -110px;
-    padding-top: calc(110px + clamp(16px, 3vw, 28px));
-    padding-bottom: clamp(64px, 8vw, 160px);
-    isolation: isolate;
-  }
-  .maestri-blue::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: url("/assets/slices/MONTAGNA4.png") center top / cover
-      no-repeat;
-  }
-
-  .maestro-card {
-    @apply rounded-[14px] bg-[#0b0b0b] shadow-[0_14px_36px_rgba(0,0,0,.35)];
-    aspect-ratio: 3 / 4;
-  }
-
-  .foto-box {
-    @apply bg-white rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.35)];
-  }
-}
-
-/* ===== MOBILE: aggiustamenti extra per montagna bianca e nera ===== */
+/* ===== MOBILE EXTRA ===== */
 @layer components {
   @media (max-width: 767px) {
-    /* MONTAGNA NERA: ancora un filo più bassa rispetto alla sezione azzurra */
-    .slice-black::before {
-      top: -20px; /* prima -45px */
+    /* seam più alto su mobile, ma SEMPRE sotto al testo */
+    .slice-intro::before {
+      top: -60px;
+      height: 60px;
     }
 
-    /* MONTAGNA BIANCA (contatti): abbassata per non coprire le foto */
+    /* nera: leggero tuning */
+    .slice-black::before {
+      top: -85px;
+    }
+
+    /* contatti overlap “come desktop” */
     .slice-white {
-      margin-top: -40px; /* prima -110px */
-      padding-top: calc(80px + clamp(24px, 5vw, 80px));
+      margin-top: -48px;
+      padding-top: calc(48px + clamp(24px, 5vw, 80px));
     }
   }
 }
