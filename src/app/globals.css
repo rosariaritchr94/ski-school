@@ -10,14 +10,11 @@
     --accent: 55 198 230; /* CTA azzurro */
     --mtn-dark: 29 138 165;
 
-    /* Navbar height (per layout fixed) */
-    --nav-h: 60px;
-
     /* Micro-fix */
     --bianco-delta: 0px;
     --logo-delta: 0px;
 
-    /* HERO */
+    /* HERO (valori base) */
     --hero-shift: 60px;
     --mtn-height: 320px;
     --mtn-bottom: -56px;
@@ -28,7 +25,7 @@
     --k-bianco: 0.4667;
     --k-logo: 1.0833;
 
-    /* Parallax */
+    /* Parallax (set da JS) */
     --p-scuro: 0px;
     --p-chiaro: 0px;
     --p-bianco: 0px;
@@ -57,96 +54,144 @@
     --black-top: 28px;
   }
 
-  @media (min-width: 768px) {
-    :root {
-      --nav-h: 72px;
-
-      --hero-shift: -8px;
-      --mtn-height: 420px;
-      --mtn-bottom: -80px;
-      --logo-size: 120px;
-      --title-offset: 9rem;
-      --hero-pad-bottom: 560px;
-
-      --intro-pullup: 260px;
-
-      --blue-lift: 340px;
-      --blue-top: 10px;
-      --blue-factor: 0.5;
-
-      --black-lift: 260px;
-      --black-factor: 0.5;
-      --black-top: 32px;
-    }
+  html,
+  body {
+    height: 100%;
   }
 
-  @media (min-width: 1024px) {
-    :root {
-      --hero-shift: -16px;
-      --mtn-height: 520px;
-      --mtn-bottom: -100px;
-      --logo-size: 130px;
-      --title-offset: 10rem;
-      --hero-pad-bottom: 760px;
-
-      --intro-pullup: 300px;
-
-      --blue-lift: 380px;
-      --blue-top: 12px;
-      --blue-factor: 0.52;
-
-      --black-lift: 300px;
-      --black-factor: 0.48;
-      --black-top: 34px;
-    }
+  body {
+    background: rgb(var(--bg));
+    color: rgb(var(--fg));
+    @apply antialiased overflow-x-hidden;
   }
 
-  @media (min-width: 1280px) {
-    :root {
-      --hero-shift: -20px;
-      --mtn-height: 560px;
-      --mtn-bottom: -110px;
-      --logo-size: 130px;
-      --title-offset: 11rem;
-      --hero-pad-bottom: 800px;
-
-      --intro-pullup: 320px;
-
-      --blue-lift: 420px;
-      --blue-top: 14px;
-      --blue-factor: 0.54;
-
-      --black-lift: 340px;
-      --black-factor: 0.45;
-      --black-top: 36px;
-    }
+  .font-sofia {
+    font-family: var(--font-sofia), system-ui, sans-serif;
+  }
+  .font-oswald {
+    font-family: var(--font-oswald), system-ui, sans-serif;
   }
 
-  @media (min-width: 1536px) {
-    :root {
-      --hero-shift: -20px;
-      --mtn-height: 560px;
-      --mtn-bottom: -110px;
-      --logo-size: 140px;
-      --title-offset: 11.5rem;
-      --hero-pad-bottom: 840px;
-
-      --intro-pullup: 320px;
-
-      --blue-lift: 420px;
-      --blue-top: 16px;
-      --blue-factor: 0.54;
-
-      --black-lift: 340px;
-      --black-factor: 0.45;
-      --black-top: 40px;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  .heading {
+    @apply font-sofia uppercase;
   }
+}
 
-  /* ===== MOBILE ===== */
+/* ======= BREAKPOINTS DESKTOP/TABLET ======= */
+@media (min-width: 768px) {
+  :root {
+    --hero-shift: -8px;
+    --mtn-height: 420px;
+    --mtn-bottom: -80px;
+    --logo-size: 120px;
+    --title-offset: 9rem;
+
+    --hero-pad-bottom: 560px;
+
+    --intro-pullup: 260px;
+
+    --blue-lift: 340px;
+    --blue-top: 10px;
+    --blue-factor: 0.5;
+
+    --black-lift: 260px;
+    --black-factor: 0.5;
+    --black-top: 32px;
+  }
+}
+
+/* ✅ TABLET “piccoli” (sotto 14") – evita titolo troppo basso + intro che sparisce */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --title-offset: 7.9rem;
+    --hero-pad-bottom: 620px;
+
+    --intro-pullup: 240px;
+    --intro-threshold: 260px;
+
+    --blue-lift: 360px;
+    --blue-factor: 0.55;
+    --blue-top: 10px;
+
+    --black-lift: 280px;
+    --black-factor: 0.48;
+    --black-top: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --hero-shift: -16px;
+    --mtn-height: 520px;
+    --mtn-bottom: -100px;
+    --logo-size: 130px;
+    --title-offset: 10rem;
+
+    --hero-pad-bottom: 760px;
+
+    --intro-pullup: 300px;
+
+    --blue-lift: 380px;
+    --blue-top: 12px;
+    --blue-factor: 0.52;
+
+    --black-lift: 300px;
+    --black-factor: 0.48;
+    --black-top: 34px;
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    --hero-shift: -20px;
+    --mtn-height: 560px;
+    --mtn-bottom: -110px;
+    --logo-size: 130px;
+    --title-offset: 11rem;
+
+    --hero-pad-bottom: 800px;
+
+    --intro-pullup: 320px;
+
+    --blue-lift: 420px;
+    --blue-top: 14px;
+    --blue-factor: 0.54;
+
+    --black-lift: 340px;
+    --black-factor: 0.45;
+    --black-top: 36px;
+  }
+}
+@media (min-width: 1536px) {
+  :root {
+    --hero-shift: -20px;
+    --mtn-height: 560px;
+    --mtn-bottom: -110px;
+    --logo-size: 140px;
+    --title-offset: 11.5rem;
+
+    --hero-pad-bottom: 840px;
+
+    --intro-pullup: 320px;
+
+    --blue-lift: 420px;
+    --blue-top: 16px;
+    --blue-factor: 0.54;
+
+    --black-lift: 340px;
+    --black-factor: 0.45;
+    --black-top: 40px;
+  }
+}
+
+/* ===== MOBILE: taratura smartphone ===== */
+@layer base {
   @media (max-width: 767px) {
     :root {
-      --title-offset: 6.25rem;
+      --title-offset: 4.25rem;
       --hero-pad-bottom: 440px;
 
       --hero-shift: 32px;
@@ -168,33 +213,6 @@
       --black-factor: 0.08;
       --black-top: 26px;
     }
-  }
-
-  html,
-  body {
-    height: 100%;
-  }
-
-  body {
-    background: rgb(var(--bg));
-    color: rgb(var(--fg));
-    @apply antialiased overflow-x-hidden;
-  }
-
-  .font-sofia {
-    font-family: var(--font-sofia), system-ui, sans-serif;
-  }
-
-  .font-oswald {
-    font-family: var(--font-oswald), system-ui, sans-serif;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  .heading {
-    @apply font-sofia uppercase;
   }
 }
 
@@ -218,7 +236,7 @@
   }
 }
 
-/* ============ COMPONENTS ============ */
+/* ============ COMPONENTS (GLOBAL) ============ */
 @layer components {
   .container-site {
     @apply mx-auto w-full max-w-[1200px] px-4 md:px-6;
@@ -239,7 +257,7 @@
     @apply rounded-xl border border-white/80 bg-black/90 shadow-xl shadow-black/40;
   }
 
-  /* ===== HERO mountains ===== */
+  /* ===== HERO mountains (HOME) ===== */
   .mtn-wrap {
     position: absolute;
     left: 0;
@@ -250,16 +268,12 @@
     overflow: visible;
     transform: translateY(var(--hero-shift));
     will-change: transform;
-
-    /* ✅ montagne sotto */
     z-index: 10;
   }
-
   .mtn {
     position: absolute;
     inset: 0;
   }
-
   .mtn > img {
     width: 100%;
     height: 100%;
@@ -267,7 +281,6 @@
     object-position: top center;
     display: block;
   }
-
   .mtn--scuro {
     transform: translateY(
       calc(var(--mtn-height) * var(--k-scuro) * -1 + var(--p-scuro))
@@ -287,19 +300,15 @@
     );
   }
 
-  /* ✅ LOGO SEMPRE SOPRA A TUTTO */
   .hero-logo {
     position: absolute;
     left: 50%;
     top: calc(100% - calc(var(--mtn-height) * var(--k-logo)));
     transform: translate(-50%, calc(var(--hero-shift) + var(--logo-delta)));
     pointer-events: none;
-
-    /* 🔥 sopra intro/blu/nero/contatti */
-    z-index: 999;
+    z-index: 40;
     will-change: transform;
   }
-
   .hero-logo img {
     width: var(--logo-size);
     height: var(--logo-size);
@@ -311,24 +320,19 @@
     background: #101010;
   }
 
-  /* ===== SLICES ===== */
+  /* ===== Slices (HOME) ===== */
 
-  /* INTRO (bianco) - deve andare SOPRA le montagne ma SOTTO il logo */
   .slice-intro {
     position: relative;
-    z-index: 100; /* ✅ sopra montagne */
+    z-index: 20;
     background: #ffffff;
 
     margin-top: calc(-1 * var(--intro-pullup));
-    padding-top: calc(
-      max(0px, calc(var(--intro-pullup) - var(--intro-threshold))) + 28px
-    );
+    padding-top: max(0px, calc(var(--intro-pullup) - var(--intro-threshold)));
     padding-bottom: clamp(28px, 6vw, 80px);
-
     isolation: isolate;
   }
 
-  /* “tappo” bianco: dietro al testo */
   .slice-intro::before {
     content: "";
     position: absolute;
@@ -338,18 +342,15 @@
     height: 20px;
     background: #ffffff;
     z-index: 0;
-    pointer-events: none;
   }
-
   .slice-intro > * {
     position: relative;
     z-index: 1;
   }
 
-  /* BLUE (servizi) - deve salire sopra intro e coprire un po’ il reel */
   .slice-blue {
     position: relative;
-    z-index: 200; /* ✅ sopra intro */
+    z-index: 30;
     background: transparent;
 
     margin-top: calc(-1 * var(--blue-lift) * var(--blue-factor));
@@ -358,20 +359,21 @@
 
     isolation: isolate;
   }
-
   .slice-blue::before {
     content: "";
     position: absolute;
-    inset: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     z-index: -1;
     pointer-events: none;
-    background: url("/assets/slices/MONTAGNA4.png") center top / cover no-repeat;
+    background: url("/img/MONTAGNA4.png") center top / cover no-repeat;
   }
 
-  /* BLACK (safety) - deve sovrapporre la blu */
   .slice-black {
     position: relative;
-    z-index: 300; /* ✅ sopra blu */
+    z-index: 40;
     background: transparent;
 
     margin-top: calc(-1 * var(--black-lift) * var(--black-factor));
@@ -380,7 +382,6 @@
 
     isolation: isolate;
   }
-
   .slice-black::before {
     content: "";
     position: absolute;
@@ -393,10 +394,9 @@
     background: url("/assets/slices/MONTAGNA5.png") center top / cover no-repeat;
   }
 
-  /* WHITE (contatti) - deve sovrapporre la nera */
   .slice-white {
     position: relative;
-    z-index: 400; /* ✅ sopra nero */
+    z-index: 50;
     background: transparent;
 
     margin-top: -110px;
@@ -406,38 +406,146 @@
     min-height: 520px;
     isolation: isolate;
   }
-
   .slice-white::before {
     content: "";
     position: absolute;
-    inset: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     z-index: -1;
-    pointer-events: none;
     background: url("/assets/slices/MONTAGNA6.png") center top / cover no-repeat;
   }
 }
 
-/* ===== MOBILE EXTRA ===== */
+/* ===== MOBILE: layering corretto + contatti sopra la nera ===== */
 @layer components {
   @media (max-width: 767px) {
-    /* seam più alto su mobile, ma SEMPRE sotto al testo */
     .slice-intro::before {
       top: -60px;
       height: 60px;
     }
 
-    /* nera: leggero tuning */
+    .slice-intro { z-index: 20; }
+    .slice-blue  { z-index: 40; }
+    .slice-black { z-index: 60; }
+    .slice-white { z-index: 80; }
+
     .slice-black::before {
       top: -85px;
     }
 
-    /* contatti overlap “come desktop” */
     .slice-white {
       margin-top: -48px;
       padding-top: calc(48px + clamp(24px, 5vw, 80px));
     }
   }
 }
+
+/* ====== PAGINA LEZIONI ====== */
+@layer components {
+  .lezioni-hero {
+    position: relative;
+    /* nero come il resto del sito */
+    background-color: #101010;
+
+    /* immagine di sfondo HERO LEZIONI */
+    background-image: url("/foto/Screenshot-2025-12-05-alle-12.00.53.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* inquadratura: center (orizzontale) / 70% (verticale) */
+    background-position: center 70%;
+    isolation: isolate;
+  }
+
+  .lezioni-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* sfuma verso lo stesso nero (#101010) */
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.45),
+      #101010
+    );
+    z-index: 0;
+  }
+
+  .lezioni-hero .inner {
+    position: relative;
+    z-index: 1;
+    padding-top: clamp(72px, 14vw, 160px);
+    padding-bottom: clamp(28px, 8vw, 80px);
+  }
+
+  /* BLOCCO NERO LEZIONI: stesso nero di tutto il sito */
+  .lezioni-black {
+    background: #101010;
+    padding-top: clamp(36px, 6vw, 88px);
+    padding-bottom: clamp(36px, 6vw, 88px);
+  }
+
+  /* Blocco con tabella + riga "Supplemento..." */
+  .lezioni-black--first {
+    /* desktop / tablet: lasciamo un po' di spazio comodo */
+    padding-bottom: 120px;
+  }
+
+  /* BLOCCO CON MONTAGNA4 (azzurro) – Lezioni di gruppo + Orari */
+  .lezioni-mtn {
+    position: relative;
+    background: #101010;         /* stesso nero del blocco sopra */
+    margin-top: -91px;           /* overlap con il blocco nero */
+    padding-top: calc(91px + 150px); /* distanza montagne → contenuti */
+    padding-bottom: clamp(48px, 7vw, 120px);
+    isolation: isolate;
+  }
+
+  .lezioni-mtn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url("/img/MONTAGNA4.png") center top / cover no-repeat;
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded bg-[#37C6E6] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#001018];
+  }
+
+  .price {
+    @apply mt-1 text-[13px] font-semibold;
+  }
+
+  .foto-box {
+    @apply bg-white rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.35)];
+  }
+}
+
+/* ===== LEZIONI – MOBILE FIX (smartphone) ===== */
+@layer components {
+  @media (max-width: 767px) {
+    /* 1️⃣ Riduciamo quasi a zero il nero sotto al supplemento */
+    .lezioni-black--first {
+      padding-bottom: 110px; /* ~ uguale alla sovrapposizione della montagna */
+    }
+
+    /* 2️⃣ Manteniamo montagna + contenuti alla stessa distanza,
+          ma con overlap fisso rispetto al blocco sopra */
+    .lezioni-mtn {
+      margin-top: -110px;                /* quanto sale la montagna */
+      padding-top: calc(110px + 40px);   /* 40px di aria tra vette e contenuti */
+    }
+
+    /* 3️⃣ Piccolo aggiustamento estetico per la foto */
+    .lezioni-mtn .foto-box {
+      margin-top: 16px;
+    }
+  }
+}
+
+
 
 html {
   scroll-behavior: smooth;
