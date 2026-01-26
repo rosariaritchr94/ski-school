@@ -125,9 +125,9 @@ export default function LezioniPage() {
               <p className="font-oswald text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed">
                 Dal 06/12/2025 al 25/12/2025
                 <br />
-                Dal 01/01/2026 al 11/01/2026
+                Dal 07/01/2026 al 18/01/2026
                 <br />
-                Dal 07/02/2026 al 13/03/2026
+                Dal 07/02/2026 al 01/03/2026
                 <br />
                 e tutti i weekend
               </p>
@@ -140,7 +140,7 @@ export default function LezioniPage() {
                 </span>
               </h4>
               <p className="font-oswald text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed">
-                Dal 12/01/2026 al 06/02/2026
+                Dal 19/01/2026 al 06/02/2026
                 <br />
                 Dal 02/03/2026 a fine stagione
               </p>
@@ -221,30 +221,39 @@ export default function LezioniPage() {
 
             <div className="max-w-[620px]">
               <h2 className="font-sofia mt-2 text-[38px] sm:text-[48px] lg:text-[80px] leading-[1.05] font-extrabold uppercase text-white">
-                Lezioni di
+                Lezioni
                 <br />
-                gruppo
+                collettive
               </h2>
 
               <p
                 className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90"
                 style={{ textAlign: "justify" }}
               >
-                Una soluzione adatta a tutti coloro che vogliono condividere con nuovi amici la passione per lo sci o per lo snowboard.
+                Una soluzione adatta a tutti coloro che vogliono condividere con nuovi amici la passione per lo sci.
                 Ideale per bambini e adulti, dai primi passi sulla neve fino agli amanti delle piste più impegnative.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
                 <div className="flex items-center gap-2">
-                  <Image src="/assets/logos/logo_alpino_b.png" alt="Sci alpino" width={36} height={36} className="h-9 w-9 object-contain" />
+                  <Image
+                    src="/assets/logos/logo_alpino_b.png"
+                    alt="Sci alpino"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                  />
                   Sci alpino
                 </div>
+                {/* Snowboard rimosso qui */}
                 <div className="flex items-center gap-2">
-                  <Image src="/assets/logos/logo_snowboard_b.png" alt="Snowboard" width={36} height={36} className="h-9 w-9 object-contain" />
-                  Snowboard
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image src="/assets/logos/logo_fondo_b.png" alt="Sci nordico" width={36} height={36} className="h-9 w-9 object-contain" />
+                  <Image
+                    src="/assets/logos/logo_fondo_b.png"
+                    alt="Sci nordico"
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                  />
                   Sci nordico
                 </div>
               </div>
@@ -374,8 +383,8 @@ export default function LezioniPage() {
 
             <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
               Le lezioni si considerano confermate al momento della prenotazione. In caso di impossibilità a partecipare, ti chiediamo
-              di avvisarci il prima possibile: le disdette comunicate con almeno 24 ore di anticipo non comportano penali, mentre oltre
-              tale termine la lezione potrà essere addebitata.
+              di avvisarci il prima possibile: le disdette comunicate con almeno 48 ore di anticipo non comportano penali, mentre oltre
+              tale termine la lezione sarà addebitata.
             </p>
 
             <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
