@@ -14,7 +14,7 @@
     --bianco-delta: 0px;
     --logo-delta: 0px;
 
-    /* HERO (valori base) */
+    /* HERO (valori base mobile/desktop piccoli) */
     --hero-shift: 60px;
     --mtn-height: 320px;
     --mtn-bottom: -56px;
@@ -36,7 +36,7 @@
     /* Offset titoli hero */
     --title-offset: 6.5rem;
 
-    /* Spazio sotto ai titoli */
+    /* Spazio sotto ai titoli (controlla dove “finisce” il nero dell’hero) */
     --hero-pad-bottom: 360px;
 
     /* Intro bianca */
@@ -104,7 +104,7 @@
   }
 }
 
-/* ✅ TABLET “piccoli” (sotto 14") – evita titolo troppo basso + intro che sparisce */
+/* ✅ TABLET “piccoli” (sotto 14") */
 @media (min-width: 768px) and (max-width: 1023px) {
   :root {
     --title-offset: 7.9rem;
@@ -144,6 +144,7 @@
     --black-top: 34px;
   }
 }
+
 @media (min-width: 1280px) {
   :root {
     --hero-shift: -20px;
@@ -165,6 +166,7 @@
     --black-top: 36px;
   }
 }
+
 @media (min-width: 1536px) {
   :root {
     --hero-shift: -20px;
@@ -486,9 +488,8 @@
     padding-bottom: clamp(36px, 6vw, 88px);
   }
 
-  /* Blocco con tabella + riga "Supplemento..." */
+  /* Blocco con tabella + riga "Supplemento..." (valore base desktop) */
   .lezioni-black--first {
-    /* desktop / tablet: lasciamo un po' di spazio comodo */
     padding-bottom: 120px;
   }
 
@@ -521,31 +522,35 @@
   .foto-box {
     @apply bg-white rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.35)];
   }
+
+  /* 💻 Tablet / portatili piccoli (768–1199px):
+     più spazio sotto il testo di "Cancellazioni & Pagamenti"
+     per evitare che la montagna azzurra lo tagli.   */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .lezioni-black--first {
+      padding-bottom: 160px;
+    }
+  }
 }
 
 /* ===== LEZIONI – MOBILE FIX (smartphone) ===== */
 @layer components {
   @media (max-width: 767px) {
-    /* 1️⃣ Riduciamo quasi a zero il nero sotto al supplemento */
+    /* quasi niente nero tra testo e montagna */
     .lezioni-black--first {
-      padding-bottom: 110px; /* ~ uguale alla sovrapposizione della montagna */
+      padding-bottom: 110px;
     }
 
-    /* 2️⃣ Manteniamo montagna + contenuti alla stessa distanza,
-          ma con overlap fisso rispetto al blocco sopra */
     .lezioni-mtn {
-      margin-top: -110px;                /* quanto sale la montagna */
-      padding-top: calc(110px + 40px);   /* 40px di aria tra vette e contenuti */
+      margin-top: -110px;              /* quanto sale la montagna */
+      padding-top: calc(110px + 40px); /* 40px di aria tra vette e contenuti */
     }
 
-    /* 3️⃣ Piccolo aggiustamento estetico per la foto */
     .lezioni-mtn .foto-box {
       margin-top: 16px;
     }
   }
 }
-
-
 
 html {
   scroll-behavior: smooth;

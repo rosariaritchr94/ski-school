@@ -59,11 +59,26 @@ export default function Hero() {
           flex flex-col items-center
         "
       >
-        <div className="relative -mt-6 sm:-mt-8 lg:-mt-10 xl:-mt-12 z-20">
-          <p className="heading text-[19px] tracking-[0.50em] text-[rgb(var(--accent))]">
-            Scuola di Sci & Snowboard
+        {/* Nessun margine negativo su mobile, solo da sm in su */}
+        <div className="relative mt-0 sm:-mt-8 lg:-mt-10 xl:-mt-12 z-20">
+          {/* Sottotitolo: sempre visibile, 2 righe su mobile, 1 riga su desktop */}
+          <p
+            className="
+              heading
+              text-[15px] sm:text-[19px]
+              tracking-[0.35em] sm:tracking-[0.50em]
+              text-[rgb(var(--accent))]
+            "
+          >
+            <span className="block sm:inline">
+              SCUOLA DI SCI&nbsp;
+            </span>
+            <span className="block sm:inline">
+              & SNOWBOARD
+            </span>
           </p>
 
+          {/* Titolo principale */}
           <h1
             className="
               mt-3 md:mt-4 lg:mt-5
@@ -106,7 +121,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* LOGO CENTRALE (sempre sopra a tutto via CSS z-index: 999) */}
+      {/* LOGO CENTRALE */}
       <div className="hero-logo">
         <img
           src="/assets/logos/logo-centrale.png"
