@@ -40,8 +40,8 @@
     --hero-pad-bottom: 360px;
 
     /* Intro bianca */
-    --intro-pullup: 220px;
-    --intro-threshold: 300px;
+    --intro-pullup: 280px;
+    --intro-threshold: 340px;
 
     /* Sezione SERVIZI (azzurro) */
     --blue-lift: 300px;
@@ -50,7 +50,7 @@
 
     /* Sezione SAFETY (nero) */
     --black-lift: 220px;
-    --black-factor: 0.55;
+    --black-factor: 0.42;
     --black-top: 28px;
   }
 
@@ -92,14 +92,14 @@
 
     --hero-pad-bottom: 560px;
 
-    --intro-pullup: 260px;
+    --intro-pullup: 320px;
 
     --blue-lift: 340px;
     --blue-top: 10px;
     --blue-factor: 0.5;
 
     --black-lift: 260px;
-    --black-factor: 0.5;
+    --black-factor: 0.42;
     --black-top: 32px;
   }
 }
@@ -110,15 +110,15 @@
     --title-offset: 7.9rem;
     --hero-pad-bottom: 620px;
 
-    --intro-pullup: 240px;
-    --intro-threshold: 260px;
+    --intro-pullup: 300px;
+    --intro-threshold: 300px;
 
     --blue-lift: 360px;
     --blue-factor: 0.55;
     --blue-top: 10px;
 
     --black-lift: 280px;
-    --black-factor: 0.48;
+    --black-factor: 0.42;
     --black-top: 32px;
   }
 }
@@ -133,14 +133,14 @@
 
     --hero-pad-bottom: 760px;
 
-    --intro-pullup: 300px;
+    --intro-pullup: 360px;
 
     --blue-lift: 380px;
     --blue-top: 12px;
     --blue-factor: 0.52;
 
     --black-lift: 300px;
-    --black-factor: 0.48;
+    --black-factor: 0.42;
     --black-top: 34px;
   }
 }
@@ -155,14 +155,14 @@
 
     --hero-pad-bottom: 800px;
 
-    --intro-pullup: 320px;
+    --intro-pullup: 380px;
 
     --blue-lift: 420px;
     --blue-top: 14px;
     --blue-factor: 0.54;
 
     --black-lift: 340px;
-    --black-factor: 0.45;
+    --black-factor: 0.42;
     --black-top: 36px;
   }
 }
@@ -184,7 +184,7 @@
     --blue-factor: 0.54;
 
     --black-lift: 340px;
-    --black-factor: 0.45;
+    --black-factor: 0.42;
     --black-top: 40px;
   }
 }
@@ -207,14 +207,28 @@
       --intro-pullup: 280px;
       --intro-threshold: 270px;
 
-      --blue-lift: 380px;
-      --blue-factor: 0.70;
+      --blue-lift: 520px;
+      --blue-factor: 0.62;
       --blue-top: 8px;
 
-      --black-lift: 240px;
-      --black-factor: 0.08;
+      --black-lift: 340px;
+      --black-factor: 0.38;
       --black-top: 26px;
     }
+  }
+}
+
+/* ===== SCHERMI GRANDI 1920px+ ===== */
+@media (min-width: 1920px) {
+  :root {
+    --hero-pad-bottom: 900px;
+    --intro-pullup: 340px;
+    --blue-lift: 520px;
+    --blue-top: 20px;
+    --blue-factor: 0.54;
+    --black-lift: 420px;
+    --black-factor: 0.42;
+    --black-top: 48px;
   }
 }
 
@@ -340,8 +354,8 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: -20px;
-    height: 20px;
+    top: -60px;
+    height: 60px;
     background: #ffffff;
     z-index: 0;
   }
@@ -357,7 +371,7 @@
 
     margin-top: calc(-1 * var(--blue-lift) * var(--blue-factor));
     padding-top: calc(var(--blue-lift) * var(--blue-factor) + var(--blue-top));
-    padding-bottom: clamp(36px, 7vw, 120px);
+    padding-bottom: clamp(180px, 18vw, 280px);
 
     isolation: isolate;
   }
@@ -380,7 +394,7 @@
 
     margin-top: calc(-1 * var(--black-lift) * var(--black-factor));
     padding-top: calc(var(--black-lift) * var(--black-factor) + var(--black-top));
-    padding-bottom: clamp(36px, 7vw, 120px);
+    padding-bottom: clamp(180px, 22vw, 280px);
 
     isolation: isolate;
   }
@@ -402,7 +416,7 @@
     background: transparent;
 
     margin-top: -110px;
-    padding-top: calc(110px + clamp(24px, 5vw, 80px));
+    padding-top: calc(110px + 16px);
     padding-bottom: clamp(36px, 7vw, 120px);
 
     min-height: 520px;
@@ -433,13 +447,22 @@
     .slice-black { z-index: 60; }
     .slice-white { z-index: 80; }
 
+    .slice-black {
+      padding-bottom: clamp(320px, 75vw, 460px);
+    }
+
+    .slice-black {
+      padding-bottom: clamp(320px, 75vw, 460px);
+    }
+
     .slice-black::before {
       top: -85px;
     }
 
     .slice-white {
-      margin-top: -48px;
-      padding-top: calc(48px + clamp(24px, 5vw, 80px));
+      margin-top: -280px;
+      padding-top: 16px;
+      padding-bottom: 20px;
     }
   }
 }
