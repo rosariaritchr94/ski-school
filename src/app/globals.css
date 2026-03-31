@@ -452,7 +452,7 @@
     background-color: #101010;
 
     /* immagine di sfondo HERO LEZIONI */
-    background-image: url("/foto/Screenshot-2025-12-05-alle-12.00.53.jpg");
+    background-image: url("/foto/Screenshot-2025-12-05-alle-12.00.51.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 
@@ -561,6 +561,15 @@ html {
   .maestri-hero {
     position: relative;
     background-color: #101010;
+    
+    isolation: isolate;
+  }
+
+  .maestri-hero .inner {
+    position: relative;
+    z-index: 1;
+    padding-top: clamp(72px, 14vw, 160px);
+    padding-bottom: clamp(28px, 8vw, 80px);
   }
 
   /* Fascia nera con Qualità / Esperienza / Divertimento */
