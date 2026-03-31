@@ -555,3 +555,73 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ====== PAGINA MAESTRI ====== */
+@layer components {
+  .maestri-hero {
+    position: relative;
+    background-color: #101010;
+  }
+
+  /* Fascia nera con Qualità / Esperienza / Divertimento */
+  .maestri-black {
+    background: #101010;
+    padding-top: clamp(80px, 10vw, 140px);
+
+    /* 🔼 leggermente più spazio sotto, così "Gran Paradiso"
+       sta più lontano dalla montagna */
+    padding-bottom: clamp(6px, 2vw, 204px);
+
+    position: relative;
+    z-index: 20;
+  }
+
+  /* Blocco con montagna azzurra + griglia maestri */
+  .maestri-mtn {
+    position: relative;
+    background: #101010;          /* nero dietro alla montagna */
+    margin-top: -300px;           /* overlap con il blocco nero */
+
+    /* Ridotto: montagna visibile ma card molto più in alto */
+    padding-top: clamp(300px, 32vw, 500px);
+    padding-bottom: clamp(60px, 8vw, 160px);
+    isolation: isolate;
+    z-index: 10;
+  }
+
+  .maestri-mtn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background: url("/img/MONTAGNA4.png") center top / cover no-repeat;
+  }
+}
+
+/* ====== PAGINA MAESTRI - BREAKPOINT FIX ====== */
+@layer components {
+  @media (max-width: 767px) {
+    .maestri-mtn {
+      margin-top: -500px;
+      padding-top: 560px;
+      padding-bottom: clamp(60px, 8vw, 160px);
+    }
+  }
+
+  /* Tablet (768-1023px) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .maestri-mtn {
+      padding-top: clamp(280px, 30vw, 440px);
+    }
+  }
+
+  /* Desktop medio (1024-1279px) */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .maestri-mtn {
+      padding-top: clamp(300px, 30vw, 460px);
+    }
+  }
+}

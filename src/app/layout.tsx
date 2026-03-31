@@ -1,10 +1,18 @@
 // src/app/layout.tsx
 import "@/app/globals.css";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { sofia, oswald } from "@/app/fonts";
 import Script from "next/script";
+
+export const metadata: Metadata = {
+  title: "Scuola di Sci Gran Paradiso",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -30,13 +38,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
 
         <Navbar />
-
-        {/* ✅ spazio sotto la navbar fixed */}
         <main className="page-wrap">{children}</main>
-
         <Footer />
       </body>
     </html>
   );
 }
-

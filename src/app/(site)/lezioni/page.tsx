@@ -26,7 +26,10 @@ export default function LezioniPage() {
       </section>
 
       {/* ===================== BLOCCO NERO 1 – LEZIONI INDIVIDUALI ===================== */}
-      <section className="lezioni-black lezioni-black--first">
+      <section
+        id="lezioni-individuali"
+        className="lezioni-black lezioni-black--first"
+      >
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
             <div className="max-w-[620px]">
@@ -172,20 +175,41 @@ export default function LezioniPage() {
                 </thead>
                 <tbody>
                   {[
-                    { label: "Sci alpino", sub: "fascia oraria 9:00 – 14:30", prices: ["€ 54", "€ 51", "€ 47"] },
-                    { label: "Sci alpino", sub: "fascia oraria 14:30 – 16:30", prices: ["€ 52", "€ 49", "€ 45"] },
-                    { label: "Sci nordico", sub: "fascia oraria 9:00 – 15:00", prices: ["€ 49", "€ 47", "€ 45"] },
-                    { label: "Sci nordico", sub: "fascia oraria 15:00 – 17:00", prices: ["€ 47", "€ 45", "€ 43"] },
+                    {
+                      label: "Sci alpino",
+                      sub: "fascia oraria 9:00 – 14:30",
+                      prices: ["€ 54", "€ 51", "€ 47"],
+                    },
+                    {
+                      label: "Sci alpino",
+                      sub: "fascia oraria 14:30 – 16:30",
+                      prices: ["€ 52", "€ 49", "€ 45"],
+                    },
+                    {
+                      label: "Sci nordico",
+                      sub: "fascia oraria 9:00 – 15:00",
+                      prices: ["€ 49", "€ 47", "€ 45"],
+                    },
+                    {
+                      label: "Sci nordico",
+                      sub: "fascia oraria 15:00 – 17:00",
+                      prices: ["€ 47", "€ 45", "€ 43"],
+                    },
                   ].map((row, idx) => (
                     <tr key={idx} className="bg-black/70">
                       <td className="border border-white/15 px-4 py-3 align-top">
                         <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
                           {row.label}
                         </div>
-                        <div className="text-[13px] text-white/70">{row.sub}</div>
+                        <div className="text-[13px] text-white/70">
+                          {row.sub}
+                        </div>
                       </td>
                       {row.prices.map((price, j) => (
-                        <td key={j} className="border border-white/15 px-4 py-3 text-center">
+                        <td
+                          key={j}
+                          className="border border-white/15 px-4 py-3 text-center"
+                        >
                           {price}
                         </td>
                       ))}
@@ -197,16 +221,25 @@ export default function LezioniPage() {
 
             <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/60">
               *Supplemento per ogni persona aggiunta:{" "}
-              <span className="uppercase tracking-[0.16em] text-[#B91C1C]">Natale</span> 18 € |{" "}
-              <span className="uppercase tracking-[0.16em] text-[#1DB0D5]">Alta stagione</span> 17 € |{" "}
-              <span className="uppercase tracking-[0.16em] text-[#1389A8]">Bassa stagione</span> 13 €.
+              <span className="uppercase tracking-[0.16em] text-[#B91C1C]">
+                Natale
+              </span>{" "}
+              18 € |{" "}
+              <span className="uppercase tracking-[0.16em] text-[#1DB0D5]">
+                Alta stagione
+              </span>{" "}
+              17 € |{" "}
+              <span className="uppercase tracking-[0.16em] text-[#1389A8]">
+                Bassa stagione
+              </span>{" "}
+              13 €.
             </p>
           </div>
         </div>
       </section>
 
       {/* ===================== MONTAGNA – LEZIONI DI GRUPPO ===================== */}
-      <section className="lezioni-mtn">
+      <section id="lezioni-collettive" className="lezioni-mtn">
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div className="foto-box relative aspect-[4/3] overflow-hidden">
@@ -230,8 +263,10 @@ export default function LezioniPage() {
                 className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90"
                 style={{ textAlign: "justify" }}
               >
-                Una soluzione adatta a tutti coloro che vogliono condividere con nuovi amici la passione per lo sci.
-                Ideale per bambini e adulti, dai primi passi sulla neve fino agli amanti delle piste più impegnative.
+                Una soluzione adatta a tutti coloro che vogliono condividere con
+                nuovi amici la passione per lo sci o per lo snowboard. Ideale
+                per bambini e adulti, dai primi passi sulla neve fino agli
+                amanti delle piste più impegnative.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
@@ -245,7 +280,6 @@ export default function LezioniPage() {
                   />
                   Sci alpino
                 </div>
-                {/* Snowboard rimosso qui */}
                 <div className="flex items-center gap-2">
                   <Image
                     src="/assets/logos/logo_fondo_b.png"
@@ -266,8 +300,9 @@ export default function LezioniPage() {
             </h3>
 
             <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90 max-w-[900px]">
-              Le lezioni collettive sono organizzate per livelli omogenei, con gruppi ridotti per garantire sicurezza e divertimento.
-              La partecipazione è garantita con un minimo di 4 iscritti per corso.
+              Le lezioni collettive sono organizzate per livelli omogenei, con
+              gruppi ridotti per garantire sicurezza e divertimento. La
+              partecipazione è garantita con un minimo di 4 iscritti per corso.
             </p>
 
             <h4 className="font-sofia mt-6 text-white text-[26px] sm:text-[30px] lg:text-[32px] font-extrabold uppercase">
@@ -292,35 +327,67 @@ export default function LezioniPage() {
                 <tbody>
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">Sci alpino</div>
-                      <div className="text-[13px] text-white/70">seggiovia 10:00 – 12:00</div>
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci alpino
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        seggiovia 10:00 – 12:00
+                      </div>
                     </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">1 giorno</td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">60 €</td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      1 giorno
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      60 €
+                    </td>
                   </tr>
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">Sci alpino</div>
-                      <div className="text-[13px] text-white/70">seggiovia 11:00 – 13:00</div>
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci alpino
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        seggiovia 11:00 – 13:00
+                      </div>
                     </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">3 giorni</td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">155 €</td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      3 giorni
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      155 €
+                    </td>
                   </tr>
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">Sci alpino</div>
-                      <div className="text-[13px] text-white/70">baby park 11:00 – 13:00</div>
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci alpino
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        baby park 11:00 – 13:00
+                      </div>
                     </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">5 giorni</td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">230 €</td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      5 giorni
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      230 €
+                    </td>
                   </tr>
                   <tr className="bg-black/60">
                     <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">Sci nordico</div>
-                      <div className="text-[13px] text-white/70">13:00 – 15:00</div>
+                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+                        Sci nordico
+                      </div>
+                      <div className="text-[13px] text-white/70">
+                        13:00 – 15:00
+                      </div>
                     </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">7 giorni</td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">310 €</td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      7 giorni
+                    </td>
+                    <td className="border border-white/15 px-4 py-3 text-center align-top">
+                      310 €
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -328,6 +395,15 @@ export default function LezioniPage() {
 
             <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/80">
               *Sconto del 10% sul secondo figlio iscritto allo stesso corso.
+            </p>
+
+            <p className="font-oswald mt-4 text-center text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-[rgb(var(--accent))]">
+              <a
+                href="mailto:info@scuolascigranparadiso.it?subject=Richiesta%20preventivo%20lezioni%20collettive"
+                className="underline-offset-4 hover:underline"
+              >
+                RICHIEDI IL TUO PREVENTIVO.
+              </a>
             </p>
           </div>
         </div>
@@ -354,12 +430,15 @@ export default function LezioniPage() {
                 className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80"
                 style={{ textAlign: "justify" }}
               >
-                Con l’assicurazione Snowcare puoi tutelare la tua vacanza e le tue lezioni di sci in caso di infortunio o imprevisti.
-                È una copertura pensata per chi frequenta la montagna sulla neve e desidera vivere le proprie giornate in sicurezza e serenità.
+                Con l’assicurazione Snowcare puoi tutelare la tua vacanza e le
+                tue lezioni di sci in caso di infortunio o imprevisti. È una
+                copertura pensata per chi frequenta la montagna sulla neve e
+                desidera vivere le proprie giornate in sicurezza e serenità.
               </p>
 
               <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
-                Chiedi maggiori informazioni alla segreteria al momento della prenotazione o il giorno stesso della lezione.
+                Chiedi maggiori informazioni alla segreteria al momento della
+                prenotazione o il giorno stesso della lezione.
               </p>
             </div>
 
@@ -382,14 +461,17 @@ export default function LezioniPage() {
             </h3>
 
             <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
-              Le lezioni si considerano confermate al momento della prenotazione. In caso di impossibilità a partecipare, ti chiediamo
-              di avvisarci il prima possibile: le disdette comunicate con almeno 48 ore di anticipo non comportano penali, mentre oltre
-              tale termine la lezione sarà addebitata.
+              Le lezioni si considerano confermate al momento della
+              prenotazione. In caso di impossibilità a partecipare, ti chiediamo
+              di avvisarci il prima possibile: le disdette comunicate con almeno
+              48 ore di anticipo non comportano penali, mentre oltre tale
+              termine la lezione sarà addebitata.
             </p>
 
             <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
-              Il pagamento può essere effettuato in segreteria, in contanti, carta o bancomat, oppure tramite bonifico anticipato secondo
-              le indicazioni che riceverai al momento della conferma.
+              Il pagamento può essere effettuato in segreteria, in contanti,
+              carta o bancomat, oppure tramite bonifico anticipato secondo le
+              indicazioni che riceverai al momento della conferma.
             </p>
           </div>
         </div>
@@ -409,8 +491,10 @@ export default function LezioniPage() {
               className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90"
               style={{ textAlign: "justify" }}
             >
-              I punti di ritrovo variano in base al tipo di corso e al livello. Nella mappa trovi indicati i luoghi principali di incontro
-              con i maestri e gli orari di riferimento. Ti consigliamo di presentarti con qualche minuto di anticipo.
+              I punti di ritrovo variano in base al tipo di corso e al livello.
+              Nella mappa trovi indicati i luoghi principali di incontro con i
+              maestri e gli orari di riferimento. Ti consigliamo di presentarti
+              con qualche minuto di anticipo.
             </p>
           </div>
 
