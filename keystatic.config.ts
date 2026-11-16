@@ -245,6 +245,14 @@ export default config({
               description:
                 'Usata anche per i link "Richiedi il tuo preventivo".',
             }),
+            instagram: fields.url({
+              label: "Pagina Instagram",
+              description: 'Link completo (es. "https://www.instagram.com/…"). Vuoto = icona nascosta.',
+            }),
+            facebook: fields.url({
+              label: "Pagina Facebook",
+              description: 'Link completo (es. "https://www.facebook.com/…"). Vuoto = icona nascosta.',
+            }),
           },
           { label: "Contatti" },
         ),

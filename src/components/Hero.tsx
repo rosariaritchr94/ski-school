@@ -66,7 +66,7 @@ export default function Hero({ sopratitolo1, sopratitolo2, titolo }: HeroContent
         "
       >
         {/* Nessun margine negativo su mobile, solo da sm in su */}
-        <div className="relative mt-0 sm:-mt-8 lg:-mt-10 xl:-mt-12 z-20">
+        <div className="relative mt-0 md:-mt-8 lg:-mt-10 xl:-mt-12 z-20">
           {/* Sottotitolo: sempre visibile, 2 righe su mobile, 1 riga su desktop */}
           <p
             className="

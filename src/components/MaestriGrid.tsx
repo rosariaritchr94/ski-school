@@ -155,8 +155,7 @@ export default function MaestriGrid({ maestri }: { maestri: Maestro[] }) {
                             sm:text-[12px] sm:tracking-[0.12em]
                             md:text-[14px] md:tracking-[0.15em]
                             lg:text-[15px] lg:tracking-[0.17em]
-                            xl:text-[14px]
-                            2xl:text-[15px]
+                            xl:text-[15px]
                           ">
                             {m.nome}
                           </p>

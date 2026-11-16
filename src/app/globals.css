@@ -145,29 +145,9 @@
   }
 }
 
+/* Da 1280px in su la pagina è il disegno del 14" (1536px) scalato in proporzione
+   (vedi lo script "scala-pagina" nel layout): stessi valori ovunque. */
 @media (min-width: 1280px) {
-  :root {
-    --hero-shift: -20px;
-    --mtn-height: 560px;
-    --mtn-bottom: -110px;
-    --logo-size: 130px;
-    --title-offset: 11rem;
-
-    --hero-pad-bottom: 800px;
-
-    --intro-pullup: 380px;
-
-    --blue-lift: 420px;
-    --blue-top: 14px;
-    --blue-factor: 0.54;
-
-    --black-lift: 340px;
-    --black-factor: 0.42;
-    --black-top: 36px;
-  }
-}
-
-@media (min-width: 1536px) {
   :root {
     --hero-shift: -20px;
     --mtn-height: 560px;
@@ -202,7 +182,7 @@
       --logo-size: 110px;
 
       --logo-delta: -48px;
-      --bianco-delta: -26px;
+      --bianco-delta: -45px;
 
       --intro-pullup: 280px;
       --intro-threshold: 270px;
@@ -218,36 +198,18 @@
   }
 }
 
-/* ===== SCHERMI GRANDI 1920px+ ===== */
-@media (min-width: 1920px) {
+/* Telefoni grandi (600–767px): la neve bianca sale un po' di più,
+   così copre il bordo dritto delle montagne azzurre */
+@media (min-width: 600px) and (max-width: 767px) {
   :root {
-    --hero-pad-bottom: 900px;
-    --intro-pullup: 340px;
-    --blue-lift: 520px;
-    --blue-top: 20px;
-    --blue-factor: 0.54;
-    --black-lift: 420px;
-    --black-factor: 0.42;
-    --black-top: 48px;
+    --bianco-delta: -74px;
   }
 }
 
-/* ======= MICRO-FIX ======= */
-@media (min-width: 1366px) and (max-width: 1535px) {
-  :root {
-    --bianco-delta: 38px;
-    --logo-delta: 56px;
-  }
-}
-@media (min-width: 1536px) and (max-width: 1920px) {
+/* ======= MICRO-FIX (disegno 14") ======= */
+@media (min-width: 1280px) {
   :root {
     --bianco-delta: 42px;
-    --logo-delta: 58px;
-  }
-}
-@media (width: 1920px) and (height: 1080px) {
-  :root {
-    --bianco-delta: 44px;
     --logo-delta: 58px;
   }
 }
@@ -290,21 +252,15 @@
     position: absolute;
     inset: 0;
   }
+  /* Le immagini non vengono mai tagliate in fondo (su nessuno schermo):
+     altrimenti il bordo dritto delle montagne azzurre resta visibile.
+     La parte in più finisce sotto la neve bianca. */
   .mtn > img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: fill;
     object-position: top center;
     display: block;
-  }
-  /* Da tablet in su le immagini non vengono tagliate in fondo: altrimenti,
-     tra ~900 e 1023px, il bordo dritto delle montagne azzurre resta visibile.
-     La parte in più finisce sotto la neve bianca. */
-  @media (min-width: 768px) {
-    .mtn > img {
-      height: auto;
-      object-fit: fill;
-    }
   }
   .mtn--scuro {
     transform: translateY(
@@ -354,7 +310,7 @@
 
     margin-top: calc(-1 * var(--intro-pullup));
     padding-top: max(0px, calc(var(--intro-pullup) - var(--intro-threshold)));
-    padding-bottom: clamp(28px, 6vw, 80px);
+    padding-bottom: clamp(28px, calc(6 * var(--vw, 1vw)), 80px);
     isolation: isolate;
   }
 
@@ -380,7 +336,7 @@
 
     margin-top: calc(-1 * var(--blue-lift) * var(--blue-factor));
     padding-top: calc(var(--blue-lift) * var(--blue-factor) + var(--blue-top));
-    padding-bottom: clamp(180px, 18vw, 280px);
+    padding-bottom: clamp(180px, calc(18 * var(--vw, 1vw)), 280px);
 
     isolation: isolate;
   }
@@ -403,7 +359,7 @@
 
     margin-top: calc(-1 * var(--black-lift) * var(--black-factor));
     padding-top: calc(var(--black-lift) * var(--black-factor) + var(--black-top));
-    padding-bottom: clamp(180px, 22vw, 280px);
+    padding-bottom: clamp(180px, calc(22 * var(--vw, 1vw)), 280px);
 
     isolation: isolate;
   }
@@ -426,7 +382,7 @@
 
     margin-top: -110px;
     padding-top: calc(110px + 16px);
-    padding-bottom: clamp(36px, 7vw, 120px);
+    padding-bottom: clamp(36px, calc(7 * var(--vw, 1vw)), 120px);
 
     min-height: 520px;
     isolation: isolate;
@@ -457,11 +413,11 @@
     .slice-white { z-index: 80; }
 
     .slice-black {
-      padding-bottom: clamp(320px, 75vw, 460px);
+      padding-bottom: clamp(320px, calc(75 * var(--vw, 1vw)), 460px);
     }
 
     .slice-black {
-      padding-bottom: clamp(320px, 75vw, 460px);
+      padding-bottom: clamp(320px, calc(75 * var(--vw, 1vw)), 460px);
     }
 
     .slice-black::before {
@@ -481,8 +437,8 @@
   /* BLOCCO NERO LEZIONI: stesso nero di tutto il sito */
   .lezioni-black {
     background: #101010;
-    padding-top: clamp(36px, 6vw, 88px);
-    padding-bottom: clamp(36px, 6vw, 88px);
+    padding-top: clamp(36px, calc(6 * var(--vw, 1vw)), 88px);
+    padding-bottom: clamp(36px, calc(6 * var(--vw, 1vw)), 88px);
   }
 
   /* Blocco con tabella + riga "Supplemento..." (valore base desktop) */
@@ -496,7 +452,7 @@
     background: #101010;         /* stesso nero del blocco sopra */
     margin-top: -91px;           /* overlap con il blocco nero */
     padding-top: calc(91px + 150px); /* distanza montagne → contenuti */
-    padding-bottom: clamp(48px, 7vw, 120px);
+    padding-bottom: clamp(48px, calc(7 * var(--vw, 1vw)), 120px);
     isolation: isolate;
   }
 
@@ -548,7 +504,7 @@
     .lezioni-mtn::before {
       background:
         url("/assets/slices/montagna-azzurra-cresta.svg") center top / 100% auto no-repeat,
-        linear-gradient(to bottom, transparent calc(8.85vw - 1px), #76cee5 calc(8.85vw - 1px), #26a0bd);
+        linear-gradient(to bottom, transparent calc(calc(8.85 * var(--vw, 1vw)) - 1px), #76cee5 calc(calc(8.85 * var(--vw, 1vw)) - 1px), #26a0bd);
     }
 
     .lezioni-mtn .foto-box {
@@ -567,11 +523,11 @@ html {
   /* Fascia nera con Qualità / Esperienza / Divertimento */
   .maestri-black {
     background: #101010;
-    padding-top: clamp(80px, 10vw, 140px);
+    padding-top: clamp(80px, calc(10 * var(--vw, 1vw)), 140px);
 
     /* 🔼 leggermente più spazio sotto, così "Gran Paradiso"
        sta più lontano dalla montagna */
-    padding-bottom: clamp(6px, 2vw, 204px);
+    padding-bottom: clamp(6px, calc(2 * var(--vw, 1vw)), 204px);
 
     position: relative;
     z-index: 20;
@@ -584,8 +540,8 @@ html {
     margin-top: -300px;           /* overlap con il blocco nero */
 
     /* Ridotto: montagna visibile ma card molto più in alto */
-    padding-top: clamp(300px, 32vw, 500px);
-    padding-bottom: clamp(60px, 8vw, 160px);
+    padding-top: clamp(300px, calc(32 * var(--vw, 1vw)), 500px);
+    padding-bottom: clamp(60px, calc(8 * var(--vw, 1vw)), 160px);
     isolation: isolate;
     z-index: 10;
   }
@@ -608,21 +564,21 @@ html {
     .maestri-mtn {
       margin-top: -500px;
       padding-top: 560px;
-      padding-bottom: clamp(60px, 8vw, 160px);
+      padding-bottom: clamp(60px, calc(8 * var(--vw, 1vw)), 160px);
     }
   }
 
   /* Tablet (768-1023px) */
   @media (min-width: 768px) and (max-width: 1023px) {
     .maestri-mtn {
-      padding-top: clamp(280px, 30vw, 440px);
+      padding-top: clamp(280px, calc(30 * var(--vw, 1vw)), 440px);
     }
   }
 
   /* Desktop medio (1024-1279px) */
   @media (min-width: 1024px) and (max-width: 1279px) {
     .maestri-mtn {
-      padding-top: clamp(300px, 30vw, 460px);
+      padding-top: clamp(300px, calc(30 * var(--vw, 1vw)), 460px);
     }
   }
 }

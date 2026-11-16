@@ -4,6 +4,7 @@ import Intro from "@/components/Intro";
 import ServicesGrid from "@/components/ServicesGrid";
 import Safety from "@/components/Safety";
 import Contacts from "@/components/Contacts";
+import HomeFloating from "@/components/HomeFloating";
 import { reader } from "@/lib/content";
 
 export default async function HomePage() {
@@ -22,6 +23,11 @@ export default async function HomePage() {
         )}
       />
       <Contacts {...home.contatti} />
+      <HomeFloating
+        telefono={home.contatti.telefono}
+        instagram={home.contatti.instagram}
+        facebook={home.contatti.facebook}
+      />
       {/* niente Navbar / Footer qui */}
     </>
   );
