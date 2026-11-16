@@ -257,6 +257,16 @@ export default config({
       format: { data: "yaml" },
       schema: {
         titolo: fields.text({ label: "Titolo in alto", defaultValue: "Lezioni" }),
+        heroVideo: fields.file({
+          label: "Video in alto (mp4, orizzontale)",
+          description: "Video in loop dietro il titolo, senza audio. Meglio sotto i 5 MB.",
+          ...lezioniMedia,
+        }),
+        heroFoto: fields.image({
+          label: "Immagine in alto",
+          description: "Si vede mentre il video carica, o al posto del video se non c'è.",
+          ...lezioniMedia,
+        }),
         individuali: fields.object(
           {
             titolo: fields.text({
@@ -272,26 +282,27 @@ export default config({
         ),
         stagioni: fields.object(
           {
-            natale: stagioneField("Stagione 1 (rossa)"),
-            alta: stagioneField("Stagione 2 (azzurra)"),
-            bassa: stagioneField("Stagione 3 (blu)"),
+            altissima: stagioneField("Altissima stagione"),
+            alta: stagioneField("Alta stagione"),
+            bassa: stagioneField("Bassa stagione"),
           },
           {
-            label: "Stagioni e date",
+            label: "Periodi di stagione e date",
             description:
-              "I nomi delle stagioni sono usati anche come colonne della tabella prezzi.",
+              "I nomi brevi delle stagioni sono usati anche come colonne della tabella prezzi.",
           },
         ),
         private: fields.object(
           {
             titolo: fields.text({ label: "Titolo tabella" }),
+            testo: fields.text({ label: "Testo sotto il titolo", multiline: true }),
             righe: fields.array(
               fields.object({
                 disciplina: fields.text({ label: "Disciplina" }),
                 orario: fields.text({ label: "Orario / dettaglio" }),
-                prezzoNatale: fields.text({ label: "Prezzo stagione 1 (rossa)" }),
-                prezzoAlta: fields.text({ label: "Prezzo stagione 2 (azzurra)" }),
-                prezzoBassa: fields.text({ label: "Prezzo stagione 3 (blu)" }),
+                prezzoAltissima: fields.text({ label: "Prezzo Altissima stagione" }),
+                prezzoAlta: fields.text({ label: "Prezzo Alta stagione" }),
+                prezzoBassa: fields.text({ label: "Prezzo Bassa stagione" }),
               }),
               {
                 label: "Righe tabella",
@@ -299,10 +310,19 @@ export default config({
                   `${props.fields.disciplina.value} – ${props.fields.orario.value}`,
               },
             ),
-            notaSupplemento: fields.text({
-              label: "Inizio nota supplemento",
+            personaAggiuntaTitolo: fields.text({
+              label: "Persona aggiunta – titolo",
               description:
-                "Seguono i supplementi di ogni stagione (vedi Stagioni e date).",
+                "I prezzi sono quelli di ogni stagione (vedi Periodi di stagione).",
+            }),
+            personaAggiuntaSottotitolo: fields.text({
+              label: "Persona aggiunta – sottotitolo",
+            }),
+            maestroTitolo: fields.text({ label: "Maestro richiesto – titolo" }),
+            maestroTesto: fields.text({
+              label: "Maestro richiesto – testo",
+              description: "Le parole tra **due asterischi** diventano azzurre.",
+              multiline: true,
             }),
           },
           { label: "Prezzi lezioni private" },
@@ -319,23 +339,80 @@ export default config({
             foto: fields.image({ label: "Foto", ...lezioniMedia }),
             tariffeTitolo: fields.text({ label: "Titolo tariffe" }),
             tariffeTesto: fields.text({ label: "Testo tariffe", multiline: true }),
-            tabellaTitolo: fields.text({ label: "Titolo tabella" }),
-            righe: fields.array(
+            corsi: fields.array(
               fields.object({
-                disciplina: fields.text({ label: "Disciplina" }),
-                orario: fields.text({ label: "Orario / dettaglio" }),
-                pacchetto: fields.text({ label: "Pacchetto" }),
-                tariffa: fields.text({ label: "Tariffa" }),
+                nome: fields.text({ label: "Disciplina", description: 'Es. "Sci alpino".' }),
+                orari: fields.text({
+                  label: "Luogo e orari",
+                  description: "Ogni riga va a capo sul sito.",
+                  multiline: true,
+                }),
+                prezzi: fields.array(
+                  fields.object({
+                    pacchetto: fields.text({ label: "Pacchetto", description: 'Es. "3 giorni".' }),
+                    prezzo: fields.text({ label: "Prezzo", description: 'Es. "165 €".' }),
+                  }),
+                  {
+                    label: "Prezzi",
+                    itemLabel: (props) =>
+                      `${props.fields.pacchetto.value} – ${props.fields.prezzo.value}`,
+                  },
+                ),
               }),
               {
-                label: "Righe tabella",
+                label: "Schede corsi",
                 itemLabel: (props) =>
-                  `${props.fields.disciplina.value} – ${props.fields.pacchetto.value}`,
+                  `${props.fields.nome.value} – ${props.fields.orari.value.split("\n")[0]}`,
               },
             ),
-            nota: fields.text({ label: "Nota sotto la tabella", multiline: true }),
+            nota: fields.text({ label: "Nota sotto le schede", multiline: true }),
           },
           { label: "Lezioni collettive" },
+        ),
+        corsiAnnuali: fields.object(
+          {
+            titolo: fields.text({ label: "Titolo (bianco)" }),
+            titoloColorato: fields.text({ label: "Titolo (parte azzurra)" }),
+            testo: fields.text({ label: "Testo", multiline: true }),
+            corsi: fields.array(
+              fields.object({
+                nome: fields.text({ label: "Nome corso" }),
+                disciplina: fields.text({ label: "Disciplina (etichetta)" }),
+                periodo: fields.text({ label: "Periodo (azzurro)" }),
+                orari: fields.text({ label: "Giorni e orari" }),
+                prezzo: fields.text({ label: "Prezzo" }),
+              }),
+              {
+                label: "Corsi",
+                itemLabel: (props) =>
+                  `${props.fields.nome.value} (${props.fields.disciplina.value}) – ${props.fields.prezzo.value}`,
+              },
+            ),
+            pacchettiTitolo: fields.text({ label: "Titolo pacchetti (bianco)" }),
+            pacchettiTitoloColorato: fields.text({ label: "Titolo pacchetti (parte azzurra)" }),
+            pacchetti: fields.array(
+              fields.object({
+                nome: fields.text({ label: "Nome" }),
+                disciplina: fields.text({ label: "Disciplina (etichetta)" }),
+                descrizione: fields.text({ label: "Descrizione" }),
+                prezzo: fields.text({ label: "Prezzo" }),
+              }),
+              {
+                label: "Pacchetti",
+                itemLabel: (props) =>
+                  `${props.fields.nome.value} (${props.fields.disciplina.value}) – ${props.fields.prezzo.value}`,
+              },
+            ),
+            sconto: fields.object(
+              {
+                titolo: fields.text({ label: "Titolo", description: "Lascia vuoto per nascondere la fascia." }),
+                testo: fields.text({ label: "Testo piccolo" }),
+                percentuale: fields.text({ label: "Sconto", description: 'Es. "-30%".' }),
+              },
+              { label: "Fascia sconto" },
+            ),
+          },
+          { label: "Corsi annuali" },
         ),
         snowcare: fields.object(
           {
@@ -382,6 +459,18 @@ export default config({
         titolo: fields.text({
           label: "Titolo in alto",
           defaultValue: "Maestri",
+        }),
+        heroVideo: fields.file({
+          label: "Video in alto (mp4, orizzontale)",
+          description: "Video in loop dietro il titolo, senza audio. Meglio sotto i 5 MB.",
+          directory: "public/foto/pagina-maestri",
+          publicPath: "/foto/pagina-maestri/",
+        }),
+        heroFoto: fields.image({
+          label: "Immagine in alto",
+          description: "Si vede mentre il video carica, o al posto del video se non c'è.",
+          directory: "public/foto/pagina-maestri",
+          publicPath: "/foto/pagina-maestri/",
         }),
         slogan: fields.text({
           label: "Slogan",

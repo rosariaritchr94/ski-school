@@ -22,7 +22,7 @@ servizi:
     scrittaSuFoto: ""
     etichettaLive: false
   - titolo: "lezioni collettive"
-    testo: "Lezioni per gruppi organizzati (anticipatamente), dal 26/12 al 6/01 e dal 14/02 al 22/02, con tariffe dedicate a scuole, associazioni o gruppi che desiderano avvicinarsi allo sci, allo snowboard o allo sci di fondo."
+    testo: "Lezioni per gruppi organizzati (anticipatamente), dal 24/12 al 06/01 e dal 08/02 al 14/02, con tariffe dedicate a scuole, associazioni o gruppi che desiderano avvicinarsi allo sci, allo snowboard o allo sci di fondo."
     foto: "/foto/home/servizi-lezioni-collettive.jpg"
     link: ""
     mostraPreventivo: true
@@ -38,7 +38,7 @@ servizi:
   - titolo: "corsi annuali"
     testo: ""
     foto: "/foto/home/servizi-corsi-annuali.jpg"
-    link: ""
+    link: "/lezioni#corsi-annuali"
     mostraPreventivo: false
     scrittaSuFoto: ""
     etichettaLive: false

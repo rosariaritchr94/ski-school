@@ -1,6 +1,7 @@
 // src/app/(site)/lezioni/page.tsx
 import Image from "next/image";
 import Lines from "@/components/Lines";
+import PageVideoHero from "@/components/PageVideoHero";
 import { reader } from "@/lib/content";
 
 export const metadata = { title: "Lezioni – Gran Paradiso" };
@@ -49,40 +50,105 @@ function TipoLezione({ disciplina, orario }: { disciplina: string; orario: strin
   );
 }
 
+/* Indice in alto: porta alle sezioni della pagina */
+const INDICE = [
+  { href: "#periodi", label: "Periodi di stagione" },
+  { href: "#lezioni-private", label: "Lezioni private" },
+  { href: "#lezioni-collettive", label: "Lezioni collettive" },
+  { href: "#corsi-annuali", label: "Corsi annuali" },
+  { href: "#snowcare", label: "Snowcare" },
+  { href: "#pagamenti", label: "Cancellazioni" },
+  { href: "#ritrovo", label: "Ritrovo" },
+];
+
+/* Colori delle tre stagioni */
+const STAGIONI = [
+  { key: "altissima", color: "#37C6E6", dark: false },
+  { key: "alta", color: "#1DB0D5", dark: false },
+  { key: "bassa", color: "#1389A8", dark: false },
+] as const;
+
+/* Testo con parole tra **asterischi** in azzurro */
+function Evidenzia({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("**").map((part, i) =>
+        i % 2 ? (
+          <span key={i} className="text-[#37C6E6] font-medium">
+            {part}
+          </span>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
+type Voce = { nome: string; disciplina: string; periodo: string; dettaglio: string; prezzo: string };
+
+/* Elenco corsi/pacchetti con prezzo a destra */
+function ListaPrezzi({ voci }: { voci: Voce[] }) {
+  return (
+    <div className="mt-6 border-t-[3px] border-[#37C6E6]">
+      {voci.map((v, i) => (
+        <div key={i} className="grid grid-cols-[1fr_auto] items-center gap-4 sm:gap-6 border-b border-white/15 py-5">
+          <div>
+            <div className="font-sofia font-extrabold uppercase text-white text-[22px] sm:text-[26px] lg:text-[32px] leading-tight">
+              {v.nome}
+              {v.disciplina && (
+                <span className="ml-2.5 inline-block align-middle rounded-full border-[1.5px] border-[#37C6E6] px-2.5 py-0.5 text-[11px] sm:text-[13px] tracking-[0.08em] text-[#37C6E6]">
+                  {v.disciplina}
+                </span>
+              )}
+            </div>
+            {v.periodo && (
+              <div className="font-oswald mt-1.5 uppercase tracking-[0.04em] text-[15px] sm:text-[17px] text-[#37C6E6]">
+                {v.periodo}
+              </div>
+            )}
+            {v.dettaglio && (
+              <div className="font-oswald mt-0.5 uppercase tracking-[0.04em] text-[14px] sm:text-[16px] text-white/80">
+                {v.dettaglio}
+              </div>
+            )}
+          </div>
+          <div className="border-l-[3px] border-[#37C6E6] pl-4 sm:pl-6 sm:min-w-[170px] text-right font-sofia font-extrabold text-white text-[28px] sm:text-[36px] lg:text-[46px] whitespace-nowrap">
+            {v.prezzo}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default async function LezioniPage() {
   const [l, home] = await Promise.all([
     reader.singletons.lezioni.readOrThrow(),
     reader.singletons.home.readOrThrow(),
   ]);
-  const { natale, alta, bassa } = l.stagioni;
   const email = home.contatti.email;
-
-  const stagioniCard = [
-    { s: natale, bg: "bg-[#B91C1C]" },
-    { s: alta, bg: "bg-[#1DB0D5]" },
-    { s: bassa, bg: "bg-[#0E657C]" },
-  ];
+  const ca = l.corsiAnnuali;
 
   return (
     <main>
-      {/* HERO CON FOTO DI SFONDO */}
-      <section className="lezioni-hero">
-        <div className="inner">
-          <div className="container-site text-center">
-            <h1
-              className="
-                font-sofia mt-2
-                text-[38px] sm:text-[48px] lg:text-[80px]
-                leading-[1.05]
-                font-extrabold tracking-[0.02em]
-                uppercase text-white
-              "
-            >
-              {l.titolo}
-            </h1>
-          </div>
-        </div>
-      </section>
+      {/* ===================== HERO CON VIDEO + INDICE ===================== */}
+      <PageVideoHero titolo={l.titolo} video={l.heroVideo} foto={l.heroFoto}>
+          <nav aria-label="Sezioni della pagina">
+            <ul className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
+              {INDICE.map((v) => (
+                <li key={v.href}>
+                  <a
+                    href={v.href}
+                    className="inline-block border border-[#37C6E6] bg-[#101010]/60 backdrop-blur-sm px-3 sm:px-4 py-2 font-oswald uppercase tracking-[0.12em] sm:tracking-[0.14em] text-[11px] sm:text-[14px] text-white hover:bg-[#37C6E6] hover:text-[#001018] transition-colors"
+                  >
+                    {v.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+      </PageVideoHero>
 
       {/* ===================== BLOCCO NERO 1 – LEZIONI INDIVIDUALI ===================== */}
       <section
@@ -90,7 +156,31 @@ export default async function LezioniPage() {
         className="lezioni-black lezioni-black--first"
       >
         <div className="container-site">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <div id="periodi" className="mb-12 md:mb-16">
+            <h3 className="font-sofia text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
+              Periodi di <span className="text-[#37C6E6]">stagione</span>
+            </h3>
+            <div className="mt-5 grid gap-5 md:grid-cols-3">
+              {STAGIONI.map(({ key, color, dark }) => {
+                const s = l.stagioni[key];
+                return (
+                  <article key={key} className="bg-white/[0.05]">
+                    <h4
+                      className={`px-6 py-3 font-sofia font-extrabold uppercase text-[20px] sm:text-[22px] tracking-[0.04em] ${dark ? "text-[#001018]" : "text-white"}`}
+                      style={{ background: color }}
+                    >
+                      {s.nome}
+                    </h4>
+                    <p className="font-oswald px-6 py-4 text-[16px] sm:text-[17px] leading-[1.7] text-white/90">
+                      <Lines text={s.date} />
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+
+          <div id="lezioni-private" className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
             <div className="max-w-[620px]">
               <h2
                 className="
@@ -130,82 +220,83 @@ export default async function LezioniPage() {
             )}
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-3">
-            {stagioniCard.map(({ s, bg }, i) => (
-              <article
-                key={i}
-                className={`${bg} rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.45)] px-6 py-6 md:px-7 md:py-7 flex flex-col items-center justify-center text-center min-h-[220px]`}
-              >
-                <h4 className="font-sofia font-extrabold text-white text-[22px] sm:text-[24px] lg:text-[26px] uppercase tracking-[0.08em] mb-3">
-                  <span className="inline-block border-b-2 border-white pb-1">
-                    {s.nome}
-                  </span>
-                </h4>
-                <p className="font-oswald text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed">
-                  <Lines text={s.date} />
-                </p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-10 md:mt-12">
+          <div id="tariffe-private" className="mt-12 md:mt-16">
             <h3 className="font-sofia text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
               {l.private.titolo}
             </h3>
+            {l.private.testo && (
+              <p className="font-oswald mt-2 text-[16px] sm:text-[18px] leading-relaxed text-white/80">
+                {l.private.testo}
+              </p>
+            )}
 
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full border-collapse font-oswald text-[15px] sm:text-[17px] lg:text-[19px] text-white">
+              <table className="w-full border-collapse text-white">
                 <thead>
                   <tr>
-                    <th className="bg-black px-4 py-3 text-left text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
+                    <th className="bg-black px-2 sm:px-4 py-3 text-left font-oswald font-medium text-[11px] sm:text-[13px] uppercase tracking-[0.12em] sm:tracking-[0.18em]">
                       Tipo lezione
                     </th>
-                    <th className="bg-[#B91C1C] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      {natale.nome}
-                    </th>
-                    <th className="bg-[#1DB0D5] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      {alta.nome}
-                    </th>
-                    <th className="bg-[#1389A8] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      {bassa.nome}
-                    </th>
+                    {STAGIONI.map(({ key, color, dark }) => (
+                      <th
+                        key={key}
+                        className={`px-2 sm:px-4 py-3 text-center font-oswald font-medium text-[11px] sm:text-[13px] uppercase tracking-[0.12em] sm:tracking-[0.18em] ${dark ? "text-[#001018]" : ""}`}
+                        style={{ background: color }}
+                      >
+                        {l.stagioni[key].nomeBreve}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
                   {l.private.righe.map((row, idx) => (
                     <tr key={idx} className="bg-black/70">
                       <TipoLezione disciplina={row.disciplina} orario={row.orario} />
-                      {[row.prezzoNatale, row.prezzoAlta, row.prezzoBassa].map(
-                        (price, j) => (
-                          <td
-                            key={j}
-                            className="border border-white/15 px-4 py-3 text-center"
-                          >
-                            {price}
-                          </td>
-                        ),
-                      )}
+                      {[row.prezzoAltissima, row.prezzoAlta, row.prezzoBassa].map((price, j) => (
+                        <td
+                          key={j}
+                          className="border border-white/15 px-2 sm:px-4 py-3 text-center font-sofia font-extrabold text-[22px] sm:text-[30px] lg:text-[36px] whitespace-nowrap"
+                        >
+                          {price}
+                        </td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/60">
-              {l.private.notaSupplemento}{" "}
-              <span className="uppercase tracking-[0.16em] text-[#B91C1C]">
-                {natale.nomeBreve}
-              </span>{" "}
-              {natale.supplemento} |{" "}
-              <span className="uppercase tracking-[0.16em] text-[#1DB0D5]">
-                {alta.nomeBreve}
-              </span>{" "}
-              {alta.supplemento} |{" "}
-              <span className="uppercase tracking-[0.16em] text-[#1389A8]">
-                {bassa.nomeBreve}
-              </span>{" "}
-              {bassa.supplemento}.
-            </p>
+            <div className="mt-5 grid md:grid-cols-[1.3fr_2fr] bg-[#37C6E6]/[0.12] border-l-[6px] border-[#37C6E6]">
+              <div className="px-5 py-4 sm:px-6">
+                <div className="font-sofia font-extrabold uppercase text-[22px] sm:text-[24px] text-[#37C6E6]">
+                  {l.private.personaAggiuntaTitolo}
+                </div>
+                <div className="font-oswald uppercase tracking-[0.08em] text-[13px] sm:text-[14px] text-white/75">
+                  {l.private.personaAggiuntaSottotitolo}
+                </div>
+              </div>
+              <div className="px-5 pb-4 md:py-4 flex justify-around items-center gap-4">
+                {STAGIONI.map(({ key }) => (
+                  <div key={key} className="text-center font-oswald uppercase tracking-[0.14em] text-[13px] text-white/80">
+                    {l.stagioni[key].nomeBreve}
+                    <strong className="block font-sofia font-extrabold tracking-normal text-[26px] sm:text-[28px] text-white">
+                      {l.stagioni[key].supplemento}
+                    </strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {l.private.maestroTesto && (
+              <div className="mt-4 grid md:grid-cols-[1.3fr_2fr] bg-[#37C6E6]/[0.12] border-l-[6px] border-[#37C6E6]">
+                <div className="px-5 pt-4 md:py-4 sm:px-6 font-sofia font-extrabold uppercase text-[22px] sm:text-[24px] text-[#37C6E6]">
+                  {l.private.maestroTitolo}
+                </div>
+                <p className="px-5 pb-4 pt-1 md:py-4 font-oswald text-[16px] sm:text-[17px] leading-relaxed text-white/90">
+                  <Evidenzia text={l.private.maestroTesto} />
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -251,51 +342,41 @@ export default async function LezioniPage() {
               {l.collettive.tariffeTesto}
             </p>
 
-            <h4 className="font-sofia mt-6 text-white text-[26px] sm:text-[30px] lg:text-[32px] font-extrabold uppercase">
-              {l.collettive.tabellaTitolo}
-            </h4>
-
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full border-collapse font-oswald text-[15px] sm:text-[17px] lg:text-[19px] text-white">
-                <thead>
-                  <tr>
-                    <th className="bg-black/70 px-4 py-3 text-left text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      Tipo lezione
-                    </th>
-                    <th className="bg-[#1DB0D5] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      Pacchetto
-                    </th>
-                    <th className="bg-[#1389A8] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      Tariffa
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {l.collettive.righe.map((row, idx) => (
-                    <tr key={idx} className="bg-black/60">
-                      <TipoLezione disciplina={row.disciplina} orario={row.orario} />
-                      <td className="border border-white/15 px-4 py-3 text-center align-top">
-                        {row.pacchetto}
-                      </td>
-                      <td className="border border-white/15 px-4 py-3 text-center align-top">
-                        {row.tariffa}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="mt-6 grid gap-5 md:grid-cols-3">
+              {l.collettive.corsi.map((c, i) => (
+                <article key={i} className="bg-black/65 border-t-[6px] border-[#37C6E6] px-6 pt-5 pb-2">
+                  <h4 className="font-sofia font-extrabold uppercase text-white text-[26px] lg:text-[28px] leading-none">
+                    {c.nome}
+                  </h4>
+                  <p className="font-oswald mt-2 min-h-[44px] uppercase tracking-[0.08em] text-[13px] sm:text-[14px] leading-snug text-white/75">
+                    <Lines text={c.orari} />
+                  </p>
+                  <dl className="mt-3">
+                    {c.prezzi.map((p, j) => (
+                      <div key={j} className="flex items-baseline justify-between border-t border-[#37C6E6]/40 py-2.5">
+                        <dt className="font-oswald uppercase tracking-[0.06em] text-[16px] sm:text-[17px] text-white">
+                          {p.pacchetto}
+                        </dt>
+                        <dd className="font-sofia font-extrabold text-[26px] sm:text-[30px] text-white">
+                          {p.prezzo}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              ))}
             </div>
 
             {l.collettive.nota && (
-              <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/80">
+              <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/90">
                 {l.collettive.nota}
               </p>
             )}
 
-            <p className="font-oswald mt-4 text-center text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-[rgb(var(--accent))]">
+            <p className="mt-6 text-center">
               <a
                 href={`mailto:${email}?subject=Richiesta%20preventivo%20lezioni%20collettive`}
-                className="underline-offset-4 hover:underline"
+                className="inline-block bg-[#101010] px-6 py-3 font-oswald text-[16px] sm:text-[18px] lg:text-[20px] tracking-[0.06em] text-[#37C6E6] hover:bg-black"
               >
                 RICHIEDI IL TUO PREVENTIVO.
               </a>
@@ -304,8 +385,59 @@ export default async function LezioniPage() {
         </div>
       </section>
 
+      {/* ===================== BLOCCO NERO – CORSI ANNUALI ===================== */}
+      <section id="corsi-annuali" className="lezioni-black !pb-[150px] md:!pb-[170px]">
+        <div className="container-site">
+          <h2 className="font-sofia mt-2 text-[38px] sm:text-[48px] lg:text-[80px] leading-[1.05] font-extrabold uppercase text-white">
+            {ca.titolo} <span className="text-[#37C6E6]">{ca.titoloColorato}</span>
+          </h2>
+          <p className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80 max-w-[760px]">
+            {ca.testo}
+          </p>
+
+          <ListaPrezzi
+            voci={ca.corsi.map((c) => ({
+              nome: c.nome,
+              disciplina: c.disciplina,
+              periodo: c.periodo,
+              dettaglio: c.orari,
+              prezzo: c.prezzo,
+            }))}
+          />
+
+          <h3 className="font-sofia mt-14 text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
+            {ca.pacchettiTitolo} <span className="text-[#37C6E6]">{ca.pacchettiTitoloColorato}</span>
+          </h3>
+          <ListaPrezzi
+            voci={ca.pacchetti.map((c) => ({
+              nome: c.nome,
+              disciplina: c.disciplina,
+              periodo: "",
+              dettaglio: c.descrizione,
+              prezzo: c.prezzo,
+            }))}
+          />
+
+          {ca.sconto.titolo && (
+            <div className="mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6 bg-[#37C6E6] text-[#001018] px-6 py-5 sm:px-8">
+              <div>
+                <div className="font-sofia font-extrabold uppercase text-[22px] sm:text-[26px] lg:text-[32px] leading-tight">
+                  {ca.sconto.titolo}
+                </div>
+                <div className="font-oswald uppercase tracking-[0.08em] text-[13px] sm:text-[14px]">
+                  {ca.sconto.testo}
+                </div>
+              </div>
+              <div className="font-sofia font-extrabold text-[44px] sm:text-[56px] lg:text-[64px] leading-none">
+                {ca.sconto.percentuale}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* ===================== BLOCCO NERO 2 – SNOWCARE & PAGAMENTI ===================== */}
-      <section className="lezioni-black">
+      <section id="snowcare" className="lezioni-mtn">
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div className="max-w-[620px]">
@@ -320,7 +452,7 @@ export default async function LezioniPage() {
               {l.snowcare.paragrafi.map((testo, i) => (
                 <p
                   key={i}
-                  className={`font-oswald ${i === 0 ? "mt-4" : "mt-3"} text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80`}
+                  className={`font-oswald ${i === 0 ? "mt-4" : "mt-3"} text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90`}
                   style={i === 0 ? { textAlign: "justify" } : undefined}
                 >
                   {testo}
@@ -343,7 +475,7 @@ export default async function LezioniPage() {
             )}
           </div>
 
-          <div className="mt-10 md:mt-14 max-w-[780px]">
+          <div id="pagamenti" className="mt-10 md:mt-14 max-w-[780px]">
             <h3 className="font-sofia text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
               {l.pagamenti.titolo}
             </h3>
@@ -361,7 +493,7 @@ export default async function LezioniPage() {
       </section>
 
       {/* ===================== MONTAGNA – ORARI & LUOGHI ===================== */}
-      <section className="lezioni-mtn">
+      <section id="ritrovo" className="lezioni-black">
         <div className="container-site">
           <div className="max-w-[900px]">
             <h2 className="font-sofia mt-2 text-white text-[38px] sm:text-[48px] lg:text-[80px] leading-[1.05] font-extrabold uppercase">

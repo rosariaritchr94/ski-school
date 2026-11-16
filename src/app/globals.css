@@ -393,7 +393,7 @@
     bottom: 0;
     z-index: -1;
     pointer-events: none;
-    background: url("/img/MONTAGNA4.png") center top / cover no-repeat;
+    background: url("/assets/slices/montagna-azzurra.svg") center top / cover no-repeat;
   }
 
   .slice-black {
@@ -416,7 +416,7 @@
     bottom: 0;
     z-index: -1;
     pointer-events: none;
-    background: url("/assets/slices/MONTAGNA5.png") center top / cover no-repeat;
+    background: url("/assets/slices/montagna-nera.svg") center top / cover no-repeat;
   }
 
   .slice-white {
@@ -439,7 +439,7 @@
     top: 0;
     bottom: 0;
     z-index: -1;
-    background: url("/assets/slices/MONTAGNA6.png") center top / cover no-repeat;
+    background: url("/assets/slices/montagna-bianca.svg") center top / cover no-repeat;
   }
 }
 
@@ -478,41 +478,6 @@
 
 /* ====== PAGINA LEZIONI ====== */
 @layer components {
-  .lezioni-hero {
-    position: relative;
-    /* nero come il resto del sito */
-    background-color: #101010;
-
-    /* immagine di sfondo HERO LEZIONI */
-    background-image: url("/foto/Screenshot-2025-12-05-alle-12.00.51.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    /* inquadratura: center (orizzontale) / 70% (verticale) */
-    background-position: center 70%;
-    isolation: isolate;
-  }
-
-  .lezioni-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    /* sfuma verso lo stesso nero (#101010) */
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.45),
-      #101010
-    );
-    z-index: 0;
-  }
-
-  .lezioni-hero .inner {
-    position: relative;
-    z-index: 1;
-    padding-top: clamp(72px, 14vw, 160px);
-    padding-bottom: clamp(28px, 8vw, 80px);
-  }
-
   /* BLOCCO NERO LEZIONI: stesso nero di tutto il sito */
   .lezioni-black {
     background: #101010;
@@ -540,7 +505,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: url("/img/MONTAGNA4.png") center top / cover no-repeat;
+    background: url("/assets/slices/montagna-azzurra.svg") center top / cover no-repeat;
   }
 
   .pill {
@@ -570,12 +535,20 @@
   @media (max-width: 767px) {
     /* quasi niente nero tra testo e montagna */
     .lezioni-black--first {
-      padding-bottom: 110px;
+      padding-bottom: 150px;
     }
 
     .lezioni-mtn {
       margin-top: -110px;              /* quanto sale la montagna */
       padding-top: calc(110px + 40px); /* 40px di aria tra vette e contenuti */
+    }
+
+    /* su schermi stretti la cresta segue la larghezza (non si ingrandisce
+       con l'altezza della sezione), così foto e testi restano sotto le vette */
+    .lezioni-mtn::before {
+      background:
+        url("/assets/slices/montagna-azzurra-cresta.svg") center top / 100% auto no-repeat,
+        linear-gradient(to bottom, transparent calc(8.85vw - 1px), #76cee5 calc(8.85vw - 1px), #26a0bd);
     }
 
     .lezioni-mtn .foto-box {
@@ -586,24 +559,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 /* ====== PAGINA MAESTRI ====== */
 @layer components {
-  .maestri-hero {
-    position: relative;
-    background-color: #101010;
-    
-    isolation: isolate;
-  }
-
-  .maestri-hero .inner {
-    position: relative;
-    z-index: 1;
-    padding-top: clamp(72px, 14vw, 160px);
-    padding-bottom: clamp(28px, 8vw, 80px);
-  }
-
   /* Fascia nera con Qualità / Esperienza / Divertimento */
   .maestri-black {
     background: #101010;
@@ -638,7 +598,7 @@ html {
     top: 0;
     bottom: 0;
     z-index: -1;
-    background: url("/img/MONTAGNA4.png") center top / cover no-repeat;
+    background: url("/assets/slices/montagna-azzurra.svg") center top / cover no-repeat;
   }
 }
 
