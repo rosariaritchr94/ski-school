@@ -462,7 +462,7 @@ export default async function LezioniPage() {
 
             {l.snowcare.foto && (
               <div className="w-full flex justify-center md:justify-end">
-                <div className="foto-box relative w-full max-w-[720px] aspect-[16/9] overflow-hidden">
+                <div className="foto-box relative w-full max-w-[720px] aspect-[4/3] overflow-hidden">
                   <Image
                     src={l.snowcare.foto}
                     alt="Assicurazione Snowcare – proteggi la tua prenotazione"
