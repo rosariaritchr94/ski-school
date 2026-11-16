@@ -1,9 +1,68 @@
 // src/app/(site)/lezioni/page.tsx
 import Image from "next/image";
+import Lines from "@/components/Lines";
+import { reader } from "@/lib/content";
 
 export const metadata = { title: "Lezioni – Gran Paradiso" };
 
-export default function LezioniPage() {
+/* Icone delle discipline: versione per sfondo scuro e per sfondo montagna (_b) */
+const DISCIPLINE = [
+  { value: "alpino", label: "Sci alpino", icon: "logo_alpino" },
+  { value: "snowboard", label: "Snowboard", icon: "logo_snowboard" },
+  { value: "nordico", label: "Sci nordico", icon: "logo_fondo" },
+] as const;
+
+function DisciplineIcons({
+  selected,
+  variant = "",
+}: {
+  selected: readonly string[];
+  variant?: "" | "_b";
+}) {
+  return (
+    <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
+      {DISCIPLINE.filter((d) => selected.includes(d.value)).map((d) => (
+        <div key={d.value} className="flex items-center gap-2">
+          <Image
+            src={`/assets/logos/${d.icon}${variant}.png`}
+            alt={d.label}
+            width={36}
+            height={36}
+            className="h-9 w-9 object-contain"
+          />
+          {d.label}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Celle della tabella: disciplina in maiuscolo + orario sotto */
+function TipoLezione({ disciplina, orario }: { disciplina: string; orario: string }) {
+  return (
+    <td className="border border-white/15 px-4 py-3 align-top">
+      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
+        {disciplina}
+      </div>
+      <div className="text-[13px] text-white/70">{orario}</div>
+    </td>
+  );
+}
+
+export default async function LezioniPage() {
+  const [l, home] = await Promise.all([
+    reader.singletons.lezioni.readOrThrow(),
+    reader.singletons.home.readOrThrow(),
+  ]);
+  const { natale, alta, bassa } = l.stagioni;
+  const email = home.contatti.email;
+
+  const stagioniCard = [
+    { s: natale, bg: "bg-[#B91C1C]" },
+    { s: alta, bg: "bg-[#1DB0D5]" },
+    { s: bassa, bg: "bg-[#0E657C]" },
+  ];
+
   return (
     <main>
       {/* HERO CON FOTO DI SFONDO */}
@@ -19,7 +78,7 @@ export default function LezioniPage() {
                 uppercase text-white
               "
             >
-              Lezioni
+              {l.titolo}
             </h1>
           </div>
         </div>
@@ -41,9 +100,7 @@ export default function LezioniPage() {
                   font-extrabold uppercase text-white
                 "
               >
-                Lezioni
-                <br />
-                individuali
+                <Lines text={l.individuali.titolo} />
               </h2>
 
               <p
@@ -54,105 +111,46 @@ export default function LezioniPage() {
                 "
                 style={{ textAlign: "justify" }}
               >
-                Cosa c’è di meglio di una lezione personalizzata e su misura per
-                poter scoprire i segreti nascosti dello sci e dello snowboard?
-                Grazie ai nostri maestri potrai acquisire maggiore confidenza ed
-                abilità in ogni disciplina proposta, in un contesto naturale,
-                sicuro e unico come quello del Gran Paradiso. Scegli tra queste
-                attività e prenota la tua lezione:
+                {l.individuali.testo}
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/assets/logos/logo_alpino.png"
-                    alt="Sci alpino"
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 object-contain"
-                  />
-                  Sci alpino
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/assets/logos/logo_snowboard.png"
-                    alt="Snowboard"
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 object-contain"
-                  />
-                  Snowboard
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/assets/logos/logo_fondo.png"
-                    alt="Sci nordico"
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 object-contain"
-                  />
-                  Sci nordico
-                </div>
-              </div>
+              <DisciplineIcons selected={l.individuali.discipline} />
             </div>
 
-            <div className="foto-box relative aspect-[4/3] overflow-hidden">
-              <Image
-                src="/foto/1.jpg"
-                alt="Lezioni individuali di sci a Cogne"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 520px, 100vw"
-              />
-            </div>
+            {l.individuali.foto && (
+              <div className="foto-box relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={l.individuali.foto}
+                  alt="Lezioni individuali di sci a Cogne"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 520px, 100vw"
+                />
+              </div>
+            )}
           </div>
 
           <div className="mt-6 grid gap-6 md:grid-cols-3">
-            <article className="bg-[#B91C1C] rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.45)] px-6 py-6 md:px-7 md:py-7 flex flex-col items-center justify-center text-center min-h-[220px]">
-              <h4 className="font-sofia font-extrabold text-white text-[22px] sm:text-[24px] lg:text-[26px] uppercase tracking-[0.08em] mb-3">
-                <span className="inline-block border-b-2 border-white pb-1">
-                  Vacanze di Natale
-                </span>
-              </h4>
-              <p className="font-oswald text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed">
-                Dal 26/12/2025 al 06/01/2026
-              </p>
-            </article>
-
-            <article className="bg-[#1DB0D5] rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.45)] px-6 py-6 md:px-7 md:py-7 flex flex-col items-center justify-center text-center min-h-[220px]">
-              <h4 className="font-sofia font-extrabold text-white text-[22px] sm:text-[24px] lg:text-[26px] uppercase tracking-[0.08em] mb-3">
-                <span className="inline-block border-b-2 border-white pb-1">
-                  Alta stagione
-                </span>
-              </h4>
-              <p className="font-oswald text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed">
-                Dal 06/12/2025 al 25/12/2025
-                <br />
-                Dal 07/01/2026 al 18/01/2026
-                <br />
-                Dal 07/02/2026 al 01/03/2026
-                <br />
-                e tutti i weekend
-              </p>
-            </article>
-
-            <article className="bg-[#0E657C] rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.45)] px-6 py-6 md:px-7 md:py-7 flex flex-col items-center justify-center text-center min-h-[220px]">
-              <h4 className="font-sofia font-extrabold text-white text-[22px] sm:text-[24px] lg:text-[26px] uppercase tracking-[0.08em] mb-3">
-                <span className="inline-block border-b-2 border-white pb-1">
-                  Bassa stagione
-                </span>
-              </h4>
-              <p className="font-oswald text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed">
-                Dal 19/01/2026 al 06/02/2026
-                <br />
-                Dal 02/03/2026 a fine stagione
-              </p>
-            </article>
+            {stagioniCard.map(({ s, bg }, i) => (
+              <article
+                key={i}
+                className={`${bg} rounded-[12px] shadow-[0_18px_40px_rgba(0,0,0,.45)] px-6 py-6 md:px-7 md:py-7 flex flex-col items-center justify-center text-center min-h-[220px]`}
+              >
+                <h4 className="font-sofia font-extrabold text-white text-[22px] sm:text-[24px] lg:text-[26px] uppercase tracking-[0.08em] mb-3">
+                  <span className="inline-block border-b-2 border-white pb-1">
+                    {s.nome}
+                  </span>
+                </h4>
+                <p className="font-oswald text-white text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed">
+                  <Lines text={s.date} />
+                </p>
+              </article>
+            ))}
           </div>
 
           <div className="mt-10 md:mt-12">
             <h3 className="font-sofia text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
-              Lezioni private
+              {l.private.titolo}
             </h3>
 
             <div className="mt-4 overflow-x-auto">
@@ -163,56 +161,30 @@ export default function LezioniPage() {
                       Tipo lezione
                     </th>
                     <th className="bg-[#B91C1C] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      Vacanze di Natale
+                      {natale.nome}
                     </th>
                     <th className="bg-[#1DB0D5] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      Alta stagione
+                      {alta.nome}
                     </th>
                     <th className="bg-[#1389A8] px-4 py-3 text-center text-[12px] sm:text-[13px] uppercase tracking-[0.18em]">
-                      Bassa stagione
+                      {bassa.nome}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    {
-                      label: "Sci alpino",
-                      sub: "fascia oraria 9:00 – 14:30",
-                      prices: ["€ 54", "€ 51", "€ 47"],
-                    },
-                    {
-                      label: "Sci alpino",
-                      sub: "fascia oraria 14:30 – 16:30",
-                      prices: ["€ 52", "€ 49", "€ 45"],
-                    },
-                    {
-                      label: "Sci nordico",
-                      sub: "fascia oraria 9:00 – 15:00",
-                      prices: ["€ 49", "€ 47", "€ 45"],
-                    },
-                    {
-                      label: "Sci nordico",
-                      sub: "fascia oraria 15:00 – 17:00",
-                      prices: ["€ 47", "€ 45", "€ 43"],
-                    },
-                  ].map((row, idx) => (
+                  {l.private.righe.map((row, idx) => (
                     <tr key={idx} className="bg-black/70">
-                      <td className="border border-white/15 px-4 py-3 align-top">
-                        <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
-                          {row.label}
-                        </div>
-                        <div className="text-[13px] text-white/70">
-                          {row.sub}
-                        </div>
-                      </td>
-                      {row.prices.map((price, j) => (
-                        <td
-                          key={j}
-                          className="border border-white/15 px-4 py-3 text-center"
-                        >
-                          {price}
-                        </td>
-                      ))}
+                      <TipoLezione disciplina={row.disciplina} orario={row.orario} />
+                      {[row.prezzoNatale, row.prezzoAlta, row.prezzoBassa].map(
+                        (price, j) => (
+                          <td
+                            key={j}
+                            className="border border-white/15 px-4 py-3 text-center"
+                          >
+                            {price}
+                          </td>
+                        ),
+                      )}
                     </tr>
                   ))}
                 </tbody>
@@ -220,19 +192,19 @@ export default function LezioniPage() {
             </div>
 
             <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/60">
-              *Supplemento per ogni persona aggiunta:{" "}
+              {l.private.notaSupplemento}{" "}
               <span className="uppercase tracking-[0.16em] text-[#B91C1C]">
-                Natale
+                {natale.nomeBreve}
               </span>{" "}
-              18 € |{" "}
+              {natale.supplemento} |{" "}
               <span className="uppercase tracking-[0.16em] text-[#1DB0D5]">
-                Alta stagione
+                {alta.nomeBreve}
               </span>{" "}
-              17 € |{" "}
+              {alta.supplemento} |{" "}
               <span className="uppercase tracking-[0.16em] text-[#1389A8]">
-                Bassa stagione
+                {bassa.nomeBreve}
               </span>{" "}
-              13 €.
+              {bassa.supplemento}.
             </p>
           </div>
         </div>
@@ -242,71 +214,45 @@ export default function LezioniPage() {
       <section id="lezioni-collettive" className="lezioni-mtn">
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-            <div className="foto-box relative aspect-[4/3] overflow-hidden">
-              <Image
-                src="/foto/4.jpg"
-                alt="Lezioni di gruppo di sci a Cogne"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 520px, 100vw"
-              />
-            </div>
+            {l.collettive.foto && (
+              <div className="foto-box relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={l.collettive.foto}
+                  alt="Lezioni di gruppo di sci a Cogne"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 520px, 100vw"
+                />
+              </div>
+            )}
 
             <div className="max-w-[620px]">
               <h2 className="font-sofia mt-2 text-[38px] sm:text-[48px] lg:text-[80px] leading-[1.05] font-extrabold uppercase text-white">
-                Lezioni
-                <br />
-                collettive
+                <Lines text={l.collettive.titolo} />
               </h2>
 
               <p
                 className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90"
                 style={{ textAlign: "justify" }}
               >
-                Una soluzione adatta a tutti coloro che vogliono condividere con
-                nuovi amici la passione per lo sci o per lo snowboard. Ideale
-                per bambini e adulti, dai primi passi sulla neve fino agli
-                amanti delle piste più impegnative.
+                {l.collettive.testo}
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/assets/logos/logo_alpino_b.png"
-                    alt="Sci alpino"
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 object-contain"
-                  />
-                  Sci alpino
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/assets/logos/logo_fondo_b.png"
-                    alt="Sci nordico"
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 object-contain"
-                  />
-                  Sci nordico
-                </div>
-              </div>
+              <DisciplineIcons selected={l.collettive.discipline} variant="_b" />
             </div>
           </div>
 
           <div className="mt-12">
             <h3 className="font-sofia text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
-              Tariffe e modalità
+              {l.collettive.tariffeTitolo}
             </h3>
 
             <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90 max-w-[900px]">
-              Le lezioni collettive sono organizzate per livelli omogenei, con
-              gruppi ridotti per garantire sicurezza e divertimento. La
-              partecipazione è garantita con un minimo di 4 iscritti per corso.
+              {l.collettive.tariffeTesto}
             </p>
 
             <h4 className="font-sofia mt-6 text-white text-[26px] sm:text-[30px] lg:text-[32px] font-extrabold uppercase">
-              Lezioni collettive
+              {l.collettive.tabellaTitolo}
             </h4>
 
             <div className="mt-4 overflow-x-auto">
@@ -325,81 +271,30 @@ export default function LezioniPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-black/60">
-                    <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
-                        Sci alpino
-                      </div>
-                      <div className="text-[13px] text-white/70">
-                        seggiovia 10:00 – 12:00
-                      </div>
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      1 giorno
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      60 €
-                    </td>
-                  </tr>
-                  <tr className="bg-black/60">
-                    <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
-                        Sci alpino
-                      </div>
-                      <div className="text-[13px] text-white/70">
-                        seggiovia 11:00 – 13:00
-                      </div>
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      3 giorni
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      155 €
-                    </td>
-                  </tr>
-                  <tr className="bg-black/60">
-                    <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
-                        Sci alpino
-                      </div>
-                      <div className="text-[13px] text-white/70">
-                        baby park 11:00 – 13:00
-                      </div>
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      5 giorni
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      230 €
-                    </td>
-                  </tr>
-                  <tr className="bg-black/60">
-                    <td className="border border-white/15 px-4 py-3 align-top">
-                      <div className="uppercase text-[13px] sm:text-[14px] tracking-[0.16em]">
-                        Sci nordico
-                      </div>
-                      <div className="text-[13px] text-white/70">
-                        13:00 – 15:00
-                      </div>
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      7 giorni
-                    </td>
-                    <td className="border border-white/15 px-4 py-3 text-center align-top">
-                      310 €
-                    </td>
-                  </tr>
+                  {l.collettive.righe.map((row, idx) => (
+                    <tr key={idx} className="bg-black/60">
+                      <TipoLezione disciplina={row.disciplina} orario={row.orario} />
+                      <td className="border border-white/15 px-4 py-3 text-center align-top">
+                        {row.pacchetto}
+                      </td>
+                      <td className="border border-white/15 px-4 py-3 text-center align-top">
+                        {row.tariffa}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
 
-            <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/80">
-              *Sconto del 10% sul secondo figlio iscritto allo stesso corso.
-            </p>
+            {l.collettive.nota && (
+              <p className="mt-3 font-oswald text-[14px] sm:text-[16px] lg:text-[18px] leading-relaxed text-white/80">
+                {l.collettive.nota}
+              </p>
+            )}
 
             <p className="font-oswald mt-4 text-center text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-[rgb(var(--accent))]">
               <a
-                href="mailto:info@scuolascigranparadiso.it?subject=Richiesta%20preventivo%20lezioni%20collettive"
+                href={`mailto:${email}?subject=Richiesta%20preventivo%20lezioni%20collettive`}
                 className="underline-offset-4 hover:underline"
               >
                 RICHIEDI IL TUO PREVENTIVO.
@@ -415,64 +310,52 @@ export default function LezioniPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div className="max-w-[620px]">
               <h2 className="font-sofia mt-2 text-[38px] sm:text-[48px] lg:text-[80px] leading-[1.05] font-extrabold uppercase text-white">
-                Assicurazione
-                <br />
-                Snowcare –
+                <Lines text={l.snowcare.titolo} />
                 <br />
                 <span className="text-[#0E657C]">
-                  proteggi la tua
-                  <br />
-                  prenotazione!
+                  <Lines text={l.snowcare.titoloColorato} />
                 </span>
               </h2>
 
-              <p
-                className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80"
-                style={{ textAlign: "justify" }}
-              >
-                Con l’assicurazione Snowcare puoi tutelare la tua vacanza e le
-                tue lezioni di sci in caso di infortunio o imprevisti. È una
-                copertura pensata per chi frequenta la montagna sulla neve e
-                desidera vivere le proprie giornate in sicurezza e serenità.
-              </p>
-
-              <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
-                Chiedi maggiori informazioni alla segreteria al momento della
-                prenotazione o il giorno stesso della lezione.
-              </p>
+              {l.snowcare.paragrafi.map((testo, i) => (
+                <p
+                  key={i}
+                  className={`font-oswald ${i === 0 ? "mt-4" : "mt-3"} text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80`}
+                  style={i === 0 ? { textAlign: "justify" } : undefined}
+                >
+                  {testo}
+                </p>
+              ))}
             </div>
 
-            <div className="w-full flex justify-center md:justify-end">
-              <div className="foto-box relative w-full max-w-[720px] aspect-[16/9] overflow-hidden">
-                <Image
-                  src="/foto/snowcare.jpg"
-                  alt="Assicurazione Snowcare – proteggi la tua prenotazione"
-                  fill
-                  sizes="(min-width: 1024px) 720px, (min-width: 768px) 480px, 100vw"
-                  className="object-cover"
-                />
+            {l.snowcare.foto && (
+              <div className="w-full flex justify-center md:justify-end">
+                <div className="foto-box relative w-full max-w-[720px] aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={l.snowcare.foto}
+                    alt="Assicurazione Snowcare – proteggi la tua prenotazione"
+                    fill
+                    sizes="(min-width: 1024px) 720px, (min-width: 768px) 480px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           <div className="mt-10 md:mt-14 max-w-[780px]">
             <h3 className="font-sofia text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
-              Cancellazioni & pagamenti
+              {l.pagamenti.titolo}
             </h3>
 
-            <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
-              Le lezioni si considerano confermate al momento della
-              prenotazione. In caso di impossibilità a partecipare, ti chiediamo
-              di avvisarci il prima possibile: le disdette comunicate con almeno
-              48 ore di anticipo non comportano penali, mentre oltre tale
-              termine la lezione sarà addebitata.
-            </p>
-
-            <p className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80">
-              Il pagamento può essere effettuato in segreteria, in contanti,
-              carta o bancomat, oppure tramite bonifico anticipato secondo le
-              indicazioni che riceverai al momento della conferma.
-            </p>
+            {l.pagamenti.paragrafi.map((testo, i) => (
+              <p
+                key={i}
+                className="font-oswald mt-3 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/80"
+              >
+                {testo}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -482,19 +365,14 @@ export default function LezioniPage() {
         <div className="container-site">
           <div className="max-w-[900px]">
             <h2 className="font-sofia mt-2 text-white text-[38px] sm:text-[48px] lg:text-[80px] leading-[1.05] font-extrabold uppercase">
-              Orari &
-              <br />
-              luoghi di ritrovo
+              <Lines text={l.ritrovo.titolo} />
             </h2>
 
             <p
               className="font-oswald mt-4 text-[16px] sm:text-[18px] lg:text-[20px] leading-relaxed text-white/90"
               style={{ textAlign: "justify" }}
             >
-              I punti di ritrovo variano in base al tipo di corso e al livello.
-              Nella mappa trovi indicati i luoghi principali di incontro con i
-              maestri e gli orari di riferimento. Ti consigliamo di presentarti
-              con qualche minuto di anticipo.
+              {l.ritrovo.testo}
             </p>
           </div>
 
@@ -516,7 +394,7 @@ export default function LezioniPage() {
           <div className="mt-8 w-full rounded-[12px] overflow-hidden shadow-xl shadow-black/40">
             <div className="aspect-[16/9] w-full">
               <iframe
-                src="https://www.google.com/maps?q=Scuola+di+Sci+e+Snowboard+Gran+Paradiso,+Via+Bourgeois+33,+11012+Cogne+AO&output=embed"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(home.contatti.mappa).replace(/%20/g, "+").replace(/%2C/g, ",")}&output=embed`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full border-0"

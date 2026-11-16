@@ -1,4 +1,16 @@
-export default function Contacts() {
+import Lines from "./Lines";
+
+export type ContactsContent = {
+  titolo: string;
+  nome: string;
+  indirizzo: string;
+  mappa: string;
+  telefono: string;
+  email: string;
+};
+
+export default function Contacts({ titolo, nome, indirizzo, mappa, telefono, email }: ContactsContent) {
+  const q = encodeURIComponent(mappa).replace(/%20/g, "+").replace(/%2C/g, ",");
   return (
     <section id="contatti" className="slice slice-white">
       <div className="container-site">
@@ -17,7 +29,7 @@ export default function Contacts() {
                 text-[#0b0b0b]
               "
             >
-              Contatti
+              {titolo}
             </h2>
           </div>
 
@@ -31,38 +43,36 @@ export default function Contacts() {
               space-y-1
             "
           >
-            <div>Scuola di Sci &amp; Snowboard Gran Paradiso</div>
+            <div>{nome}</div>
 
             {/* INDIRIZZO CLICCABILE → GOOGLE MAPS */}
             <div>
               <a
-                href="https://www.google.com/maps?q=Scuola+di+Sci+e+Snowboard+Gran+Paradiso,+Via+Bourgeois+33,+11012+Cogne+AO&hl=it"
+                href={`https://www.google.com/maps?q=${q}&hl=it`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:no-underline"
               >
-                Via Bourgeois 33
-                <br />
-                11012 Cogne (AO) – Italia
+                <Lines text={indirizzo} />
               </a>
             </div>
 
             <div>
               Tel:{" "}
               <a
-                href="tel:+39016574300"
+                href={`tel:${telefono.replace(/[^+\d]/g, "")}`}
                 className="underline hover:no-underline"
               >
-                +39 0165 74300
+                {telefono}
               </a>
             </div>
             <div>
               Mail:{" "}
               <a
-                href="mailto:info@scuolascigranparadiso.it"
+                href={`mailto:${email}`}
                 className="underline hover:no-underline"
               >
-                info@scuolascigranparadiso.it
+                {email}
               </a>
             </div>
           </div>
@@ -72,7 +82,7 @@ export default function Contacts() {
         <div className="mt-8 w-full">
           <div className="aspect-[16/9] w-full rounded-[12px] overflow-hidden shadow-xl shadow-black/10">
             <iframe
-              src="https://www.google.com/maps?q=Scuola+di+Sci+e+Snowboard+Gran+Paradiso,+Via+Bourgeois+33,+11012+Cogne+AO&output=embed"
+              src={`https://www.google.com/maps?q=${q}&output=embed`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full border-0"

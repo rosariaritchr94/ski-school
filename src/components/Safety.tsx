@@ -3,22 +3,19 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Lines from "./Lines";
 
-const GALLERY = [
-  { src: "/foto/8.jpg", alt: "Scuola sci Gran Paradiso - foto 8" },
-  { src: "/foto/7.jpg", alt: "Scuola sci Gran Paradiso - foto 7" },
-  { src: "/foto/6.jpg", alt: "Scuola sci Gran Paradiso - foto 6" },
-  { src: "/foto/4.jpg", alt: "Scuola sci Gran Paradiso - foto 4" },
-  { src: "/foto/5.jpg", alt: "Scuola sci Gran Paradiso - foto 5" },
-  { src: "/foto/3.jpg", alt: "Scuola sci Gran Paradiso - foto 3" }, // 👈 AGGIUNTA
-  { src: "/foto/2.jpg", alt: "Scuola sci Gran Paradiso - foto 2" },
-  { src: "/foto/1.jpg", alt: "Scuola sci Gran Paradiso - foto 1" },
-];
+export type SafetyContent = {
+  titolo: string;
+  testo: string;
+  galleria: { foto: string; descrizione: string }[];
+};
 
-export default function Safety() {
+export default function Safety({ titolo, testo, galleria }: SafetyContent) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const current = GALLERY[currentIndex];
+  const GALLERY = galleria.map((g) => ({ src: g.foto, alt: g.descrizione }));
+  const current = GALLERY[currentIndex] ?? GALLERY[0];
 
   const goPrev = () => {
     setCurrentIndex((prev) =>
@@ -54,10 +51,7 @@ export default function Safety() {
                 uppercase
               "
             >
-              Vivi<br />
-              l’avventura<br />
-              in totale<br />
-              sicurezza
+              <Lines text={titolo} />
             </h2>
 
             {/* PARAGRAFO – stesso stile descrizione intro (OSWALD) */}
@@ -71,18 +65,14 @@ export default function Safety() {
               "
               style={{ textAlign: "justify" }}
             >
-              I nostri maestri della Scuola di Sci Gran Paradiso
-              sono sempre pronti ad accompagnarti:
-              programmi personalizzati e lezioni dedicate a bambini e adulti,
-              all’insegna di professionalità, esperienza e sicurezza.
-              Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne,
-              nel cuore della Valle d’Aosta.
+              {testo}
             </p>
           </div>
 
           {/* FOTO GRANDE – SLIDER */}
           <div className="w-full">
             <div className="relative aspect-[4/3] w-full rounded-[12px] overflow-hidden bg-white shadow-2xl shadow-black/50">
+              {current && (
               <Image
                 key={current.src}
                 src={current.src}
@@ -92,6 +82,7 @@ export default function Safety() {
                 sizes="(min-width: 1024px) 520px, 100vw"
                 priority
               />
+              )}
             </div>
           </div>
         </div>

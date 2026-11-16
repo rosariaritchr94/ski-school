@@ -1,20 +1,65 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Lines from "./Lines";
 
-export default function Intro() {
+export type IntroContent = {
+  titolo: string;
+  testo: string;
+  video: string | null;
+};
+
+/**
+ * Parallasse leggera: il pannello si sposta di al massimo ±maxShift px
+ * mentre si scorre. Al centro dello schermo è nella sua posizione normale.
+ */
+function useParallax(maxShift = 40, factor = 0.12) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = el.getBoundingClientRect();
+      const fromCenter = rect.top + rect.height / 2 - window.innerHeight / 2;
+      const shift = Math.max(-maxShift, Math.min(maxShift, -fromCenter * factor));
+      el.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0)`;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [maxShift, factor]);
+
+  return ref;
+}
+
+export default function Intro({ titolo, testo, video }: IntroContent) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const parallaxRef = useParallax();
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
+    if (!v || !video) return;
 
     v.muted = true;
     (v as any).playsInline = true;
 
     // assegna la sorgente (cache buster per evitare cache)
-    v.src = "/assets/intro/reel.mp4?v=1";
+    v.src = `${video}?v=1`;
     v.load();
 
     const tryPlay = () => {
@@ -44,13 +89,13 @@ export default function Intro() {
       v.removeEventListener("error", onError);
       document.removeEventListener("visibilitychange", vis);
     };
-  }, []);
+  }, [video]);
 
   return (
     <section className="slice-intro">
       <div className="container-site grid items-start grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-10">
         {/* Testo */}
-        <div className="max-w-[620px]">
+        <div className="max-w-[620px] lg:translate-y-[46px]">
           {/* TITOLO – SOFIA SANS */}
           <h2
             className="
@@ -63,9 +108,7 @@ export default function Intro() {
               uppercase
             "
           >
-            THE<br />
-            WILD SIDE<br />
-            OF SKIING
+            <Lines text={titolo} />
           </h2>
 
           {/* PARAGRAFO – OSWALD, GIUSTIFICATO */}
@@ -79,22 +122,19 @@ export default function Intro() {
             "
             style={{ textAlign: "justify" }}
           >
-            A Cogne lo sci è pura libertà. Qui, ai piedi del Gran Paradiso, ogni curva è un’avventura:
-            che tu sia alle prime discese o un esperto della tecnica, con noi vivi lo sci nel suo lato più
-            adrenalinico. Bambini, ragazzi, adulti: ognuno trova la sua sfida e il suo divertimento.
-            La Scuola di Sci Gran Paradiso è il posto dove imparare, ridere e condividere emozioni vere,
-            circondati dai paesaggi più spettacolari della Valle d’Aosta. Ready to ride the wild side?
+            {testo}
           </p>
         </div>
 
         {/* Pannello VIDEO — verticale (portrait) */}
-        <figure className="relative md:-mt-2 lg:-mt-3 justify-self-center lg:justify-self-end w-full">
+        <figure className="relative md:-mt-2 lg:-mt-3 justify-self-center lg:justify-self-end w-full translate-y-[60px] md:translate-y-[80px]">
           <div
+            ref={parallaxRef}
             className="
-              relative
+              relative will-change-transform
               mx-auto md:ml-auto
               w-[78%] sm:w-[65%] md:w-[380px] lg:w-[420px] max-w-[440px]
-              aspect-[3/4] md:aspect-[2/3]
+              aspect-[9/16]
               rounded-[12px] overflow-hidden
               shadow-[0_20px_40px_rgba(0,0,0,.35)]
               bg-black

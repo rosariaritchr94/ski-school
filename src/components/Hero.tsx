@@ -3,7 +3,13 @@
 
 import { useEffect, useRef } from "react";
 
-export default function Hero() {
+export type HeroContent = {
+  sopratitolo1: string;
+  sopratitolo2: string;
+  titolo: string;
+};
+
+export default function Hero({ sopratitolo1, sopratitolo2, titolo }: HeroContent) {
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -71,10 +77,10 @@ export default function Hero() {
             "
           >
             <span className="block sm:inline">
-              SCUOLA DI SCI&nbsp;
+              {sopratitolo1}&nbsp;
             </span>
             <span className="block sm:inline">
-              & SNOWBOARD
+              {sopratitolo2}
             </span>
           </p>
 
@@ -88,7 +94,7 @@ export default function Hero() {
               uppercase
             "
           >
-            Gran Paradiso
+            {titolo}
           </h1>
         </div>
       </div>

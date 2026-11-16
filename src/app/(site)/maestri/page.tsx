@@ -1,11 +1,33 @@
 // src/app/(site)/maestri/page.tsx
-import MaestriGrid from "../../../components/MaestriGrid";
+import { Fragment } from "react";
+import MaestriGrid, { type Maestro } from "@/components/MaestriGrid";
+import { reader } from "@/lib/content";
 
 export const metadata = {
   title: "Maestri – Gran Paradiso",
 };
 
-export default function MaestriPage() {
+export default async function MaestriPage() {
+  const pagina = await reader.singletons.paginaMaestri.read();
+  const entries = await reader.collections.maestri.all();
+
+  const maestri: Maestro[] = entries
+    .sort(
+      (a, b) =>
+        (a.entry.ordine ?? 1000) - (b.entry.ordine ?? 1000) ||
+        a.entry.nome.localeCompare(b.entry.nome),
+    )
+    .map(({ slug, entry }) => ({
+      id: slug,
+      nome: entry.nome,
+      ruolo: entry.ruolo || undefined,
+      disciplina: entry.disciplina || undefined,
+      foto: entry.foto ?? undefined,
+    }));
+
+  const sloganRighe = (pagina?.slogan ?? "").split("\n").filter(Boolean);
+  const paragrafi = pagina?.paragrafi ?? [];
+
   return (
     <main>
       {/* HERO – stesso effetto di Lezioni */}
@@ -21,7 +43,7 @@ export default function MaestriPage() {
                 uppercase text-white
               "
             >
-              Maestri
+              {pagina?.titolo || "Maestri"}
             </h1>
           </div>
         </div>
@@ -41,58 +63,48 @@ export default function MaestriPage() {
                 tracking-[0.08em]
               "
             >
-              Qualità
-              <br />
-              Esperienza
-              <br />
-              Divertimento
+              {sloganRighe.map((riga, i) => (
+                <Fragment key={i}>
+                  {i > 0 && <br />}
+                  {riga}
+                </Fragment>
+              ))}
             </h2>
 
-            <p
-              className="
-                font-oswald
-                mt-4
-                text-[15px] sm:text-[17px] lg:text-[19px]
-                leading-relaxed
-                text-white/80
-              "
-              style={{ textAlign: "justify" }}
-            >
-              I nostri maestri di sci del Gran Paradiso rispettano i più elevati
-              standard di competenza e professionalità. Ti accompagneranno sulla
-              neve con entusiasmo, attenzione alla sicurezza e tanta passione
-              per la montagna.
-            </p>
-
-            <p
-              className="
-                font-oswald
-                mt-3
-                text-[15px] sm:text-[17px] lg:text-[19px]
-                leading-relaxed
-                text-white/80
-              "
-            >
-              Scopri tutti i maestri nella grande famiglia della Scuola di Sci
-              Gran Paradiso.
-            </p>
+            {paragrafi.map((testo, i) => (
+              <p
+                key={i}
+                className={`
+                  font-oswald
+                  ${i === 0 ? "mt-4" : "mt-3"}
+                  text-[15px] sm:text-[17px] lg:text-[19px]
+                  leading-relaxed
+                  text-white/80
+                `}
+                style={i === 0 ? { textAlign: "justify" } : undefined}
+              >
+                {testo}
+              </p>
+            ))}
           </div>
 
           {/* Riquadro FOTO a destra */}
+          {pagina?.foto && (
           <div className="w-full flex justify-center md:justify-end">
             <div className="foto-box relative w-full max-w-[360px] aspect-square overflow-hidden bg-black">
               <img
-                src="/foto/logo-hidef.png"
+                src={pagina.foto}
                 alt="Scuola di Sci Gran Paradiso"
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
+          )}
         </div>
       </section>
 
       {/* GRIGLIA MAESTRI SU SFONDO MONTAGNA AZZURRA */}
-      <MaestriGrid />
+      <MaestriGrid maestri={maestri} />
     </main>
   );
 }

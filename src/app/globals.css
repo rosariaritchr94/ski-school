@@ -297,6 +297,15 @@
     object-position: top center;
     display: block;
   }
+  /* Da tablet in su le immagini non vengono tagliate in fondo: altrimenti,
+     tra ~900 e 1023px, il bordo dritto delle montagne azzurre resta visibile.
+     La parte in più finisce sotto la neve bianca. */
+  @media (min-width: 768px) {
+    .mtn > img {
+      height: auto;
+      object-fit: fill;
+    }
+  }
   .mtn--scuro {
     transform: translateY(
       calc(var(--mtn-height) * var(--k-scuro) * -1 + var(--p-scuro))

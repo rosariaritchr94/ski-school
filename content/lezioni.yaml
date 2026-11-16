@@ -1,0 +1,92 @@
+titolo: "Lezioni"
+individuali:
+  titolo: "Lezioni\nindividuali"
+  testo: "Cosa c’è di meglio di una lezione personalizzata e su misura per poter scoprire i segreti nascosti dello sci e dello snowboard? Grazie ai nostri maestri potrai acquisire maggiore confidenza ed abilità in ogni disciplina proposta, in un contesto naturale, sicuro e unico come quello del Gran Paradiso. Scegli tra queste attività e prenota la tua lezione:"
+  discipline:
+    - alpino
+    - snowboard
+    - nordico
+  foto: "/foto/lezioni/individuali.jpg"
+stagioni:
+  natale:
+    nome: "Vacanze di Natale"
+    date: "Dal 26/12/2025 al 06/01/2026"
+    nomeBreve: "Natale"
+    supplemento: "18 €"
+  alta:
+    nome: "Alta stagione"
+    date: "Dal 06/12/2025 al 25/12/2025\nDal 07/01/2026 al 18/01/2026\nDal 07/02/2026 al 01/03/2026\ne tutti i weekend"
+    nomeBreve: "Alta stagione"
+    supplemento: "17 €"
+  bassa:
+    nome: "Bassa stagione"
+    date: "Dal 19/01/2026 al 06/02/2026\nDal 02/03/2026 a fine stagione"
+    nomeBreve: "Bassa stagione"
+    supplemento: "13 €"
+private:
+  titolo: "Lezioni private"
+  righe:
+    - disciplina: "Sci alpino"
+      orario: "fascia oraria 9:00 – 14:30"
+      prezzoNatale: "€ 54"
+      prezzoAlta: "€ 51"
+      prezzoBassa: "€ 47"
+    - disciplina: "Sci alpino"
+      orario: "fascia oraria 14:30 – 16:30"
+      prezzoNatale: "€ 52"
+      prezzoAlta: "€ 49"
+      prezzoBassa: "€ 45"
+    - disciplina: "Sci nordico"
+      orario: "fascia oraria 9:00 – 15:00"
+      prezzoNatale: "€ 49"
+      prezzoAlta: "€ 47"
+      prezzoBassa: "€ 45"
+    - disciplina: "Sci nordico"
+      orario: "fascia oraria 15:00 – 17:00"
+      prezzoNatale: "€ 47"
+      prezzoAlta: "€ 45"
+      prezzoBassa: "€ 43"
+  notaSupplemento: "*Supplemento per ogni persona aggiunta:"
+collettive:
+  titolo: "Lezioni\ncollettive"
+  testo: "Una soluzione adatta a tutti coloro che vogliono condividere con nuovi amici la passione per lo sci o per lo snowboard. Ideale per bambini e adulti, dai primi passi sulla neve fino agli amanti delle piste più impegnative."
+  discipline:
+    - alpino
+    - nordico
+  foto: "/foto/lezioni/collettive.jpg"
+  tariffeTitolo: "Tariffe e modalità"
+  tariffeTesto: "Le lezioni collettive sono organizzate per livelli omogenei, con gruppi ridotti per garantire sicurezza e divertimento. La partecipazione è garantita con un minimo di 4 iscritti per corso."
+  tabellaTitolo: "Lezioni collettive"
+  righe:
+    - disciplina: "Sci alpino"
+      orario: "seggiovia 10:00 – 12:00"
+      pacchetto: "1 giorno"
+      tariffa: "60 €"
+    - disciplina: "Sci alpino"
+      orario: "seggiovia 11:00 – 13:00"
+      pacchetto: "3 giorni"
+      tariffa: "155 €"
+    - disciplina: "Sci alpino"
+      orario: "baby park 11:00 – 13:00"
+      pacchetto: "5 giorni"
+      tariffa: "230 €"
+    - disciplina: "Sci nordico"
+      orario: "13:00 – 15:00"
+      pacchetto: "7 giorni"
+      tariffa: "310 €"
+  nota: "*Sconto del 10% sul secondo figlio iscritto allo stesso corso."
+snowcare:
+  titolo: "Assicurazione\nSnowcare –"
+  titoloColorato: "proteggi la tua\nprenotazione!"
+  paragrafi:
+    - "Con l’assicurazione Snowcare puoi tutelare la tua vacanza e le tue lezioni di sci in caso di infortunio o imprevisti. È una copertura pensata per chi frequenta la montagna sulla neve e desidera vivere le proprie giornate in sicurezza e serenità."
+    - "Chiedi maggiori informazioni alla segreteria al momento della prenotazione o il giorno stesso della lezione."
+  foto: "/foto/lezioni/snowcare.jpg"
+pagamenti:
+  titolo: "Cancellazioni & pagamenti"
+  paragrafi:
+    - "Le lezioni si considerano confermate al momento della prenotazione. In caso di impossibilità a partecipare, ti chiediamo di avvisarci il prima possibile: le disdette comunicate con almeno 24 ore di anticipo non comportano penali, mentre oltre tale termine la lezione sarà addebitata."
+    - "Il pagamento può essere effettuato in segreteria, in contanti, carta o bancomat, oppure tramite bonifico anticipato secondo le indicazioni che riceverai al momento della conferma."
+ritrovo:
+  titolo: "Orari &\nluoghi di ritrovo"
+  testo: "I punti di ritrovo variano in base al tipo di corso e al livello. Nella mappa trovi indicati i luoghi principali di incontro con i maestri e gli orari di riferimento. Ti consigliamo di presentarti con qualche minuto di anticipo."
