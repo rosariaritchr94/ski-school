@@ -47,7 +47,7 @@ export default function MaestriGrid({ maestri }: { maestri: Maestro[] }) {
   };
 
   return (
-    <section className="maestri-mtn">
+    <section className="maestri-mtn" data-sfondo="azzurro">
       <div className="container-site">
         {/*
           Griglia responsive:

@@ -18,7 +18,7 @@ type Props = { cards: readonly ServiceCard[]; email: string };
 
 export default function ServicesGrid({ cards, email }: Props) {
   return (
-    <section className="slice slice-blue">
+    <section className="slice slice-blue" data-sfondo="azzurro">
       <div className="container-site grid md:grid-cols-2 gap-6">
         {cards.map((c, i) => {
           const key = `servizio-${i}`;

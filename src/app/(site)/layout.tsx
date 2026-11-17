@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ElementiFissi from "@/components/ElementiFissi";
+import { reader } from "@/lib/content";
 import { sofia, oswald } from "@/app/fonts";
 import Script from "next/script";
 
@@ -14,7 +16,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const contatti = (await reader.singletons.home.read())?.contatti;
   return (
     <html
       lang="it"
@@ -51,6 +54,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Navbar />
         <main className="page-wrap">{children}</main>
         <Footer />
+        {contatti && (
+          <ElementiFissi
+            telefono={contatti.telefono}
+            instagram={contatti.instagram}
+            facebook={contatti.facebook}
+          />
+        )}
       </body>
     </html>
   );

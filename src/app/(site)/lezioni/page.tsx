@@ -302,7 +302,7 @@ export default async function LezioniPage() {
       </section>
 
       {/* ===================== MONTAGNA – LEZIONI DI GRUPPO ===================== */}
-      <section id="lezioni-collettive" className="lezioni-mtn">
+      <section id="lezioni-collettive" className="lezioni-mtn" data-sfondo="azzurro">
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             {l.collettive.foto && (
@@ -437,7 +437,7 @@ export default async function LezioniPage() {
       </section>
 
       {/* ===================== BLOCCO NERO 2 – SNOWCARE & PAGAMENTI ===================== */}
-      <section id="snowcare" className="lezioni-mtn">
+      <section id="snowcare" className="lezioni-mtn" data-sfondo="azzurro">
         <div className="container-site">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div className="max-w-[620px]">
