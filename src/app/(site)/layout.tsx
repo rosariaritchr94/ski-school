@@ -11,9 +11,6 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Scuola di Sci Gran Paradiso",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
@@ -53,12 +50,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 
         <Navbar />
         <main className="page-wrap">{children}</main>
-        <Footer />
+        <Footer telefono={contatti?.telefono} instagram={contatti?.instagram} />
         {contatti && (
           <ElementiFissi
             telefono={contatti.telefono}
             instagram={contatti.instagram}
-            facebook={contatti.facebook}
           />
         )}
       </body>

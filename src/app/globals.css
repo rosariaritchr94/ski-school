@@ -661,3 +661,9 @@ html {
   background: rgba(255,255,255,.55); transform: rotate(-4deg); box-shadow: 0 1px 3px rgba(0,0,0,.15);
 }
 @media (prefers-reduced-motion: reduce) { .bacheca-polaroid { transition: none; } }
+
+/* iubenda: niente pulsante fluttuante delle preferenze (copriva il bollino del telefono);
+   il pannello si riapre dal link "Preferenze cookie" nel footer */
+body .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float] {
+  display: none !important;
+}

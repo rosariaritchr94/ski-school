@@ -4,6 +4,7 @@ import Intro from "@/components/Intro";
 import ServicesGrid from "@/components/ServicesGrid";
 import MeteoBar from "@/components/MeteoBar";
 import BachecaEventi from "@/components/BachecaEventi";
+import LinkUtili from "@/components/LinkUtili";
 import { leggiMeteo } from "@/lib/meteo";
 import Safety from "@/components/Safety";
 import Contacts from "@/components/Contacts";
@@ -19,6 +20,7 @@ export default async function HomePage() {
       <ServicesGrid cards={home.servizi} email={home.contatti.email}>
         {meteo && <MeteoBar meteo={meteo} />}
         <BachecaEventi titolo={home.eventi.titolo} eventi={home.eventi.lista} />
+        <LinkUtili links={home.linkUtili} />
       </ServicesGrid>
       <Safety
         titolo={home.sicurezza.titolo}

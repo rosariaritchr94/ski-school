@@ -237,6 +237,23 @@ export default config({
             description: "Sotto la barra del meteo. Se non ci sono eventi la bacheca non compare.",
           },
         ),
+        linkUtili: fields.array(
+          fields.object({
+            titolo: fields.text({ label: "Titolo", validation: { length: { min: 1 } } }),
+            logo: fields.image({
+              label: "Logo",
+              description: "Compare nel pallino bianco: meglio un'immagine quadrata.",
+              directory: "public/foto/link",
+              publicPath: "/foto/link/",
+            }),
+            link: fields.url({ label: "Link", validation: { isRequired: true } }),
+          }),
+          {
+            label: "Link utili",
+            description: "Tessere sotto la bacheca eventi; si aprono in una nuova scheda.",
+            itemLabel: (props) => props.fields.titolo.value || "Link",
+          },
+        ),
         sicurezza: fields.object(
           {
             titolo: fields.text({
@@ -289,10 +306,6 @@ export default config({
             instagram: fields.url({
               label: "Pagina Instagram",
               description: 'Link completo (es. "https://www.instagram.com/…"). Vuoto = icona nascosta.',
-            }),
-            facebook: fields.url({
-              label: "Pagina Facebook",
-              description: 'Link completo (es. "https://www.facebook.com/…"). Vuoto = icona nascosta.',
             }),
           },
           { label: "Contatti" },

@@ -9,7 +9,7 @@ intro:
 servizi:
   - titolo: "lezioni"
     testo: "Sci alpino, snowboard e fondo con maestro dedicato, per bambini e adulti."
-    foto: "/foto/home/servizi-lezioni-private.jpg"
+    foto: "/foto/home/servizi-lezioni-pista.jpg"
     link: "/lezioni"
     pulsante: "Scopri"
     mostraPreventivo: false
@@ -38,6 +38,13 @@ eventi:
       titolo: ""
       testo: ""
       scritta: "restate con noi ❄"
+linkUtili:
+  - titolo: "Comune di Cogne"
+    logo: "/foto/link/comune-cogne.png"
+    link: "https://www.comune.cogne.ao.it/"
+  - titolo: "Consorzio Cogne"
+    logo: "/foto/link/consorzio-cogne.png"
+    link: "https://www.visitcogne.it/il-consorzio/"
 sicurezza:
   titolo: "Vivi\nl’avventura\nin totale\nsicurezza"
   testo: "I nostri maestri della Scuola di Sci Gran Paradiso sono sempre pronti ad accompagnarti: programmi personalizzati e lezioni dedicate a bambini e adulti, all’insegna di professionalità, esperienza e sicurezza. Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne, nel cuore della Valle d’Aosta."
@@ -65,3 +72,4 @@ contatti:
   mappa: "Scuola di Sci e Snowboard Gran Paradiso, Via Bourgeois 33, 11012 Cogne AO"
   telefono: "+39 0165 74300"
   email: "info@scuolascigranparadiso.it"
+  instagram: "https://www.instagram.com/scuolascigranparadiso/"

@@ -20,14 +20,6 @@ function IconInstagram() {
   );
 }
 
-function IconFacebook() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-[24px] w-[24px]" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H9.2v3h2.5V21" />
-    </svg>
-  );
-}
-
 function IconTelefono() {
   return (
     <svg viewBox="0 0 24 24" className="h-[20px] w-[20px] md:h-[27px] md:w-[27px]" fill="currentColor" aria-hidden="true">
@@ -116,15 +108,12 @@ function useSuAzzurro<T extends HTMLElement>() {
 export default function ElementiFissi({
   telefono,
   instagram,
-  facebook,
 }: {
   telefono: string;
   instagram?: string | null;
-  facebook?: string | null;
 }) {
   const social = [
     { href: instagram, label: "Instagram", icon: <IconInstagram /> },
-    { href: facebook, label: "Facebook", icon: <IconFacebook /> },
   ];
   // azzurro sul nero e sul bianco, bianco sulla sezione azzurra
   const [refSocial, socialSuAzzurro] = useSuAzzurro<HTMLElement>();
