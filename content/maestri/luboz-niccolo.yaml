@@ -1,4 +1,7 @@
 nome: "Luboz Niccolò"
-ruolo: "Maestro di SNOWBOARD"
-disciplina: "Snowboard"
+ruolo:
+  it: "Maestro di SNOWBOARD"
+  en: "SNOWBOARD instructor"
+  fr: "Moniteur de SNOWBOARD"
+disciplina: Snowboard
 ordine: 290

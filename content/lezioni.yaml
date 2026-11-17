@@ -1,154 +1,411 @@
-titolo: "Lezioni"
+titolo:
+  it: Lezioni
+  en: Lessons
+  fr: Cours
 heroVideo: "/foto/lezioni/hero-video-90369e.mp4"
 heroFoto: "/foto/lezioni/hero-poster-90369e.jpg"
 individuali:
-  titolo: "Lezioni\nprivate"
-  testo: "Cosa c’è di meglio di una lezione personalizzata e su misura per poter scoprire i segreti nascosti dello sci e dello snowboard? Grazie ai nostri maestri potrai acquisire maggiore confidenza ed abilità in ogni disciplina proposta, in un contesto naturale, sicuro e unico come quello del Gran Paradiso. Scegli tra queste attività e prenota la tua lezione:"
+  titolo:
+    it: "Lezioni\nprivate"
+    en: "Private\nlessons"
+    fr: "Cours\nparticuliers"
+  testo:
+    it: "Cosa c’è di meglio di una lezione personalizzata e su misura per poter scoprire i segreti nascosti dello sci e dello snowboard? Grazie ai nostri maestri potrai acquisire maggiore confidenza ed abilità in ogni disciplina proposta, in un contesto naturale, sicuro e unico come quello del Gran Paradiso. Scegli tra queste attività e prenota la tua lezione:"
+    en: "What could be better than a personalised, tailor-made lesson to discover the hidden secrets of skiing and snowboarding? With our instructors you will gain more confidence and skill in every discipline we offer, in a natural, safe and unique setting like the Gran Paradiso. Choose from these activities and book your lesson:"
+    fr: "Quoi de mieux qu’un cours personnalisé et sur mesure pour découvrir les secrets du ski et du snowboard ? Avec nos moniteurs, vous gagnerez en confiance et en aisance dans chaque discipline proposée, dans un cadre naturel, sûr et unique comme celui du Grand-Paradis. Choisissez parmi ces activités et réservez votre cours :"
   discipline:
-    - alpino
-    - snowboard
-    - nordico
+  - alpino
+  - snowboard
+  - nordico
   foto: "/foto/lezioni/individuali.jpg"
 stagioni:
   altissima:
-    nome: "Altissima stagione"
-    date: "Dal 24/12/2026 al 06/01/2027\nDal 08/02/2027 al 14/02/2027"
-    nomeBreve: "Altissima"
+    nome:
+      it: "Altissima stagione"
+      en: "Peak season"
+      fr: "Très haute saison"
+    date:
+      it: "Dal 24/12/2026 al 06/01/2027\nDal 08/02/2027 al 14/02/2027"
+      en: "From 24/12/2026 to 06/01/2027\nFrom 08/02/2027 to 14/02/2027"
+      fr: "Du 24/12/2026 au 06/01/2027\nDu 08/02/2027 au 14/02/2027"
+    nomeBreve:
+      it: Altissima
+      en: Peak
+      fr: "Très haute"
     supplemento: "18 €"
   alta:
-    nome: "Alta stagione"
-    date: "Tutti i weekend\nDal 05/12/2026 al 08/12/2026\nDal 07/01/2027 al 07/02/2027\nDal 15/02/2027 al 28/02/2027\nIl 27/03/2027 e il 28/03/2027"
-    nomeBreve: "Alta"
+    nome:
+      it: "Alta stagione"
+      en: "High season"
+      fr: "Haute saison"
+    date:
+      it: "Tutti i weekend\nDal 05/12/2026 al 08/12/2026\nDal 07/01/2027 al 07/02/2027\nDal 15/02/2027 al 28/02/2027\nIl 27/03/2027 e il 28/03/2027"
+      en: "Every weekend\nFrom 05/12/2026 to 08/12/2026\nFrom 07/01/2027 to 07/02/2027\nFrom 15/02/2027 to 28/02/2027\n27/03/2027 and 28/03/2027"
+      fr: "Tous les week-ends\nDu 05/12/2026 au 08/12/2026\nDu 07/01/2027 au 07/02/2027\nDu 15/02/2027 au 28/02/2027\nLe 27/03/2027 et le 28/03/2027"
+    nomeBreve:
+      it: Alta
+      en: High
+      fr: Haute
     supplemento: "17 €"
   bassa:
-    nome: "Bassa stagione"
-    date: "Dal 09/12/2026 al 23/12/2026\nDal 01/03/2027 al 26/03/2027"
-    nomeBreve: "Bassa"
+    nome:
+      it: "Bassa stagione"
+      en: "Low season"
+      fr: "Basse saison"
+    date:
+      it: "Dal 09/12/2026 al 23/12/2026\nDal 01/03/2027 al 26/03/2027"
+      en: "From 09/12/2026 to 23/12/2026\nFrom 01/03/2027 to 26/03/2027"
+      fr: "Du 09/12/2026 au 23/12/2026\nDu 01/03/2027 au 26/03/2027"
+    nomeBreve:
+      it: Bassa
+      en: Low
+      fr: Basse
     supplemento: "13 €"
 private:
-  titolo: "Tariffe e modalità"
-  testo: "Lezioni individuali o per piccoli gruppi con maestro di sci qualificato. Prezzi per ora di lezione."
+  titolo:
+    it: "Tariffe e modalità"
+    en: "Prices and details"
+    fr: "Tarifs et modalités"
+  testo:
+    it: "Lezioni individuali o per piccoli gruppi con maestro di sci qualificato. Prezzi per ora di lezione."
+    en: "Individual or small-group lessons with a qualified ski instructor. Prices per lesson hour."
+    fr: "Cours individuels ou en petits groupes avec un moniteur de ski diplômé. Prix par heure de cours."
   righe:
-    - disciplina: "Sci alpino"
-      orario: "fascia oraria 9:00 – 14:30"
-      prezzoAltissima: "54 €"
-      prezzoAlta: "51 €"
-      prezzoBassa: "47 €"
-    - disciplina: "Sci alpino"
-      orario: "fascia oraria 14:30 – 16:30"
-      prezzoAltissima: "52 €"
-      prezzoAlta: "49 €"
-      prezzoBassa: "45 €"
-    - disciplina: "Sci nordico"
-      orario: "fascia oraria 9:00 – 15:00"
-      prezzoAltissima: "49 €"
-      prezzoAlta: "47 €"
-      prezzoBassa: "45 €"
-    - disciplina: "Sci nordico"
-      orario: "fascia oraria 15:00 – 17:00"
-      prezzoAltissima: "47 €"
-      prezzoAlta: "45 €"
-      prezzoBassa: "43 €"
-  personaAggiuntaTitolo: "Persona aggiunta"
-  personaAggiuntaSottotitolo: "per ogni ulteriore partecipante"
-  maestroTitolo: "Maestro richiesto"
-  maestroTesto: "Per lo **sci alpino**, in Altissima stagione, la richiesta nominativa di uno specifico maestro comporta un supplemento di **3 € per ora di lezione**."
+  - disciplina:
+      it: "Sci alpino"
+      en: "Alpine skiing"
+      fr: "Ski alpin"
+    orario:
+      it: "fascia oraria 9:00 – 14:30"
+      en: "time slot 9:00 – 14:30"
+      fr: "créneau 9:00 – 14:30"
+    prezzoAltissima: "54 €"
+    prezzoAlta: "51 €"
+    prezzoBassa: "47 €"
+  - disciplina:
+      it: "Sci alpino"
+      en: "Alpine skiing"
+      fr: "Ski alpin"
+    orario:
+      it: "fascia oraria 14:30 – 16:30"
+      en: "time slot 14:30 – 16:30"
+      fr: "créneau 14:30 – 16:30"
+    prezzoAltissima: "52 €"
+    prezzoAlta: "49 €"
+    prezzoBassa: "45 €"
+  - disciplina:
+      it: "Sci nordico"
+      en: "Nordic skiing"
+      fr: "Ski nordique"
+    orario:
+      it: "fascia oraria 9:00 – 15:00"
+      en: "time slot 9:00 – 15:00"
+      fr: "créneau 9:00 – 15:00"
+    prezzoAltissima: "49 €"
+    prezzoAlta: "47 €"
+    prezzoBassa: "45 €"
+  - disciplina:
+      it: "Sci nordico"
+      en: "Nordic skiing"
+      fr: "Ski nordique"
+    orario:
+      it: "fascia oraria 15:00 – 17:00"
+      en: "time slot 15:00 – 17:00"
+      fr: "créneau 15:00 – 17:00"
+    prezzoAltissima: "47 €"
+    prezzoAlta: "45 €"
+    prezzoBassa: "43 €"
+  personaAggiuntaTitolo:
+    it: "Persona aggiunta"
+    en: "Additional person"
+    fr: "Personne supplémentaire"
+  personaAggiuntaSottotitolo:
+    it: "per ogni ulteriore partecipante"
+    en: "for each extra participant"
+    fr: "pour chaque participant supplémentaire"
+  maestroTitolo:
+    it: "Maestro richiesto"
+    en: "Requested instructor"
+    fr: "Moniteur demandé"
+  maestroTesto:
+    it: "Per lo **sci alpino**, in Altissima stagione, la richiesta nominativa di uno specifico maestro comporta un supplemento di **3 € per ora di lezione**."
+    en: "For **alpine skiing**, in Peak season, requesting a specific instructor by name carries a supplement of **€3 per lesson hour**."
+    fr: "Pour le **ski alpin**, en Très haute saison, la demande d’un moniteur précis entraîne un supplément de **3 € par heure de cours**."
 collettive:
-  titolo: "Lezioni\ncollettive"
-  testo: "Una soluzione adatta a tutti coloro che vogliono condividere con nuovi amici la passione per lo sci o per lo snowboard. Ideale per bambini e adulti, dai primi passi sulla neve fino agli amanti delle piste più impegnative."
+  titolo:
+    it: "Lezioni\ncollettive"
+    en: "Group\nlessons"
+    fr: "Cours\ncollectifs"
+  testo:
+    it: "Una soluzione adatta a tutti coloro che vogliono condividere con nuovi amici la passione per lo sci o per lo snowboard. Ideale per bambini e adulti, dai primi passi sulla neve fino agli amanti delle piste più impegnative."
+    en: "The perfect choice for anyone who wants to share their passion for skiing or snowboarding with new friends. Ideal for children and adults, from first steps on the snow to lovers of the most challenging slopes."
+    fr: "La formule idéale pour tous ceux qui veulent partager leur passion du ski ou du snowboard avec de nouveaux amis. Parfaite pour enfants et adultes, des premiers pas sur la neige jusqu’aux amateurs des pistes les plus exigeantes."
   discipline:
-    - alpino
-    - nordico
+  - alpino
+  - nordico
   foto: "/foto/lezioni/collettive.jpg"
-  tariffeTitolo: "Tariffe e modalità"
-  tariffeTesto: "Corsi collettivi nel periodo di Altissima stagione, con maestri qualificati. Le lezioni sono organizzate per livelli omogenei, con gruppi ridotti per garantire sicurezza e divertimento. La partecipazione è garantita con un minimo di 4 iscritti per corso."
+  tariffeTitolo:
+    it: "Tariffe e modalità"
+    en: "Prices and details"
+    fr: "Tarifs et modalités"
+  tariffeTesto:
+    it: "Corsi collettivi nel periodo di Altissima stagione, con maestri qualificati. Le lezioni sono organizzate per livelli omogenei, con gruppi ridotti per garantire sicurezza e divertimento. La partecipazione è garantita con un minimo di 4 iscritti per corso."
+    en: "Group courses during Peak season, with qualified instructors. Lessons are organised by level, in small groups to guarantee safety and fun. Each course runs with a minimum of 4 participants."
+    fr: "Cours collectifs pendant la Très haute saison, avec des moniteurs diplômés. Les cours sont organisés par niveaux homogènes, en petits groupes pour garantir sécurité et plaisir. Chaque cours est assuré à partir de 4 inscrits."
   corsi:
-    - nome: "Sci alpino"
-      orari: "Seggiovia 10:00 – 12:00\nSeggiovia 11:00 – 13:00"
-      prezzi:
-        - pacchetto: "1 giorno"
-          prezzo: "60 €"
-        - pacchetto: "3 giorni"
-          prezzo: "165 €"
-        - pacchetto: "5 giorni"
-          prezzo: "250 €"
-        - pacchetto: "7 giorni"
-          prezzo: "320 €"
-    - nome: "Sci alpino"
-      orari: "Baby park 11:00 – 13:00"
-      prezzi:
-        - pacchetto: "1 giorno"
-          prezzo: "60 €"
-        - pacchetto: "3 giorni"
-          prezzo: "165 €"
-        - pacchetto: "5 giorni"
-          prezzo: "250 €"
-        - pacchetto: "7 giorni"
-          prezzo: "320 €"
-    - nome: "Sci nordico"
-      orari: "Stadio del fondo 13:00 – 15:00"
-      prezzi:
-        - pacchetto: "1 giorno"
-          prezzo: "60 €"
-        - pacchetto: "3 giorni"
-          prezzo: "155 €"
-        - pacchetto: "5 giorni"
-          prezzo: "230 €"
-        - pacchetto: "7 giorni"
-          prezzo: "290 €"
-  nota: "*Sconto del 10% sul secondo figlio."
+  - nome:
+      it: "Sci alpino"
+      en: "Alpine skiing"
+      fr: "Ski alpin"
+    orari:
+      it: "Seggiovia 10:00 – 12:00\nSeggiovia 11:00 – 13:00"
+      en: "Chairlift 10:00 – 12:00\nChairlift 11:00 – 13:00"
+      fr: "Télésiège 10:00 – 12:00\nTélésiège 11:00 – 13:00"
+    prezzi:
+    - pacchetto:
+        it: "1 giorno"
+        en: "1 day"
+        fr: "1 jour"
+      prezzo: "60 €"
+    - pacchetto:
+        it: "3 giorni"
+        en: "3 days"
+        fr: "3 jours"
+      prezzo: "165 €"
+    - pacchetto:
+        it: "5 giorni"
+        en: "5 days"
+        fr: "5 jours"
+      prezzo: "250 €"
+    - pacchetto:
+        it: "7 giorni"
+        en: "7 days"
+        fr: "7 jours"
+      prezzo: "320 €"
+  - nome:
+      it: "Sci alpino"
+      en: "Alpine skiing"
+      fr: "Ski alpin"
+    orari:
+      it: "Baby park 11:00 – 13:00"
+      en: "Baby park 11:00 – 13:00"
+      fr: "Jardin des neiges 11:00 – 13:00"
+    prezzi:
+    - pacchetto:
+        it: "1 giorno"
+        en: "1 day"
+        fr: "1 jour"
+      prezzo: "60 €"
+    - pacchetto:
+        it: "3 giorni"
+        en: "3 days"
+        fr: "3 jours"
+      prezzo: "165 €"
+    - pacchetto:
+        it: "5 giorni"
+        en: "5 days"
+        fr: "5 jours"
+      prezzo: "250 €"
+    - pacchetto:
+        it: "7 giorni"
+        en: "7 days"
+        fr: "7 jours"
+      prezzo: "320 €"
+  - nome:
+      it: "Sci nordico"
+      en: "Nordic skiing"
+      fr: "Ski nordique"
+    orari:
+      it: "Stadio del fondo 13:00 – 15:00"
+      en: "Cross-country stadium 13:00 – 15:00"
+      fr: "Stade de ski de fond 13:00 – 15:00"
+    prezzi:
+    - pacchetto:
+        it: "1 giorno"
+        en: "1 day"
+        fr: "1 jour"
+      prezzo: "60 €"
+    - pacchetto:
+        it: "3 giorni"
+        en: "3 days"
+        fr: "3 jours"
+      prezzo: "155 €"
+    - pacchetto:
+        it: "5 giorni"
+        en: "5 days"
+        fr: "5 jours"
+      prezzo: "230 €"
+    - pacchetto:
+        it: "7 giorni"
+        en: "7 days"
+        fr: "7 jours"
+      prezzo: "290 €"
+  nota:
+    it: "*Sconto del 10% sul secondo figlio."
+    en: "*10% discount for the second child."
+    fr: "*10 % de réduction pour le deuxième enfant."
 corsiAnnuali:
-  titolo: "Corsi"
-  titoloColorato: "annuali"
-  testo: "Corsi con maestri qualificati per migliorare la tecnica, vivere la montagna e condividere la passione per lo sci in tutta la stagione."
+  titolo:
+    it: Corsi
+    en: Season
+    fr: Cours
+  titoloColorato:
+    it: annuali
+    en: courses
+    fr: "à la saison"
+  testo:
+    it: "Corsi con maestri qualificati per migliorare la tecnica, vivere la montagna e condividere la passione per lo sci in tutta la stagione."
+    en: "Courses with qualified instructors to improve your technique, enjoy the mountains and share the passion for skiing all season long."
+    fr: "Des cours avec des moniteurs diplômés pour progresser en technique, vivre la montagne et partager la passion du ski toute la saison."
   corsi:
-    - nome: "Corso Superstrong"
-      disciplina: "Sci alpino"
-      periodo: "Vacanze di Natale 26 dicembre – 06 gennaio"
-      orari: "Sabati 14:30 – 16:30 | Domeniche 11:00 – 13:00"
-      prezzo: "800 €"
-    - nome: "Corso Mini"
-      disciplina: "Sci alpino"
-      periodo: "13 gennaio 2027 – 27 marzo 2027"
-      orari: "Tutte le domeniche 11:00 – 13:00"
-      prezzo: "350 €"
-    - nome: "Corso Sci Nordico"
-      disciplina: "Sci nordico"
-      periodo: "26 dicembre 2026 – 27 marzo 2027"
-      orari: "Tutti i sabati 13:00 – 15:00"
-      prezzo: "380 €"
-    - nome: "Corso Mini"
-      disciplina: "Sci nordico"
-      periodo: "26 dicembre 2026 – 27 marzo 2027"
-      orari: "Tutti i sabati 13:00 – 14:00"
-      prezzo: "210 €"
-  pacchettiTitolo: "Pacchetti"
-  pacchettiTitoloColorato: "10 ore"
+  - nome:
+      it: "Corso Superstrong"
+      en: "Superstrong course"
+      fr: "Cours Superstrong"
+    disciplina:
+      it: "Sci alpino"
+      en: "Alpine skiing"
+      fr: "Ski alpin"
+    periodo:
+      it: "Vacanze di Natale 26 dicembre – 06 gennaio"
+      en: "Christmas holidays 26 December – 6 January"
+      fr: "Vacances de Noël 26 décembre – 6 janvier"
+    orari:
+      it: "Sabati 14:30 – 16:30 | Domeniche 11:00 – 13:00"
+      en: "Saturdays 14:30 – 16:30 | Sundays 11:00 – 13:00"
+      fr: "Samedis 14h30 – 16h30 | Dimanches 11h00 – 13h00"
+    prezzo: "800 €"
+  - nome:
+      it: "Corso Mini"
+      en: "Mini course"
+      fr: "Cours Mini"
+    disciplina:
+      it: "Sci alpino"
+      en: "Alpine skiing"
+      fr: "Ski alpin"
+    periodo:
+      it: "13 gennaio 2027 – 27 marzo 2027"
+      en: "13 January 2027 – 27 March 2027"
+      fr: "13 janvier 2027 – 27 mars 2027"
+    orari:
+      it: "Tutte le domeniche 11:00 – 13:00"
+      en: "Every Sunday 11:00 – 13:00"
+      fr: "Tous les dimanches 11h00 – 13h00"
+    prezzo: "350 €"
+  - nome:
+      it: "Corso Sci Nordico"
+      en: "Nordic ski course"
+      fr: "Cours de ski nordique"
+    disciplina:
+      it: "Sci nordico"
+      en: "Nordic skiing"
+      fr: "Ski nordique"
+    periodo:
+      it: "26 dicembre 2026 – 27 marzo 2027"
+      en: "26 December 2026 – 27 March 2027"
+      fr: "26 décembre 2026 – 27 mars 2027"
+    orari:
+      it: "Tutti i sabati 13:00 – 15:00"
+      en: "Every Saturday 13:00 – 15:00"
+      fr: "Tous les samedis 13h00 – 15h00"
+    prezzo: "380 €"
+  - nome:
+      it: "Corso Mini"
+      en: "Mini course"
+      fr: "Cours Mini"
+    disciplina:
+      it: "Sci nordico"
+      en: "Nordic skiing"
+      fr: "Ski nordique"
+    periodo:
+      it: "26 dicembre 2026 – 27 marzo 2027"
+      en: "26 December 2026 – 27 March 2027"
+      fr: "26 décembre 2026 – 27 mars 2027"
+    orari:
+      it: "Tutti i sabati 13:00 – 14:00"
+      en: "Every Saturday 13:00 – 14:00"
+      fr: "Tous les samedis 13h00 – 14h00"
+    prezzo: "210 €"
+  pacchettiTitolo:
+    it: Pacchetti
+    en: Packages
+    fr: Forfaits
+  pacchettiTitoloColorato:
+    it: "10 ore"
+    en: "10 hours"
+    fr: "10 heures"
   pacchetti:
-    - nome: "Pacchetto 10 ore"
-      disciplina: "Sci alpino"
-      descrizione: "Valido durante i periodi di Alta e Bassa stagione"
-      prezzo: "450 €"
-    - nome: "Pacchetto 10 ore"
-      disciplina: "Sci nordico"
-      descrizione: "Valido per tutta la stagione"
-      prezzo: "400 €"
+  - nome:
+      it: "Pacchetto 10 ore"
+      en: "10-hour package"
+      fr: "Forfait 10 heures"
+    disciplina:
+      it: "Sci alpino"
+      en: "Alpine skiing"
+      fr: "Ski alpin"
+    descrizione:
+      it: "Valido durante i periodi di Alta e Bassa stagione"
+      en: "Valid in High and Low season"
+      fr: "Valable en Haute et Basse saison"
+    prezzo: "450 €"
+  - nome:
+      it: "Pacchetto 10 ore"
+      en: "10-hour package"
+      fr: "Forfait 10 heures"
+    disciplina:
+      it: "Sci nordico"
+      en: "Nordic skiing"
+      fr: "Ski nordique"
+    descrizione:
+      it: "Valido per tutta la stagione"
+      en: "Valid all season"
+      fr: "Valable toute la saison"
+    prezzo: "400 €"
   sconto:
-    titolo: "Sconto residenti Valle d’Aosta"
-    testo: "Valido per le iscrizioni effettuate entro il 21 dicembre 2026"
+    titolo:
+      it: "Sconto residenti Valle d’Aosta"
+      en: "Aosta Valley residents discount"
+      fr: "Réduction résidents de la Vallée d’Aoste"
+    testo:
+      it: "Valido per le iscrizioni effettuate entro il 21 dicembre 2026"
+      en: "Valid for registrations made by 21 December 2026"
+      fr: "Valable pour les inscriptions effectuées jusqu’au 21 décembre 2026"
     percentuale: "-30%"
 snowcare:
-  titolo: "Assicurazione\nSnowcare –"
-  titoloColorato: "proteggi la tua\nprenotazione!"
+  titolo:
+    it: "Assicurazione\nSnowcare –"
+    en: "Snowcare\ninsurance –"
+    fr: "Assurance\nSnowcare –"
+  titoloColorato:
+    it: "proteggi la tua\nprenotazione!"
+    en: "protect your\nbooking!"
+    fr: "protégez votre\nréservation !"
   paragrafi:
-    - "Con l’assicurazione Snowcare puoi tutelare la tua vacanza e le tue lezioni di sci in caso di infortunio o imprevisti. È una copertura pensata per chi frequenta la montagna sulla neve e desidera vivere le proprie giornate in sicurezza e serenità."
-    - "Chiedi maggiori informazioni alla segreteria al momento della prenotazione o il giorno stesso della lezione."
+  - it: "Con l’assicurazione Snowcare puoi tutelare la tua vacanza e le tue lezioni di sci in caso di infortunio o imprevisti. È una copertura pensata per chi frequenta la montagna sulla neve e desidera vivere le proprie giornate in sicurezza e serenità."
+    en: "With Snowcare insurance you can protect your holiday and your ski lessons in case of injury or unforeseen events. It is cover designed for people who spend time on the snow and want to enjoy their days safely and with peace of mind."
+    fr: "Avec l’assurance Snowcare, vous protégez vos vacances et vos cours de ski en cas de blessure ou d’imprévu. Une couverture pensée pour ceux qui fréquentent la montagne enneigée et veulent profiter de leurs journées en toute sécurité et sérénité."
+  - it: "Chiedi maggiori informazioni alla segreteria al momento della prenotazione o il giorno stesso della lezione."
+    en: "Ask our office for more information when you book or on the day of your lesson."
+    fr: "Renseignez-vous auprès du secrétariat lors de la réservation ou le jour même du cours."
   foto: "/foto/lezioni/snowcare-ffff41.jpg"
 pagamenti:
-  titolo: "Cancellazioni & pagamenti"
+  titolo:
+    it: "Cancellazioni & pagamenti"
+    en: "Cancellations & payments"
+    fr: "Annulations & paiements"
   paragrafi:
-    - "Le lezioni si considerano confermate al momento della prenotazione. In caso di impossibilità a partecipare, ti chiediamo di avvisarci il prima possibile: le disdette comunicate con almeno 24 ore di anticipo non comportano penali, mentre oltre tale termine la lezione sarà addebitata."
-    - "Il pagamento può essere effettuato in segreteria, in contanti, carta o bancomat, oppure tramite bonifico anticipato secondo le indicazioni che riceverai al momento della conferma."
+  - it: "Le lezioni si considerano confermate al momento della prenotazione. In caso di impossibilità a partecipare, ti chiediamo di avvisarci il prima possibile: le disdette comunicate con almeno 24 ore di anticipo non comportano penali, mentre oltre tale termine la lezione sarà addebitata."
+    en: "Lessons are confirmed at the time of booking. If you cannot attend, please let us know as soon as possible: cancellations made at least 24 hours in advance are free of charge, after that the lesson will be charged."
+    fr: "Les cours sont confirmés au moment de la réservation. Si vous ne pouvez pas venir, merci de nous prévenir le plus tôt possible : les annulations communiquées au moins 24 heures à l’avance sont sans frais ; au-delà, le cours sera facturé."
+  - it: "Il pagamento può essere effettuato in segreteria, in contanti, carta o bancomat, oppure tramite bonifico anticipato secondo le indicazioni che riceverai al momento della conferma."
+    en: "Payment can be made at the office in cash or by card, or in advance by bank transfer following the instructions you will receive with your confirmation."
+    fr: "Le paiement peut être effectué au secrétariat, en espèces ou par carte bancaire, ou par virement anticipé selon les indications reçues lors de la confirmation."
 ritrovo:
-  titolo: "Orari &\nluoghi di ritrovo"
-  testo: "I punti di ritrovo variano in base al tipo di corso e al livello. Nella mappa trovi indicati i luoghi principali di incontro con i maestri e gli orari di riferimento. Ti consigliamo di presentarti con qualche minuto di anticipo."
+  titolo:
+    it: "Orari &\nluoghi di ritrovo"
+    en: "Times &\nmeeting points"
+    fr: "Horaires &\npoints de rendez-vous"
+  testo:
+    it: "I punti di ritrovo variano in base al tipo di corso e al livello. Nella mappa trovi indicati i luoghi principali di incontro con i maestri e gli orari di riferimento. Ti consigliamo di presentarti con qualche minuto di anticipo."
+    en: "Meeting points vary depending on the type of course and level. The map shows the main places where you meet your instructors and the reference times. We recommend arriving a few minutes early."
+    fr: "Les points de rendez-vous varient selon le type de cours et le niveau. La carte indique les principaux lieux de rencontre avec les moniteurs et les horaires de référence. Nous vous conseillons d’arriver quelques minutes en avance."

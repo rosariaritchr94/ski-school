@@ -1,16 +1,20 @@
-// src/app/(site)/maestri/page.tsx
+// src/app/(site)/[lang]/maestri/page.tsx
 import { Fragment } from "react";
 import MaestriGrid, { type Maestro } from "@/components/MaestriGrid";
 import { reader } from "@/lib/content";
 import PageVideoHero from "@/components/PageVideoHero";
+import { alternative, localizza, type Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
-export const metadata = {
-  title: "Maestri – Gran Paradiso",
-};
+export function generateMetadata({ params }: { params: { lang: Lingua } }) {
+  return { title: TESTI[params.lang].meta.maestri, alternates: alternative("maestri", params.lang) };
+}
 
-export default async function MaestriPage() {
-  const pagina = await reader.singletons.paginaMaestri.read();
-  const entries = await reader.collections.maestri.all();
+export default async function MaestriPage({ params }: { params: { lang: Lingua } }) {
+  const { lang } = params;
+  const t = TESTI[lang].maestri;
+  const pagina = localizza(await reader.singletons.paginaMaestri.read(), lang);
+  const entries = localizza(await reader.collections.maestri.all(), lang);
 
   const maestri: Maestro[] = entries
     .sort(
@@ -22,7 +26,7 @@ export default async function MaestriPage() {
       id: slug,
       nome: entry.nome,
       ruolo: entry.ruolo || undefined,
-      disciplina: entry.disciplina || undefined,
+      disciplina: entry.disciplina ? (t.discipline[entry.disciplina] ?? entry.disciplina) : undefined,
       foto: entry.foto ?? undefined,
     }));
 
@@ -33,7 +37,7 @@ export default async function MaestriPage() {
     <main>
       {/* HERO CON VIDEO – come in Lezioni */}
       <PageVideoHero
-        titolo={pagina?.titolo || "Maestri"}
+        titolo={pagina?.titolo || TESTI[lang].meta.maestri}
         video={pagina?.heroVideo}
         foto={pagina?.heroFoto}
       />
@@ -83,7 +87,7 @@ export default async function MaestriPage() {
             <div className="relative w-full max-w-[360px] aspect-square overflow-hidden bg-[#101010]">
               <img
                 src={pagina.foto}
-                alt="Scuola di Sci Gran Paradiso"
+                alt={t.altFoto}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -93,7 +97,7 @@ export default async function MaestriPage() {
       </section>
 
       {/* GRIGLIA MAESTRI SU SFONDO MONTAGNA AZZURRA */}
-      <MaestriGrid maestri={maestri} />
+      <MaestriGrid maestri={maestri} fronte={t.fronte} retro={t.retro} />
     </main>
   );
 }

@@ -1,37 +1,44 @@
-// src/app/(site)/lezioni/page.tsx
+// src/app/(site)/[lang]/lezioni/page.tsx
 import Image from "next/image";
 import Lines from "@/components/Lines";
 import PageVideoHero from "@/components/PageVideoHero";
 import { reader } from "@/lib/content";
+import { alternative, localizza, type Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
-export const metadata = { title: "Lezioni – Gran Paradiso" };
+export function generateMetadata({ params }: { params: { lang: Lingua } }) {
+  return { title: TESTI[params.lang].meta.lezioni, alternates: alternative("lezioni", params.lang) };
+}
 
 /* Icone delle discipline: versione per sfondo scuro e per sfondo montagna (_b) */
 const DISCIPLINE = [
-  { value: "alpino", label: "Sci alpino", icon: "logo_alpino" },
-  { value: "snowboard", label: "Snowboard", icon: "logo_snowboard" },
-  { value: "nordico", label: "Sci nordico", icon: "logo_fondo" },
+  { value: "alpino", icon: "logo_alpino" },
+  { value: "snowboard", icon: "logo_snowboard" },
+  { value: "nordico", icon: "logo_fondo" },
 ] as const;
 
 function DisciplineIcons({
   selected,
+  lang,
   variant = "",
 }: {
   selected: readonly string[];
+  lang: Lingua;
   variant?: "" | "_b";
 }) {
+  const nomi = TESTI[lang].lezioni.discipline;
   return (
     <div className="mt-6 flex flex-wrap gap-6 text-white/90 text-[11px] md:text-xs uppercase tracking-[0.22em] font-oswald">
       {DISCIPLINE.filter((d) => selected.includes(d.value)).map((d) => (
         <div key={d.value} className="flex items-center gap-2">
           <Image
             src={`/assets/logos/${d.icon}${variant}.png`}
-            alt={d.label}
+            alt={nomi[d.value]}
             width={36}
             height={36}
             className="h-9 w-9 object-contain"
           />
-          {d.label}
+          {nomi[d.value]}
         </div>
       ))}
     </div>
@@ -50,16 +57,16 @@ function TipoLezione({ disciplina, orario }: { disciplina: string; orario: strin
   );
 }
 
-/* Indice in alto: porta alle sezioni della pagina */
+/* Indice in alto: porta alle sezioni della pagina (le etichette sono in testi.ts) */
 const INDICE = [
-  { href: "#periodi", label: "Periodi di stagione" },
-  { href: "#lezioni-private", label: "Lezioni private" },
-  { href: "#lezioni-collettive", label: "Lezioni collettive" },
-  { href: "#corsi-annuali", label: "Corsi annuali" },
-  { href: "#snowcare", label: "Snowcare" },
-  { href: "#pagamenti", label: "Cancellazioni" },
-  { href: "#ritrovo", label: "Ritrovo" },
-];
+  { href: "#periodi", chiave: "periodi" },
+  { href: "#lezioni-private", chiave: "private" },
+  { href: "#lezioni-collettive", chiave: "collettive" },
+  { href: "#corsi-annuali", chiave: "annuali" },
+  { href: "#snowcare", chiave: "snowcare" },
+  { href: "#pagamenti", chiave: "pagamenti" },
+  { href: "#ritrovo", chiave: "ritrovo" },
+] as const;
 
 /* Colori delle tre stagioni */
 const STAGIONI = [
@@ -122,11 +129,14 @@ function ListaPrezzi({ voci }: { voci: Voce[] }) {
   );
 }
 
-export default async function LezioniPage() {
-  const [l, home] = await Promise.all([
+export default async function LezioniPage({ params }: { params: { lang: Lingua } }) {
+  const { lang } = params;
+  const t = TESTI[lang].lezioni;
+  const [contenuto, home] = await Promise.all([
     reader.singletons.lezioni.readOrThrow(),
     reader.singletons.home.readOrThrow(),
   ]);
+  const l = localizza(contenuto, lang);
   const email = home.contatti.email;
   const ca = l.corsiAnnuali;
 
@@ -134,7 +144,7 @@ export default async function LezioniPage() {
     <main>
       {/* ===================== HERO CON VIDEO + INDICE ===================== */}
       <PageVideoHero titolo={l.titolo} video={l.heroVideo} foto={l.heroFoto}>
-          <nav aria-label="Sezioni della pagina">
+          <nav aria-label={t.sezioni}>
             <ul className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
               {INDICE.map((v) => (
                 <li key={v.href}>
@@ -142,7 +152,7 @@ export default async function LezioniPage() {
                     href={v.href}
                     className="inline-block border border-[#37C6E6] bg-[#101010]/60 backdrop-blur-sm px-3 sm:px-4 py-2 font-oswald uppercase tracking-[0.12em] sm:tracking-[0.14em] text-[11px] sm:text-[14px] text-white hover:bg-[#37C6E6] hover:text-[#001018] transition-colors"
                   >
-                    {v.label}
+                    {t.indice[v.chiave]}
                   </a>
                 </li>
               ))}
@@ -158,7 +168,7 @@ export default async function LezioniPage() {
         <div className="container-site">
           <div id="periodi" className="mb-12 md:mb-16">
             <h3 className="font-sofia text-white text-[30px] sm:text-[34px] lg:text-[38px] font-extrabold uppercase">
-              Periodi di <span className="text-[#37C6E6]">stagione</span>
+              {t.periodi1} <span className="text-[#37C6E6]">{t.periodi2}</span>
             </h3>
             <div className="mt-5 grid gap-5 md:grid-cols-3">
               {STAGIONI.map(({ key, color, dark }) => {
@@ -204,14 +214,14 @@ export default async function LezioniPage() {
                 {l.individuali.testo}
               </p>
 
-              <DisciplineIcons selected={l.individuali.discipline} />
+              <DisciplineIcons selected={l.individuali.discipline} lang={lang} />
             </div>
 
             {l.individuali.foto && (
               <div className="foto-box relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={l.individuali.foto}
-                  alt="Lezioni individuali di sci a Cogne"
+                  alt={t.altPrivate}
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 520px, 100vw"
@@ -235,7 +245,7 @@ export default async function LezioniPage() {
                 <thead>
                   <tr>
                     <th className="bg-black px-2 sm:px-4 py-3 text-left font-oswald font-medium text-[11px] sm:text-[13px] uppercase tracking-[0.12em] sm:tracking-[0.18em]">
-                      Tipo lezione
+                      {t.tipoLezione}
                     </th>
                     {STAGIONI.map(({ key, color, dark }) => (
                       <th
@@ -309,7 +319,7 @@ export default async function LezioniPage() {
               <div className="foto-box relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={l.collettive.foto}
-                  alt="Lezioni di gruppo di sci a Cogne"
+                  alt={t.altCollettive}
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 520px, 100vw"
@@ -329,7 +339,7 @@ export default async function LezioniPage() {
                 {l.collettive.testo}
               </p>
 
-              <DisciplineIcons selected={l.collettive.discipline} variant="_b" />
+              <DisciplineIcons selected={l.collettive.discipline} lang={lang} variant="_b" />
             </div>
           </div>
 
@@ -375,10 +385,10 @@ export default async function LezioniPage() {
 
             <p className="mt-6 text-center">
               <a
-                href={`mailto:${email}?subject=Richiesta%20preventivo%20lezioni%20collettive`}
-                className="inline-block bg-[#101010] px-6 py-3 font-oswald text-[16px] sm:text-[18px] lg:text-[20px] tracking-[0.06em] text-[#37C6E6] hover:bg-black"
+                href={`mailto:${email}?subject=${encodeURIComponent(t.oggettoCollettive)}`}
+                className="inline-block bg-[#101010] px-6 py-3 font-oswald uppercase text-[16px] sm:text-[18px] lg:text-[20px] tracking-[0.06em] text-[#37C6E6] hover:bg-black"
               >
-                RICHIEDI IL TUO PREVENTIVO.
+                {t.preventivo}
               </a>
             </p>
           </div>
@@ -465,7 +475,7 @@ export default async function LezioniPage() {
                 <div className="foto-box relative w-full max-w-[720px] aspect-[4/3] overflow-hidden">
                   <Image
                     src={l.snowcare.foto}
-                    alt="Assicurazione Snowcare – proteggi la tua prenotazione"
+                    alt={t.altSnowcare}
                     fill
                     sizes="(min-width: 1024px) 720px, (min-width: 768px) 480px, 100vw"
                     className="object-cover"
@@ -511,22 +521,22 @@ export default async function LezioniPage() {
           <div className="mt-6 grid gap-4 md:grid-cols-3 font-oswald text-[13px] md:text-[14px] text-white">
             <div className="flex items-center gap-2">
               <span className="inline-block w-4 h-4 bg-red-500" />
-              Punto scuola sci
+              {t.legenda.scuola}
             </div>
             <div className="flex items-center gap-2">
               <span className="inline-block w-4 h-4 bg-green-500" />
-              Campo scuola / debutto
+              {t.legenda.campo}
             </div>
             <div className="flex items-center gap-2">
               <span className="inline-block w-4 h-4 bg-blue-500" />
-              Ritrovo collettive
+              {t.legenda.collettive}
             </div>
           </div>
 
           <div className="mt-8 w-full rounded-[12px] overflow-hidden shadow-xl shadow-black/40">
             <div className="aspect-[16/9] w-full">
               <iframe
-                src={`https://www.google.com/maps?q=${encodeURIComponent(home.contatti.mappa).replace(/%20/g, "+").replace(/%2C/g, ",")}&output=embed`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(home.contatti.mappa).replace(/%20/g, "+").replace(/%2C/g, ",")}&hl=${lang}&output=embed`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full border-0"

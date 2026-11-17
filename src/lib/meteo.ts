@@ -4,9 +4,14 @@
 
 export type TipoIcona = "sole" | "soleNuvola" | "nuvola" | "neve" | "pioggia" | "luna" | "lunaNuvola";
 
+export type Descrizione =
+  | "temporale" | "nevischio" | "neveForte" | "neveDebole" | "rovesciNeve" | "neve" | "pioggiaForte"
+  | "pioggiaDebole" | "rovesci" | "pioggia" | "sereno" | "pocoNuvoloso" | "variabile" | "nebbia" | "nuvoloso";
+
+// I testi (descrizione, nome del giorno) li sceglie MeteoBar nella lingua della pagina.
 export type Meteo = {
-  ora: { temp: number; icona: TipoIcona; descrizione: string };
-  giorni: { nome: string; icona: TipoIcona; max: number; min: number }[];
+  ora: { temp: number; icona: TipoIcona; descrizione: Descrizione | null };
+  giorni: { data: string; oggi: boolean; icona: TipoIcona; max: number; min: number }[];
   ventoKmh: number;
   pioggia24h: number;
 };
@@ -34,34 +39,32 @@ export function iconaDa(codice: string): TipoIcona {
   return "nuvola"; // cloudy, fog
 }
 
-const DESCRIZIONI: [RegExp, string][] = [
-  [/thunder/, "Temporale"],
-  [/sleet/, "Neve mista a pioggia"],
-  [/^heavysnow/, "Neve forte"],
-  [/^lightsnow/, "Neve debole"],
-  [/snowshowers/, "Rovesci di neve"],
-  [/snow/, "Neve"],
-  [/^heavyrain/, "Pioggia forte"],
-  [/^lightrain/, "Pioggia debole"],
-  [/rainshowers/, "Rovesci"],
-  [/rain/, "Pioggia"],
-  [/^clearsky/, "Sereno"],
-  [/^fair/, "Poco nuvoloso"],
-  [/^partlycloudy/, "Variabile"],
-  [/^fog/, "Nebbia"],
-  [/^cloudy/, "Nuvoloso"],
+const DESCRIZIONI: [RegExp, Descrizione][] = [
+  [/thunder/, "temporale"],
+  [/sleet/, "nevischio"],
+  [/^heavysnow/, "neveForte"],
+  [/^lightsnow/, "neveDebole"],
+  [/snowshowers/, "rovesciNeve"],
+  [/snow/, "neve"],
+  [/^heavyrain/, "pioggiaForte"],
+  [/^lightrain/, "pioggiaDebole"],
+  [/rainshowers/, "rovesci"],
+  [/rain/, "pioggia"],
+  [/^clearsky/, "sereno"],
+  [/^fair/, "pocoNuvoloso"],
+  [/^partlycloudy/, "variabile"],
+  [/^fog/, "nebbia"],
+  [/^cloudy/, "nuvoloso"],
 ];
 
-function descrizioneDa(codice: string) {
-  return DESCRIZIONI.find(([re]) => re.test(codice))?.[1] ?? "";
+function descrizioneDa(codice: string): Descrizione | null {
+  return DESCRIZIONI.find(([re]) => re.test(codice))?.[1] ?? null;
 }
 
 const giornoLocale = (iso: string) =>
   new Intl.DateTimeFormat("en-CA", { timeZone: FUSO }).format(new Date(iso)); // AAAA-MM-GG
 const oraLocale = (iso: string) =>
   Number(new Intl.DateTimeFormat("en-GB", { timeZone: FUSO, hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
-const nomeGiorno = (iso: string) =>
-  new Intl.DateTimeFormat("it-IT", { timeZone: FUSO, weekday: "short" }).format(new Date(iso)).replace(".", "");
 
 export async function leggiMeteo(): Promise<Meteo | null> {
   try {
@@ -105,10 +108,11 @@ export async function leggiMeteo(): Promise<Meteo | null> {
         const codice =
           mezzogiorno.data.next_6_hours?.summary.symbol_code ?? mezzogiorno.data.next_1_hours?.summary.symbol_code ?? "cloudy";
         return {
-          nome: g === oggi ? "Oggi" : nomeGiorno(punti[0].time),
+          data: g,
+          oggi: g === oggi,
           icona: iconaDa(codice.replace("_night", "_day")),
-          max: Math.round(Math.max(...temp)),
-          min: Math.round(Math.min(...temp)),
+          max: Math.round(Math.max(...temp)) || 0, // niente "-0"
+          min: Math.round(Math.min(...temp)) || 0,
         };
       });
 
@@ -118,7 +122,7 @@ export async function leggiMeteo(): Promise<Meteo | null> {
 
     return {
       ora: {
-        temp: Math.round(adesso.data.instant.details.air_temperature ?? 0),
+        temp: Math.round(adesso.data.instant.details.air_temperature ?? 0) || 0,
         icona: iconaDa(codiceOra),
         descrizione: descrizioneDa(codiceOra),
       },

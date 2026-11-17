@@ -34,7 +34,15 @@ function useHoverCapable() {
   return hoverCapable;
 }
 
-export default function MaestriGrid({ maestri }: { maestri: Maestro[] }) {
+export default function MaestriGrid({
+  maestri,
+  fronte = "fronte",
+  retro = "retro",
+}: {
+  maestri: Maestro[];
+  fronte?: string;
+  retro?: string;
+}) {
   const [flippedId, setFlippedId] = useState<string | null>(null);
   /*
    * hoverCapable = true  → desktop/laptop con mouse → zoom abilitato
@@ -85,7 +93,7 @@ export default function MaestriGrid({ maestri }: { maestri: Maestro[] }) {
                   active:scale-[0.98] transition-transform duration-150
                 "
                 aria-pressed={isFlipped}
-                aria-label={`${m.nome} ${isFlipped ? "retro" : "fronte"}`}
+                aria-label={`${m.nome} ${isFlipped ? retro : fronte}`}
               >
                 {/* ============ FLIP CONTAINER ============ */}
                 <div

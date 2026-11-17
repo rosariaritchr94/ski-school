@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
 /**
  * Elementi fissi in tutte le pagine:
  *  - a sinistra "FOLLOW US:" in verticale con linea e icone social
  *  - a destra il bollino del telefono con la scritta che gira
  */
-
-const SCRITTA = "SCUOLA DI SCI & SNOWBOARD · GRAN PARADISO · ";
 
 function IconInstagram() {
   return (
@@ -22,7 +22,7 @@ function IconInstagram() {
 
 function IconTelefono() {
   return (
-    <svg viewBox="0 0 24 24" className="h-[20px] w-[20px] md:h-[27px] md:w-[27px]" fill="currentColor" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className="h-[16px] w-[16px] md:h-[27px] md:w-[27px]" fill="currentColor" aria-hidden="true">
       <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z" />
     </svg>
   );
@@ -106,12 +106,15 @@ function useSuAzzurro<T extends HTMLElement>() {
 }
 
 export default function ElementiFissi({
+  lang,
   telefono,
   instagram,
 }: {
+  lang: Lingua;
   telefono: string;
   instagram?: string | null;
 }) {
+  const t = TESTI[lang].fissi;
   const social = [
     { href: instagram, label: "Instagram", icon: <IconInstagram /> },
   ];
@@ -126,11 +129,11 @@ export default function ElementiFissi({
       {/* FOLLOW US – da tablet in su */}
       <aside
         ref={refSocial}
-        aria-label="Seguici"
+        aria-label={t.seguici}
         className={`hidden md:flex fixed left-5 lg:left-8 bottom-8 z-[9000] flex-col items-center gap-5 ${colore(socialSuAzzurro)}`}
       >
         <span className="font-oswald font-semibold uppercase tracking-[0.12em] text-[15px] [writing-mode:vertical-rl] rotate-180">
-          Follow us:
+          {t.followUs}
         </span>
         <span aria-hidden="true" className="h-[120px] w-px bg-current" />
         {social.map((s) =>
@@ -157,7 +160,7 @@ export default function ElementiFissi({
       <div
         ref={refBollino}
         aria-hidden="true"
-        className={`pointer-events-none fixed right-3 bottom-3 md:right-6 md:bottom-6 z-[9000] grid place-items-center h-[96px] w-[96px] md:h-[128px] md:w-[128px] ${colore(bollinoSuAzzurro)}`}
+        className={`pointer-events-none fixed right-3 bottom-3 md:right-6 md:bottom-6 z-[9000] grid place-items-center h-[76px] w-[76px] md:h-[128px] md:w-[128px] ${colore(bollinoSuAzzurro)}`}
       >
         <svg
           viewBox="0 0 120 120"
@@ -174,21 +177,38 @@ export default function ElementiFissi({
             letterSpacing="1.05"
           >
             <textPath href="#cerchio-scritta" textLength="281" lengthAdjust="spacing">
-              {SCRITTA}
+              {t.scritta}
             </textPath>
           </text>
         </svg>
-        <Fiocco className="absolute h-[58px] w-[58px] md:h-[78px] md:w-[78px] animate-[spin_12s_linear_infinite_reverse] motion-reduce:animate-none" />
+        <Fiocco className="absolute h-[46px] w-[46px] md:h-[78px] md:w-[78px] animate-[spin_12s_linear_infinite_reverse] motion-reduce:animate-none" />
       </div>
       <a
         href={`tel:${telefono.replace(/[^+\d]/g, "")}`}
-        aria-label={`Chiama la Scuola di Sci Gran Paradiso: ${telefono}`}
-        className="group fixed right-3 bottom-3 md:right-6 md:bottom-6 z-[9001] grid place-items-center h-[96px] w-[96px] md:h-[128px] md:w-[128px] rounded-full"
+        aria-label={`${t.chiama}: ${telefono}`}
+        className="group fixed right-3 bottom-3 md:right-6 md:bottom-6 z-[9001] grid place-items-center h-[76px] w-[76px] md:h-[128px] md:w-[128px] rounded-full"
       >
         <span className={`${colore(bollinoSuAzzurro)} transition-transform group-hover:scale-110`}>
           <IconTelefono />
         </span>
       </a>
+
+      {/* Instagram sopra il bollino, solo su telefono (da tablet in su c'è "Follow us") */}
+      {instagram && (
+        <a
+          href={instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className={`md:hidden fixed right-[32px] bottom-[96px] z-[9001] grid h-9 w-9 place-items-center rounded-full border-[1.5px] border-current ${colore(bollinoSuAzzurro)}`}
+        >
+          <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4.2" />
+            <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      )}
     </>
   );
 }

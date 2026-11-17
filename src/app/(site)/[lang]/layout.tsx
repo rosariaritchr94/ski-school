@@ -1,4 +1,4 @@
-// src/app/(site)/layout.tsx
+// src/app/(site)/[lang]/layout.tsx
 import "@/app/globals.css";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
@@ -8,16 +8,41 @@ import ElementiFissi from "@/components/ElementiFissi";
 import { reader } from "@/lib/content";
 import { sofia, oswald, caveat } from "@/app/fonts";
 import Script from "next/script";
+import { notFound } from "next/navigation";
+import { LINGUE, SITO, isLingua, alternative, type Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
-export const metadata: Metadata = {
-  title: "Scuola di Sci Gran Paradiso",
-};
+// una versione del sito per lingua; altre "lingue" danno 404
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return LINGUE.map((lang) => ({ lang }));
+}
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
+  const lang = (isLingua(params.lang) ? params.lang : "it") as Lingua;
+  const t = TESTI[lang].meta;
+  return {
+    metadataBase: new URL(SITO),
+    title: { default: t.titolo, template: `%s – ${t.titolo}` },
+    description: t.descrizione,
+    alternates: alternative("home", lang),
+    openGraph: { siteName: t.titolo, locale: { it: "it_IT", en: "en_GB", fr: "fr_FR" }[lang], type: "website" },
+  };
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: ReactNode;
+  params: { lang: string };
+}) {
+  if (!isLingua(params.lang)) notFound();
+  const lang = params.lang;
   const contatti = (await reader.singletons.home.read())?.contatti;
   return (
     <html
-      lang="it"
+      lang={lang}
       className={`${sofia.variable} ${oswald.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
@@ -48,11 +73,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           src="https://cdn.iubenda.com/iubenda.js"
         />
 
-        <Navbar />
+        <Navbar lang={lang} instagram={contatti?.instagram} />
         <main className="page-wrap">{children}</main>
-        <Footer telefono={contatti?.telefono} instagram={contatti?.instagram} />
+        <Footer lang={lang} telefono={contatti?.telefono} instagram={contatti?.instagram} />
         {contatti && (
           <ElementiFissi
+            lang={lang}
             telefono={contatti.telefono}
             instagram={contatti.instagram}
           />

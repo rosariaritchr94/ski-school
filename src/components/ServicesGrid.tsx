@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
 export type ServiceCard = {
   titolo: string;
@@ -14,10 +16,11 @@ export type ServiceCard = {
   etichettaLive: boolean;
 };
 
-type Props = { cards: readonly ServiceCard[]; email: string; children?: ReactNode };
+type Props = { cards: readonly ServiceCard[]; email: string; lang: Lingua; children?: ReactNode };
 
 /** Pannelli della Home: foto a tutta larghezza in alto, sotto titolo, testo e freccia. */
-export default function ServicesGrid({ cards, email, children }: Props) {
+export default function ServicesGrid({ cards, email, lang, children }: Props) {
+  const t = TESTI[lang].servizi;
   return (
     <section className="slice slice-blue" data-sfondo="azzurro">
       <div className="container-site">
@@ -46,7 +49,7 @@ export default function ServicesGrid({ cards, email, children }: Props) {
                     {c.etichettaLive && (
                       <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-red-600 px-2.5 py-[3px] font-oswald text-[10px] font-semibold uppercase tracking-[0.22em] text-white">
                         <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-white motion-safe:animate-pulse" />
-                        Live
+                        {t.live}
                       </span>
                     )}
                     {c.scrittaSuFoto && (
@@ -68,15 +71,15 @@ export default function ServicesGrid({ cards, email, children }: Props) {
                   )}
                   {c.mostraPreventivo && (
                     <a
-                      href={`mailto:${email}?subject=${encodeURIComponent(`Richiesta preventivo ${c.titolo}`)}`}
-                      className="mt-2 font-oswald font-semibold text-[rgb(var(--accent))] underline-offset-4 hover:underline"
+                      href={`mailto:${email}?subject=${encodeURIComponent(`${t.oggettoPreventivo} ${c.titolo}`)}`}
+                      className="mt-2 font-oswald font-semibold uppercase text-[rgb(var(--accent))] underline-offset-4 hover:underline"
                     >
-                      RICHIEDI IL TUO PREVENTIVO.
+                      {t.preventivo}
                     </a>
                   )}
                   {hasLink && (
                     <span className="mt-auto pt-3 inline-flex items-center gap-2 font-oswald font-semibold text-[14px] uppercase tracking-[0.22em] text-[#37C6E6]">
-                      {c.pulsante || "Scopri"}
+                      {c.pulsante || t.scopri}
                       <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
                         →
                       </span>

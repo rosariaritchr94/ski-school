@@ -20,6 +20,30 @@ const storage =
           repo: { owner: "rosariaritchr94", name: "ski-school" },
         } as const);
 
+/**
+ * Testo in tre lingue: tre caselle Italiano / English / Français.
+ * Se EN o FR restano vuote, sul sito compare il testo italiano.
+ */
+function tr(
+  label: string,
+  opts: { multiline?: boolean; description?: string; defaultValue?: string; richiesto?: boolean } = {},
+) {
+  const { multiline, description, defaultValue, richiesto } = opts;
+  return fields.object(
+    {
+      it: fields.text({
+        label: "IT · Italiano",
+        multiline,
+        defaultValue,
+        ...(richiesto ? { validation: { length: { min: 1 } } } : {}),
+      }),
+      en: fields.text({ label: "EN · English", multiline }),
+      fr: fields.text({ label: "FR · Français", multiline }),
+    },
+    { label, description },
+  );
+}
+
 // Ogni pagina ha una sua cartella di foto, gestita interamente dal pannello.
 const homeMedia = {
   directory: "public/foto/home",
@@ -30,16 +54,13 @@ const lezioniMedia = {
   publicPath: "/foto/lezioni/",
 } as const;
 
-const paragrafiField = fields.array(
-  fields.text({ label: "Paragrafo", multiline: true }),
-  {
-    label: "Paragrafi",
-    itemLabel: (props) =>
-      props.value.length > 60
-        ? props.value.slice(0, 60) + "…"
-        : props.value || "Paragrafo vuoto",
+const paragrafiField = fields.array(tr("Paragrafo", { multiline: true }), {
+  label: "Paragrafi",
+  itemLabel: (props) => {
+    const v = props.fields.it.value;
+    return v.length > 60 ? v.slice(0, 60) + "…" : v || "Paragrafo vuoto";
   },
-);
+});
 
 const disciplineField = fields.multiselect({
   label: "Discipline (icone)",
@@ -53,16 +74,9 @@ const disciplineField = fields.multiselect({
 function stagioneField(label: string) {
   return fields.object(
     {
-      nome: fields.text({ label: "Nome" }),
-      date: fields.text({
-        label: "Date",
-        description: "Ogni riga va a capo sul sito.",
-        multiline: true,
-      }),
-      nomeBreve: fields.text({
-        label: "Nome breve",
-        description: "Usato nella nota dei supplementi.",
-      }),
+      nome: tr("Nome"),
+      date: tr("Date", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+      nomeBreve: tr("Nome breve", { description: "Usato nelle colonne dei prezzi e nella nota dei supplementi." }),
       supplemento: fields.text({
         label: "Supplemento per ogni persona aggiunta",
         description: 'Es. "18 €".',
@@ -98,10 +112,7 @@ export default config({
             validation: { isRequired: true },
           },
         }),
-        ruolo: fields.text({
-          label: "Ruolo",
-          description: 'Es. "Maestro di SCI ALPINO". Appare sotto il nome.',
-        }),
+        ruolo: tr("Ruolo", { description: 'Es. "Maestro di SCI ALPINO". Appare sotto il nome.' }),
         disciplina: fields.select({
           label: "Disciplina",
           description: "Appare sul retro della card.",
@@ -138,25 +149,18 @@ export default config({
       schema: {
         hero: fields.object(
           {
-            sopratitolo1: fields.text({
-              label: "Scritta sopra il titolo – prima parte",
+            sopratitolo1: tr("Scritta sopra il titolo – prima parte", {
               description: "Su telefono le due parti vanno su due righe.",
             }),
-            sopratitolo2: fields.text({
-              label: "Scritta sopra il titolo – seconda parte",
-            }),
-            titolo: fields.text({ label: "Titolo" }),
+            sopratitolo2: tr("Scritta sopra il titolo – seconda parte"),
+            titolo: tr("Titolo"),
           },
           { label: "In alto (titolo principale)" },
         ),
         intro: fields.object(
           {
-            titolo: fields.text({
-              label: "Titolo",
-              description: "Ogni riga va a capo sul sito.",
-              multiline: true,
-            }),
-            testo: fields.text({ label: "Testo", multiline: true }),
+            titolo: tr("Titolo", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+            testo: tr("Testo", { multiline: true }),
             video: fields.file({
               label: "Video (mp4, verticale)",
               description: "Meglio sotto i 20 MB.",
@@ -167,28 +171,22 @@ export default config({
         ),
         servizi: fields.array(
           fields.object({
-            titolo: fields.text({ label: "Titolo" }),
-            testo: fields.text({
-              label: "Testo",
-              description: "Facoltativo.",
-              multiline: true,
-            }),
+            titolo: tr("Titolo"),
+            testo: tr("Testo", { description: "Facoltativo.", multiline: true }),
             foto: fields.image({ label: "Foto (orizzontale)", ...homeMedia }),
             link: fields.text({
               label: "Link",
               description:
                 'Facoltativo. Pagina del sito (es. "/lezioni#lezioni-collettive") o indirizzo esterno (es. "https://…", si apre in una nuova scheda).',
             }),
-            pulsante: fields.text({
-              label: "Scritta del pulsante",
+            pulsante: tr("Scritta del pulsante", {
               description: 'Facoltativa, es. "Scopri" o "Guarda". Compare in azzurro con la freccia se c\'è un link.',
             }),
             mostraPreventivo: fields.checkbox({
               label: 'Mostra "Richiedi il tuo preventivo"',
               description: "Link email per richiedere un preventivo.",
             }),
-            scrittaSuFoto: fields.text({
-              label: "Scritta sulla foto",
+            scrittaSuFoto: tr("Scritta sulla foto", {
               description: 'Facoltativa, es. "Cogne – Webcam Live".',
             }),
             etichettaLive: fields.checkbox({
@@ -197,12 +195,12 @@ export default config({
           }),
           {
             label: "Riquadri servizi",
-            itemLabel: (props) => props.fields.titolo.value || "Riquadro",
+            itemLabel: (props) => props.fields.titolo.fields.it.value || "Riquadro",
           },
         ),
         eventi: fields.object(
           {
-            titolo: fields.text({ label: "Titolo", defaultValue: "Bacheca eventi" }),
+            titolo: tr("Titolo", { defaultValue: "Bacheca eventi" }),
             lista: fields.array(
               fields.object({
                 foto: fields.image({
@@ -216,17 +214,16 @@ export default config({
                   description:
                     "Facoltativa. Compare sul post-it nell'angolo (senza data il post-it dice \"? presto\"); il giorno dopo l'evento sparisce da solo dalla bacheca.",
                 }),
-                titolo: fields.text({ label: "Titolo", description: "Facoltativo." }),
-                testo: fields.text({ label: "Testo", description: "Facoltativo.", multiline: true }),
-                scritta: fields.text({
-                  label: "Scritta a mano",
+                titolo: tr("Titolo", { description: "Facoltativo." }),
+                testo: tr("Testo", { description: "Facoltativo.", multiline: true }),
+                scritta: tr("Scritta a mano", {
                   description: 'Facoltativa, es. "vi aspettiamo!".',
                 }),
               }),
               {
                 label: "Eventi",
                 itemLabel: (props) =>
-                  [props.fields.data.value, props.fields.titolo.value || props.fields.scritta.value]
+                  [props.fields.data.value, props.fields.titolo.fields.it.value || props.fields.scritta.fields.it.value]
                     .filter(Boolean)
                     .join(" · ") || "Evento",
               },
@@ -239,7 +236,7 @@ export default config({
         ),
         linkUtili: fields.array(
           fields.object({
-            titolo: fields.text({ label: "Titolo", validation: { length: { min: 1 } } }),
+            titolo: tr("Titolo", { richiesto: true }),
             logo: fields.image({
               label: "Logo",
               description: "Compare nel pallino bianco: meglio un'immagine quadrata.",
@@ -251,17 +248,13 @@ export default config({
           {
             label: "Link utili",
             description: "Tessere sotto la bacheca eventi; si aprono in una nuova scheda.",
-            itemLabel: (props) => props.fields.titolo.value || "Link",
+            itemLabel: (props) => props.fields.titolo.fields.it.value || "Link",
           },
         ),
         sicurezza: fields.object(
           {
-            titolo: fields.text({
-              label: "Titolo",
-              description: "Ogni riga va a capo sul sito.",
-              multiline: true,
-            }),
-            testo: fields.text({ label: "Testo", multiline: true }),
+            titolo: tr("Titolo", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+            testo: tr("Testo", { multiline: true }),
             galleria: fields.array(
               fields.object({
                 foto: fields.image({
@@ -269,15 +262,14 @@ export default config({
                   validation: { isRequired: true },
                   ...homeMedia,
                 }),
-                descrizione: fields.text({
-                  label: "Descrizione breve",
+                descrizione: tr("Descrizione breve", {
                   description: "Per motori di ricerca e non vedenti.",
                 }),
               }),
               {
                 label: "Galleria foto",
                 itemLabel: (props) =>
-                  props.fields.descrizione.value || "Foto",
+                  props.fields.descrizione.fields.it.value || "Foto",
               },
             ),
           },
@@ -285,7 +277,7 @@ export default config({
         ),
         contatti: fields.object(
           {
-            titolo: fields.text({ label: "Titolo", defaultValue: "Contatti" }),
+            titolo: tr("Titolo", { defaultValue: "Contatti" }),
             nome: fields.text({ label: "Nome scuola" }),
             indirizzo: fields.text({
               label: "Indirizzo",
@@ -318,7 +310,7 @@ export default config({
       path: "content/lezioni",
       format: { data: "yaml" },
       schema: {
-        titolo: fields.text({ label: "Titolo in alto", defaultValue: "Lezioni" }),
+        titolo: tr("Titolo in alto", { defaultValue: "Lezioni" }),
         heroVideo: fields.file({
           label: "Video in alto (mp4, orizzontale)",
           description: "Video in loop dietro il titolo, senza audio. Meglio sotto i 5 MB.",
@@ -331,12 +323,8 @@ export default config({
         }),
         individuali: fields.object(
           {
-            titolo: fields.text({
-              label: "Titolo",
-              description: "Ogni riga va a capo sul sito.",
-              multiline: true,
-            }),
-            testo: fields.text({ label: "Testo", multiline: true }),
+            titolo: tr("Titolo", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+            testo: tr("Testo", { multiline: true }),
             discipline: disciplineField,
             foto: fields.image({ label: "Foto", ...lezioniMedia }),
           },
@@ -356,12 +344,12 @@ export default config({
         ),
         private: fields.object(
           {
-            titolo: fields.text({ label: "Titolo tabella" }),
-            testo: fields.text({ label: "Testo sotto il titolo", multiline: true }),
+            titolo: tr("Titolo tabella"),
+            testo: tr("Testo sotto il titolo", { multiline: true }),
             righe: fields.array(
               fields.object({
-                disciplina: fields.text({ label: "Disciplina" }),
-                orario: fields.text({ label: "Orario / dettaglio" }),
+                disciplina: tr("Disciplina"),
+                orario: tr("Orario / dettaglio"),
                 prezzoAltissima: fields.text({ label: "Prezzo Altissima stagione" }),
                 prezzoAlta: fields.text({ label: "Prezzo Alta stagione" }),
                 prezzoBassa: fields.text({ label: "Prezzo Bassa stagione" }),
@@ -369,20 +357,16 @@ export default config({
               {
                 label: "Righe tabella",
                 itemLabel: (props) =>
-                  `${props.fields.disciplina.value} – ${props.fields.orario.value}`,
+                  `${props.fields.disciplina.fields.it.value} – ${props.fields.orario.fields.it.value}`,
               },
             ),
-            personaAggiuntaTitolo: fields.text({
-              label: "Persona aggiunta – titolo",
+            personaAggiuntaTitolo: tr("Persona aggiunta – titolo", {
               description:
                 "I prezzi sono quelli di ogni stagione (vedi Periodi di stagione).",
             }),
-            personaAggiuntaSottotitolo: fields.text({
-              label: "Persona aggiunta – sottotitolo",
-            }),
-            maestroTitolo: fields.text({ label: "Maestro richiesto – titolo" }),
-            maestroTesto: fields.text({
-              label: "Maestro richiesto – testo",
+            personaAggiuntaSottotitolo: tr("Persona aggiunta – sottotitolo"),
+            maestroTitolo: tr("Maestro richiesto – titolo"),
+            maestroTesto: tr("Maestro richiesto – testo", {
               description: "Le parole tra **due asterischi** diventano azzurre.",
               multiline: true,
             }),
@@ -391,84 +375,79 @@ export default config({
         ),
         collettive: fields.object(
           {
-            titolo: fields.text({
-              label: "Titolo",
-              description: "Ogni riga va a capo sul sito.",
-              multiline: true,
-            }),
-            testo: fields.text({ label: "Testo", multiline: true }),
+            titolo: tr("Titolo", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+            testo: tr("Testo", { multiline: true }),
             discipline: disciplineField,
             foto: fields.image({ label: "Foto", ...lezioniMedia }),
-            tariffeTitolo: fields.text({ label: "Titolo tariffe" }),
-            tariffeTesto: fields.text({ label: "Testo tariffe", multiline: true }),
+            tariffeTitolo: tr("Titolo tariffe"),
+            tariffeTesto: tr("Testo tariffe", { multiline: true }),
             corsi: fields.array(
               fields.object({
-                nome: fields.text({ label: "Disciplina", description: 'Es. "Sci alpino".' }),
-                orari: fields.text({
-                  label: "Luogo e orari",
+                nome: tr("Disciplina", { description: 'Es. "Sci alpino".' }),
+                orari: tr("Luogo e orari", {
                   description: "Ogni riga va a capo sul sito.",
                   multiline: true,
                 }),
                 prezzi: fields.array(
                   fields.object({
-                    pacchetto: fields.text({ label: "Pacchetto", description: 'Es. "3 giorni".' }),
+                    pacchetto: tr("Pacchetto", { description: 'Es. "3 giorni".' }),
                     prezzo: fields.text({ label: "Prezzo", description: 'Es. "165 €".' }),
                   }),
                   {
                     label: "Prezzi",
                     itemLabel: (props) =>
-                      `${props.fields.pacchetto.value} – ${props.fields.prezzo.value}`,
+                      `${props.fields.pacchetto.fields.it.value} – ${props.fields.prezzo.value}`,
                   },
                 ),
               }),
               {
                 label: "Schede corsi",
                 itemLabel: (props) =>
-                  `${props.fields.nome.value} – ${props.fields.orari.value.split("\n")[0]}`,
+                  `${props.fields.nome.fields.it.value} – ${props.fields.orari.fields.it.value.split("\n")[0]}`,
               },
             ),
-            nota: fields.text({ label: "Nota sotto le schede", multiline: true }),
+            nota: tr("Nota sotto le schede", { multiline: true }),
           },
           { label: "Lezioni collettive" },
         ),
         corsiAnnuali: fields.object(
           {
-            titolo: fields.text({ label: "Titolo (bianco)" }),
-            titoloColorato: fields.text({ label: "Titolo (parte azzurra)" }),
-            testo: fields.text({ label: "Testo", multiline: true }),
+            titolo: tr("Titolo (bianco)"),
+            titoloColorato: tr("Titolo (parte azzurra)"),
+            testo: tr("Testo", { multiline: true }),
             corsi: fields.array(
               fields.object({
-                nome: fields.text({ label: "Nome corso" }),
-                disciplina: fields.text({ label: "Disciplina (etichetta)" }),
-                periodo: fields.text({ label: "Periodo (azzurro)" }),
-                orari: fields.text({ label: "Giorni e orari" }),
+                nome: tr("Nome corso"),
+                disciplina: tr("Disciplina (etichetta)"),
+                periodo: tr("Periodo (azzurro)"),
+                orari: tr("Giorni e orari"),
                 prezzo: fields.text({ label: "Prezzo" }),
               }),
               {
                 label: "Corsi",
                 itemLabel: (props) =>
-                  `${props.fields.nome.value} (${props.fields.disciplina.value}) – ${props.fields.prezzo.value}`,
+                  `${props.fields.nome.fields.it.value} (${props.fields.disciplina.fields.it.value}) – ${props.fields.prezzo.value}`,
               },
             ),
-            pacchettiTitolo: fields.text({ label: "Titolo pacchetti (bianco)" }),
-            pacchettiTitoloColorato: fields.text({ label: "Titolo pacchetti (parte azzurra)" }),
+            pacchettiTitolo: tr("Titolo pacchetti (bianco)"),
+            pacchettiTitoloColorato: tr("Titolo pacchetti (parte azzurra)"),
             pacchetti: fields.array(
               fields.object({
-                nome: fields.text({ label: "Nome" }),
-                disciplina: fields.text({ label: "Disciplina (etichetta)" }),
-                descrizione: fields.text({ label: "Descrizione" }),
+                nome: tr("Nome"),
+                disciplina: tr("Disciplina (etichetta)"),
+                descrizione: tr("Descrizione"),
                 prezzo: fields.text({ label: "Prezzo" }),
               }),
               {
                 label: "Pacchetti",
                 itemLabel: (props) =>
-                  `${props.fields.nome.value} (${props.fields.disciplina.value}) – ${props.fields.prezzo.value}`,
+                  `${props.fields.nome.fields.it.value} (${props.fields.disciplina.fields.it.value}) – ${props.fields.prezzo.value}`,
               },
             ),
             sconto: fields.object(
               {
-                titolo: fields.text({ label: "Titolo", description: "Lascia vuoto per nascondere la fascia." }),
-                testo: fields.text({ label: "Testo piccolo" }),
+                titolo: tr("Titolo", { description: "Lascia vuoto (in italiano) per nascondere la fascia." }),
+                testo: tr("Testo piccolo"),
                 percentuale: fields.text({ label: "Sconto", description: 'Es. "-30%".' }),
               },
               { label: "Fascia sconto" },
@@ -478,15 +457,8 @@ export default config({
         ),
         snowcare: fields.object(
           {
-            titolo: fields.text({
-              label: "Titolo (bianco)",
-              description: "Ogni riga va a capo sul sito.",
-              multiline: true,
-            }),
-            titoloColorato: fields.text({
-              label: "Titolo (parte colorata)",
-              multiline: true,
-            }),
+            titolo: tr("Titolo (bianco)", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+            titoloColorato: tr("Titolo (parte colorata)", { multiline: true }),
             paragrafi: paragrafiField,
             foto: fields.image({ label: "Foto", ...lezioniMedia }),
           },
@@ -494,19 +466,15 @@ export default config({
         ),
         pagamenti: fields.object(
           {
-            titolo: fields.text({ label: "Titolo" }),
+            titolo: tr("Titolo"),
             paragrafi: paragrafiField,
           },
           { label: "Cancellazioni e pagamenti" },
         ),
         ritrovo: fields.object(
           {
-            titolo: fields.text({
-              label: "Titolo",
-              description: "Ogni riga va a capo sul sito.",
-              multiline: true,
-            }),
-            testo: fields.text({ label: "Testo", multiline: true }),
+            titolo: tr("Titolo", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+            testo: tr("Testo", { multiline: true }),
           },
           { label: "Orari e luoghi di ritrovo" },
         ),
@@ -518,10 +486,7 @@ export default config({
       path: "content/pagina-maestri",
       format: { data: "yaml" },
       schema: {
-        titolo: fields.text({
-          label: "Titolo in alto",
-          defaultValue: "Maestri",
-        }),
+        titolo: tr("Titolo in alto", { defaultValue: "Maestri" }),
         heroVideo: fields.file({
           label: "Video in alto (mp4, orizzontale)",
           description: "Video in loop dietro il titolo, senza audio. Meglio sotto i 5 MB.",
@@ -534,21 +499,8 @@ export default config({
           directory: "public/foto/pagina-maestri",
           publicPath: "/foto/pagina-maestri/",
         }),
-        slogan: fields.text({
-          label: "Slogan",
-          description: "Ogni riga va a capo sul sito.",
-          multiline: true,
-        }),
-        paragrafi: fields.array(
-          fields.text({ label: "Paragrafo", multiline: true }),
-          {
-            label: "Paragrafi",
-            itemLabel: (props) =>
-              props.value.length > 60
-                ? props.value.slice(0, 60) + "…"
-                : props.value || "Paragrafo vuoto",
-          },
-        ),
+        slogan: tr("Slogan", { description: "Ogni riga va a capo sul sito.", multiline: true }),
+        paragrafi: paragrafiField,
         foto: fields.image({
           label: "Foto accanto al testo",
           directory: "public/foto/pagina-maestri",

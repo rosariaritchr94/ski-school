@@ -4,6 +4,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import Lines from "./Lines";
+import type { Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
 export type SafetyContent = {
   titolo: string;
@@ -11,7 +13,8 @@ export type SafetyContent = {
   galleria: { foto: string; descrizione: string }[];
 };
 
-export default function Safety({ titolo, testo, galleria }: SafetyContent) {
+export default function Safety({ titolo, testo, galleria, lang }: SafetyContent & { lang: Lingua }) {
+  const t = TESTI[lang].galleria;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const GALLERY = galleria.map((g) => ({ src: g.foto, alt: g.descrizione }));
@@ -93,7 +96,7 @@ export default function Safety({ titolo, testo, galleria }: SafetyContent) {
           <button
             type="button"
             onClick={goPrev}
-            aria-label="Foto precedente"
+            aria-label={t.precedente}
             className="h-8 w-8 grid place-items-center rounded-full border border-white/50 text-white/80 hover:bg-white hover:text-black"
           >
             ‹
@@ -131,7 +134,7 @@ export default function Safety({ titolo, testo, galleria }: SafetyContent) {
           <button
             type="button"
             onClick={goNext}
-            aria-label="Foto successiva"
+            aria-label={t.successiva}
             className="h-8 w-8 grid place-items-center rounded-full border border-white/50 text-white/80 hover:bg-white hover:text-black"
           >
             ›

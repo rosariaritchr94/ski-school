@@ -1,72 +1,180 @@
 hero:
-  sopratitolo1: "SCUOLA DI SCI"
-  sopratitolo2: "& SNOWBOARD"
-  titolo: "Gran Paradiso"
+  sopratitolo1:
+    it: "SCUOLA DI SCI"
+    en: "SKI &"
+    fr: "ÉCOLE DE SKI"
+  sopratitolo2:
+    it: "& SNOWBOARD"
+    en: "SNOWBOARD SCHOOL"
+    fr: "& SNOWBOARD"
+  titolo:
+    it: "Gran Paradiso"
+    en: "Gran Paradiso"
+    fr: "Gran Paradiso"
 intro:
-  titolo: "THE\nWILD SIDE\nOF SKIING"
-  testo: "A Cogne lo sci è pura libertà. Qui, ai piedi del Gran Paradiso, ogni curva è un’avventura: che tu sia alle prime discese o un esperto della tecnica, con noi vivi lo sci nel suo lato più adrenalinico. Bambini, ragazzi, adulti: ognuno trova la sua sfida e il suo divertimento. La Scuola di Sci Gran Paradiso è il posto dove imparare, ridere e condividere emozioni vere, circondati dai paesaggi più spettacolari della Valle d’Aosta. Ready to ride the wild side?"
+  titolo:
+    it: "THE\nWILD SIDE\nOF SKIING"
+    en: "THE\nWILD SIDE\nOF SKIING"
+    fr: "THE\nWILD SIDE\nOF SKIING"
+  testo:
+    it: "A Cogne lo sci è pura libertà. Qui, ai piedi del Gran Paradiso, ogni curva è un’avventura: che tu sia alle prime discese o un esperto della tecnica, con noi vivi lo sci nel suo lato più adrenalinico. Bambini, ragazzi, adulti: ognuno trova la sua sfida e il suo divertimento. La Scuola di Sci Gran Paradiso è il posto dove imparare, ridere e condividere emozioni vere, circondati dai paesaggi più spettacolari della Valle d’Aosta. Ready to ride the wild side?"
+    en: "In Cogne, skiing is pure freedom. Here, at the foot of the Gran Paradiso, every turn is an adventure: whether you are taking your first runs or already an expert, with us you experience skiing at its most thrilling. Children, teenagers, adults: everyone finds their own challenge and their own fun. The Gran Paradiso Ski School is the place to learn, laugh and share real emotions, surrounded by the most spectacular scenery in the Aosta Valley. Ready to ride the wild side?"
+    fr: "À Cogne, le ski, c’est la liberté à l’état pur. Ici, au pied du Grand-Paradis, chaque virage est une aventure : que vous fassiez vos premières descentes ou que vous maîtrisiez déjà la technique, avec nous vous vivez le ski dans ce qu’il a de plus intense. Enfants, ados, adultes : chacun trouve son défi et son plaisir. L’École de Ski Gran Paradiso est l’endroit idéal pour apprendre, rire et partager de vraies émotions, entourés des paysages les plus spectaculaires de la Vallée d’Aoste. Ready to ride the wild side?"
   video: "/foto/home/intro-reel.mp4"
 servizi:
-  - titolo: "lezioni"
-    testo: "Sci alpino, snowboard e fondo con maestro dedicato, per bambini e adulti."
-    foto: "/foto/home/servizi-lezioni-pista.jpg"
-    link: "/lezioni"
-    pulsante: "Scopri"
-    mostraPreventivo: false
-    scrittaSuFoto: ""
-    etichettaLive: false
-  - titolo: "WEBCAM LIVE"
-    testo: "6 webcam per dare un ultimo sguardo alle piste di Cogne prima di partire."
-    foto: "/foto/home/servizi-webcam.png"
-    link: "https://www.skilife.ski/cogne/webcam/"
-    pulsante: "Guarda"
-    mostraPreventivo: false
-    scrittaSuFoto: "Cogne · 1.534 m"
-    etichettaLive: true
+- titolo:
+    it: lezioni
+    en: lessons
+    fr: cours
+  testo:
+    it: "Sci alpino, snowboard e fondo con maestro dedicato, per bambini e adulti."
+    en: "Alpine skiing, snowboarding and cross-country with your own instructor, for children and adults."
+    fr: "Ski alpin, snowboard et ski de fond avec un moniteur dédié, pour enfants et adultes."
+  foto: "/foto/home/galleria-8.jpg"
+  link: "/lezioni"
+  pulsante:
+    it: Scopri
+    en: Discover
+    fr: "Découvrir"
+  mostraPreventivo: false
+  scrittaSuFoto:
+    it: ""
+    en: ""
+    fr: ""
+  etichettaLive: false
+- titolo:
+    it: "WEBCAM LIVE"
+    en: "LIVE WEBCAMS"
+    fr: "WEBCAMS EN DIRECT"
+  testo:
+    it: "6 webcam per dare un ultimo sguardo alle piste di Cogne prima di partire."
+    en: "6 webcams for a last look at the Cogne slopes before you set off."
+    fr: "6 webcams pour jeter un dernier coup d’œil aux pistes de Cogne avant de partir."
+  foto: "/foto/home/servizi-webcam.png"
+  link: "https://www.skilife.ski/cogne/webcam/"
+  pulsante:
+    it: Guarda
+    en: Watch
+    fr: Regarder
+  mostraPreventivo: false
+  scrittaSuFoto:
+    it: "Cogne · 1.534 m"
+    en: "Cogne · 1,534 m"
+    fr: "Cogne · 1 534 m"
+  etichettaLive: true
 eventi:
-  titolo: "Bacheca eventi"
+  titolo:
+    it: "Bacheca eventi"
+    en: "Events board"
+    fr: "Tableau des événements"
   lista:
-    - foto: "/foto/eventi/evento-1.jpg"
-      titolo: ""
-      testo: ""
-      scritta: "prossimi eventi…"
-    - foto: "/foto/eventi/evento-2.jpg"
-      titolo: ""
-      testo: ""
-      scritta: "presto in bacheca!"
-    - foto: "/foto/eventi/evento-3.jpg"
-      titolo: ""
-      testo: ""
-      scritta: "restate con noi ❄"
+  - foto: "/foto/eventi/evento-1.jpg"
+    titolo:
+      it: ""
+      en: ""
+      fr: ""
+    testo:
+      it: ""
+      en: ""
+      fr: ""
+    scritta:
+      it: "prossimi eventi…"
+      en: "upcoming events…"
+      fr: "prochains événements…"
+  - foto: "/foto/eventi/evento-2.jpg"
+    titolo:
+      it: ""
+      en: ""
+      fr: ""
+    testo:
+      it: ""
+      en: ""
+      fr: ""
+    scritta:
+      it: "presto in bacheca!"
+      en: "coming soon!"
+      fr: "bientôt au tableau !"
+  - foto: "/foto/eventi/evento-3.jpg"
+    titolo:
+      it: ""
+      en: ""
+      fr: ""
+    testo:
+      it: ""
+      en: ""
+      fr: ""
+    scritta:
+      it: "restate con noi ❄"
+      en: "stay tuned ❄"
+      fr: "restez avec nous ❄"
 linkUtili:
-  - titolo: "Comune di Cogne"
-    logo: "/foto/link/comune-cogne.png"
-    link: "https://www.comune.cogne.ao.it/"
-  - titolo: "Consorzio Cogne"
-    logo: "/foto/link/consorzio-cogne.png"
-    link: "https://www.visitcogne.it/il-consorzio/"
+- titolo:
+    it: "Comune di Cogne"
+    en: "Municipality of Cogne"
+    fr: "Commune de Cogne"
+  logo: "/foto/link/comune-cogne.png"
+  link: "https://www.comune.cogne.ao.it/"
+- titolo:
+    it: "Consorzio Cogne"
+    en: "Cogne Tourism Consortium"
+    fr: "Consortium de Cogne"
+  logo: "/foto/link/consorzio-cogne.png"
+  link: "https://www.visitcogne.it/il-consorzio/"
 sicurezza:
-  titolo: "Vivi\nl’avventura\nin totale\nsicurezza"
-  testo: "I nostri maestri della Scuola di Sci Gran Paradiso sono sempre pronti ad accompagnarti: programmi personalizzati e lezioni dedicate a bambini e adulti, all’insegna di professionalità, esperienza e sicurezza. Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne, nel cuore della Valle d’Aosta."
+  titolo:
+    it: "Vivi\nl’avventura\nin totale\nsicurezza"
+    en: "Live\nthe adventure\nin complete\nsafety"
+    fr: "Vivez\nl’aventure\nen toute\nsécurité"
+  testo:
+    it: "I nostri maestri della Scuola di Sci Gran Paradiso sono sempre pronti ad accompagnarti: programmi personalizzati e lezioni dedicate a bambini e adulti, all’insegna di professionalità, esperienza e sicurezza. Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne, nel cuore della Valle d’Aosta."
+    en: "Our Gran Paradiso Ski School instructors are always ready to accompany you: tailor-made programmes and lessons for children and adults, built on professionalism, experience and safety. Everything you need for an unforgettable holiday in Cogne, in the heart of the Aosta Valley."
+    fr: "Les moniteurs de l’École de Ski Gran Paradiso sont toujours prêts à vous accompagner : programmes personnalisés et cours dédiés aux enfants et aux adultes, sous le signe du professionnalisme, de l’expérience et de la sécurité. Tout ce qu’il vous faut pour des vacances inoubliables à Cogne, au cœur de la Vallée d’Aoste."
   galleria:
-    - foto: "/foto/home/galleria-1.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 8"
-    - foto: "/foto/home/galleria-2.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 7"
-    - foto: "/foto/home/galleria-3.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 6"
-    - foto: "/foto/home/galleria-4.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 4"
-    - foto: "/foto/home/galleria-5.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 5"
-    - foto: "/foto/home/galleria-6.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 3"
-    - foto: "/foto/home/galleria-7.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 2"
-    - foto: "/foto/home/galleria-8.jpg"
-      descrizione: "Scuola sci Gran Paradiso - foto 1"
+  - foto: "/foto/home/galleria-1.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 8"
+      en: "Gran Paradiso Ski School - photo 8"
+      fr: "École de ski Gran Paradiso - photo 8"
+  - foto: "/foto/home/galleria-2.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 7"
+      en: "Gran Paradiso Ski School - photo 7"
+      fr: "École de ski Gran Paradiso - photo 7"
+  - foto: "/foto/home/galleria-3.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 6"
+      en: "Gran Paradiso Ski School - photo 6"
+      fr: "École de ski Gran Paradiso - photo 6"
+  - foto: "/foto/home/galleria-4.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 4"
+      en: "Gran Paradiso Ski School - photo 4"
+      fr: "École de ski Gran Paradiso - photo 4"
+  - foto: "/foto/home/galleria-5.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 5"
+      en: "Gran Paradiso Ski School - photo 5"
+      fr: "École de ski Gran Paradiso - photo 5"
+  - foto: "/foto/home/galleria-6.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 3"
+      en: "Gran Paradiso Ski School - photo 3"
+      fr: "École de ski Gran Paradiso - photo 3"
+  - foto: "/foto/home/galleria-7.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 2"
+      en: "Gran Paradiso Ski School - photo 2"
+      fr: "École de ski Gran Paradiso - photo 2"
+  - foto: "/foto/home/galleria-8.jpg"
+    descrizione:
+      it: "Scuola sci Gran Paradiso - foto 1"
+      en: "Gran Paradiso Ski School - photo 1"
+      fr: "École de ski Gran Paradiso - photo 1"
 contatti:
-  titolo: "Contatti"
+  titolo:
+    it: Contatti
+    en: Contact
+    fr: Contact
   nome: "Scuola di Sci & Snowboard Gran Paradiso"
   indirizzo: "Via Bourgeois 33\n11012 Cogne (AO) – Italia"
   mappa: "Scuola di Sci e Snowboard Gran Paradiso, Via Bourgeois 33, 11012 Cogne AO"

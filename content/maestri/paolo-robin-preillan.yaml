@@ -1,5 +1,8 @@
 nome: "PAOLO ROBIN PREILLAN:"
-ruolo: "Maestro di SCI ALPINO"
+ruolo:
+  it: "Maestro di SCI ALPINO"
+  en: "ALPINE SKI instructor"
+  fr: "Moniteur de SKI ALPIN"
 disciplina: "Sci Alpino"
 foto: "/foto/maestri/paolo-robin-preillan/foto.jpg"
 ordine: 250

@@ -1,4 +1,7 @@
 nome: "Ilenia Noussan"
-ruolo: "Maestro di SCI NORDICO"
+ruolo:
+  it: "Maestro di SCI NORDICO"
+  en: "NORDIC SKI instructor"
+  fr: "Moniteur de SKI NORDIQUE"
 disciplina: "Sci Nordico"
 ordine: 280

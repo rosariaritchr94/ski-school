@@ -1,8 +1,18 @@
-titolo: "Maestri"
+titolo:
+  it: Maestri
+  en: Instructors
+  fr: Moniteurs
 heroVideo: "/foto/pagina-maestri/hero-video-0383a7.mp4"
 heroFoto: "/foto/pagina-maestri/hero-poster-0383a7.jpg"
-slogan: "Qualità\nEsperienza\nDivertimento"
+slogan:
+  it: "Qualità\nEsperienza\nDivertimento"
+  en: "Quality\nExperience\nFun"
+  fr: "Qualité\nExpérience\nPlaisir"
 paragrafi:
-  - "I nostri maestri di sci del Gran Paradiso rispettano i più elevati standard di competenza e professionalità. Ti accompagneranno sulla neve con entusiasmo, attenzione alla sicurezza e tanta passione per la montagna."
-  - "Scopri tutti i maestri nella grande famiglia della Scuola di Sci Gran Paradiso."
+- it: "I nostri maestri di sci del Gran Paradiso rispettano i più elevati standard di competenza e professionalità. Ti accompagneranno sulla neve con entusiasmo, attenzione alla sicurezza e tanta passione per la montagna."
+  en: "Our Gran Paradiso ski instructors meet the highest standards of skill and professionalism. They will accompany you on the snow with enthusiasm, attention to safety and a great passion for the mountains."
+  fr: "Nos moniteurs de ski du Grand-Paradis répondent aux plus hautes exigences de compétence et de professionnalisme. Ils vous accompagneront sur la neige avec enthousiasme, attention à la sécurité et une grande passion pour la montagne."
+- it: "Scopri tutti i maestri nella grande famiglia della Scuola di Sci Gran Paradiso."
+  en: "Meet all the instructors of the big Gran Paradiso Ski School family."
+  fr: "Découvrez tous les moniteurs de la grande famille de l’École de Ski Gran Paradiso."
 foto: "/foto/pagina-maestri/foto.png"

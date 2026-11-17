@@ -1,5 +1,8 @@
 nome: "PIETRO SEGOR"
-ruolo: "Maestro di SCI NORDICO"
+ruolo:
+  it: "Maestro di SCI NORDICO"
+  en: "NORDIC SKI instructor"
+  fr: "Moniteur de SKI NORDIQUE"
 disciplina: "Sci Nordico"
 foto: "/foto/maestri/pietro-segor/foto.jpg"
 ordine: 70

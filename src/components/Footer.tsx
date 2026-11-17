@@ -1,10 +1,22 @@
 // src/components/Footer.tsx
 import Image from "next/image";
+import Link from "next/link";
+import { percorso, type Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
 const cerchio =
   "h-10 w-10 grid place-items-center rounded-full border border-white/30 text-white/80 transition-colors hover:border-[#37C6E6] hover:text-[#37C6E6]";
 
-export default function Footer({ telefono, instagram }: { telefono?: string; instagram?: string | null }) {
+export default function Footer({
+  lang,
+  telefono,
+  instagram,
+}: {
+  lang: Lingua;
+  telefono?: string;
+  instagram?: string | null;
+}) {
+  const t = TESTI[lang];
   const year = new Date().getFullYear();
 
   return (
@@ -31,7 +43,7 @@ export default function Footer({ telefono, instagram }: { telefono?: string; ins
               </span>
             )}
             {telefono && (
-              <a href={`tel:${telefono.replace(/[^+\d]/g, "")}`} aria-label={`Telefono ${telefono}`} className={cerchio}>
+              <a href={`tel:${telefono.replace(/[^+\d]/g, "")}`} aria-label={`${t.footer.telefono} ${telefono}`} className={cerchio}>
                 <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true">
                   <path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z" />
                 </svg>
@@ -41,15 +53,15 @@ export default function Footer({ telefono, instagram }: { telefono?: string; ins
 
           {/* nav footer */}
           <nav className="flex flex-wrap items-center justify-center gap-4 text-[11px] uppercase tracking-[0.22em] text-white/70">
-            <a href="/" className="hover:text-white">
-              Home
-            </a>
-            <a href="/lezioni" className="hover:text-white">
-              Lezioni
-            </a>
-            <a href="/maestri" className="hover:text-white">
-              Maestri
-            </a>
+            <Link href={percorso("home", lang)} className="hover:text-white">
+              {t.menu.home}
+            </Link>
+            <Link href={percorso("lezioni", lang)} className="hover:text-white">
+              {t.menu.lezioni}
+            </Link>
+            <Link href={percorso("maestri", lang)} className="hover:text-white">
+              {t.menu.maestri}
+            </Link>
           </nav>
 
           {/* LINK LEGALI IUBENDA */}
@@ -57,26 +69,26 @@ export default function Footer({ telefono, instagram }: { telefono?: string; ins
             <a
               href="https://www.iubenda.com/privacy-policy/96490447"
               className="iubenda-black iubenda-noiframe iubenda-embed hover:underline"
-              title="Privacy Policy"
+              title={t.footer.privacy}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Privacy Policy
+              {t.footer.privacy}
             </a>
 
             <a
               href="https://www.iubenda.com/privacy-policy/96490447/cookie-policy"
               className="iubenda-black iubenda-noiframe iubenda-embed hover:underline"
-              title="Cookie Policy"
+              title={t.footer.cookie}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Cookie Policy
+              {t.footer.cookie}
             </a>
 
             {/* riapre il pannello iubenda: sostituisce il pulsante fluttuante (nascosto in globals.css) */}
-            <a href="#" className="iubenda-cs-preferences-link hover:underline" title="Preferenze cookie">
-              Preferenze cookie
+            <a href="#" className="iubenda-cs-preferences-link hover:underline" title={t.footer.preferenze}>
+              {t.footer.preferenze}
             </a>
           </div>
 
@@ -99,8 +111,7 @@ export default function Footer({ telefono, instagram }: { telefono?: string; ins
           </div>
 
           <p className="mt-2 text-[10px] text-white/50 text-center">
-            © {year} Scuola di Sci &amp; Snowboard Gran Paradiso — tutti i diritti
-            riservati
+            © {year} Scuola di Sci &amp; Snowboard Gran Paradiso — {t.footer.diritti}
           </p>
         </div>
       </div>

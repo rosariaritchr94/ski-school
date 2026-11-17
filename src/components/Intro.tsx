@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Lines from "./Lines";
+import type { Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
 export type IntroContent = {
   titolo: string;
@@ -46,7 +48,8 @@ function useParallax(maxShift = 40, factor = 0.12) {
   return ref;
 }
 
-export default function Intro({ titolo, testo, video }: IntroContent) {
+export default function Intro({ titolo, testo, video, lang }: IntroContent & { lang: Lingua }) {
+  const t = TESTI[lang].intro;
   const videoRef = useRef<HTMLVideoElement>(null);
   const parallaxRef = useParallax();
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
@@ -142,7 +145,7 @@ export default function Intro({ titolo, testo, video }: IntroContent) {
           >
             {status !== "ready" && (
               <div className="absolute inset-0 grid place-items-center text-white/85 text-[11px] tracking-[0.22em] uppercase z-10">
-                {status === "loading" ? "Caricamento video…" : "Errore video"}
+                {status === "loading" ? t.caricamento : t.errore}
               </div>
             )}
 
@@ -154,7 +157,7 @@ export default function Intro({ titolo, testo, video }: IntroContent) {
               muted
               playsInline
               preload="auto"
-              aria-label="Reel di presentazione - Scuola di Sci"
+              aria-label={t.video}
             />
           </div>
           {/* figcaption rimosso */}

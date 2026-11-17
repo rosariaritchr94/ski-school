@@ -1,5 +1,8 @@
 nome: "SIMONE CUAZ"
-ruolo: "Maestro di SCI ALPINO"
+ruolo:
+  it: "Maestro di SCI ALPINO"
+  en: "ALPINE SKI instructor"
+  fr: "Moniteur de SKI ALPIN"
 disciplina: "Sci Alpino"
 foto: "/foto/maestri/simone-cuaz/foto.jpg"
 ordine: 120

@@ -1,5 +1,8 @@
 nome: "Alessandro Longo"
-ruolo: "Maestro di SCI NORDICO"
+ruolo:
+  it: "Maestro di SCI NORDICO"
+  en: "NORDIC SKI instructor"
+  fr: "Moniteur de SKI NORDIQUE"
 disciplina: "Sci Nordico"
 foto: "/foto/maestri/alessandro-longo/foto.jpg"
 ordine: 10

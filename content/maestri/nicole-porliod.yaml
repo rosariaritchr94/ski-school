@@ -1,5 +1,8 @@
 nome: "NICOLE PORLIOD"
-ruolo: "Maestro di SCI NORDICO"
+ruolo:
+  it: "Maestro di SCI NORDICO"
+  en: "NORDIC SKI instructor"
+  fr: "Moniteur de SKI NORDIQUE"
 disciplina: "Sci Nordico"
 foto: "/foto/maestri/nicole-porliod/foto.jpg"
 ordine: 30

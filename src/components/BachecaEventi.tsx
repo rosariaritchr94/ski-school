@@ -2,6 +2,8 @@
 // Lavagna nera con polaroid appese al filo. Gli eventi con data passata spariscono da soli;
 // senza eventi la bacheca non compare. Stili .bacheca-* in globals.css.
 import Image from "next/image";
+import type { Lingua } from "@/lib/lingue";
+import { TESTI } from "@/lib/testi";
 
 type Evento = {
   foto: string | null;
@@ -13,10 +15,19 @@ type Evento = {
 
 const FUSO = "Europe/Rome";
 const oggi = () => new Intl.DateTimeFormat("en-CA", { timeZone: FUSO }).format(new Date()); // AAAA-MM-GG
-const mese = (iso: string) =>
-  new Intl.DateTimeFormat("it-IT", { month: "short", timeZone: "UTC" }).format(new Date(`${iso}T12:00:00Z`)).replace(".", "");
+const mese = (iso: string, locale: string) =>
+  new Intl.DateTimeFormat(locale, { month: "short", timeZone: "UTC" }).format(new Date(`${iso}T12:00:00Z`)).replace(".", "");
 
-export default function BachecaEventi({ titolo, eventi }: { titolo: string; eventi: readonly Evento[] }) {
+export default function BachecaEventi({
+  titolo,
+  eventi,
+  lang,
+}: {
+  titolo: string;
+  eventi: readonly Evento[];
+  lang: Lingua;
+}) {
+  const t = TESTI[lang];
   const adesso = oggi();
   const visibili = eventi
     .filter((e): e is Evento & { foto: string } => Boolean(e.foto))
@@ -48,7 +59,7 @@ export default function BachecaEventi({ titolo, eventi }: { titolo: string; even
                 <div className="bacheca-data">
                   <span className="bacheca-nastro" aria-hidden="true" />
                   <b className="font-sofia">{e.data ? e.data.slice(8, 10) : "?"}</b>
-                  <span className="font-oswald">{e.data ? mese(e.data) : "presto"}</span>
+                  <span className="font-oswald">{e.data ? mese(e.data, t.meteo.locale) : t.bacheca.presto}</span>
                 </div>
                 <figure className="bacheca-polaroid">
                   <span className="bacheca-molletta" aria-hidden="true" />

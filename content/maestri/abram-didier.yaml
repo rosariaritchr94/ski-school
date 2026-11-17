@@ -1,5 +1,8 @@
 nome: "Abram Didier"
-ruolo: "Maestro di SCI NORDICO"
+ruolo:
+  it: "Maestro di SCI NORDICO"
+  en: "NORDIC SKI instructor"
+  fr: "Moniteur de SKI NORDIQUE"
 disciplina: "Sci Nordico"
 foto: "/foto/maestri/abram-didier/foto.jpg"
 ordine: 60
