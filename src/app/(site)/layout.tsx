@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ElementiFissi from "@/components/ElementiFissi";
 import { reader } from "@/lib/content";
-import { sofia, oswald } from "@/app/fonts";
+import { sofia, oswald, caveat } from "@/app/fonts";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html
       lang="it"
-      className={`${sofia.variable} ${oswald.variable}`}
+      className={`${sofia.variable} ${oswald.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
       <head>

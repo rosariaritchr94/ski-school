@@ -179,6 +179,10 @@ export default config({
               description:
                 'Facoltativo. Pagina del sito (es. "/lezioni#lezioni-collettive") o indirizzo esterno (es. "https://…", si apre in una nuova scheda).',
             }),
+            pulsante: fields.text({
+              label: "Scritta del pulsante",
+              description: 'Facoltativa, es. "Scopri" o "Guarda". Compare in azzurro con la freccia se c\'è un link.',
+            }),
             mostraPreventivo: fields.checkbox({
               label: 'Mostra "Richiedi il tuo preventivo"',
               description: "Link email per richiedere un preventivo.",
@@ -194,6 +198,43 @@ export default config({
           {
             label: "Riquadri servizi",
             itemLabel: (props) => props.fields.titolo.value || "Riquadro",
+          },
+        ),
+        eventi: fields.object(
+          {
+            titolo: fields.text({ label: "Titolo", defaultValue: "Bacheca eventi" }),
+            lista: fields.array(
+              fields.object({
+                foto: fields.image({
+                  label: "Foto",
+                  validation: { isRequired: true },
+                  directory: "public/foto/eventi",
+                  publicPath: "/foto/eventi/",
+                }),
+                data: fields.date({
+                  label: "Data",
+                  description:
+                    "Facoltativa. Compare sul post-it nell'angolo (senza data il post-it dice \"? presto\"); il giorno dopo l'evento sparisce da solo dalla bacheca.",
+                }),
+                titolo: fields.text({ label: "Titolo", description: "Facoltativo." }),
+                testo: fields.text({ label: "Testo", description: "Facoltativo.", multiline: true }),
+                scritta: fields.text({
+                  label: "Scritta a mano",
+                  description: 'Facoltativa, es. "vi aspettiamo!".',
+                }),
+              }),
+              {
+                label: "Eventi",
+                itemLabel: (props) =>
+                  [props.fields.data.value, props.fields.titolo.value || props.fields.scritta.value]
+                    .filter(Boolean)
+                    .join(" · ") || "Evento",
+              },
+            ),
+          },
+          {
+            label: "Bacheca eventi",
+            description: "Sotto la barra del meteo. Se non ci sono eventi la bacheca non compare.",
           },
         ),
         sicurezza: fields.object(

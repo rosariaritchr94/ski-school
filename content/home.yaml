@@ -7,48 +7,37 @@ intro:
   testo: "A Cogne lo sci è pura libertà. Qui, ai piedi del Gran Paradiso, ogni curva è un’avventura: che tu sia alle prime discese o un esperto della tecnica, con noi vivi lo sci nel suo lato più adrenalinico. Bambini, ragazzi, adulti: ognuno trova la sua sfida e il suo divertimento. La Scuola di Sci Gran Paradiso è il posto dove imparare, ridere e condividere emozioni vere, circondati dai paesaggi più spettacolari della Valle d’Aosta. Ready to ride the wild side?"
   video: "/foto/home/intro-reel.mp4"
 servizi:
-  - titolo: "lezioni private"
-    testo: "Sci alpino e snowboard - Lezioni personalizzate con maestro dedicato, per bambini e adulti, per imparare e migliorare la tecnica nello sci, nello snowboard e nello sci di fondo."
+  - titolo: "lezioni"
+    testo: "Sci alpino, snowboard e fondo con maestro dedicato, per bambini e adulti."
     foto: "/foto/home/servizi-lezioni-private.jpg"
-    link: "/lezioni#lezioni-individuali"
-    mostraPreventivo: false
-    scrittaSuFoto: ""
-    etichettaLive: false
-  - titolo: "FONDO E TELEMARK"
-    testo: "Lezioni pensate per chi ama conoscere o approfondire lo sci di fondo, con tempi ridotti per dedicare attenzione ad ogni dettaglio."
-    foto: "/foto/home/servizi-fondo-telemark.jpg"
-    link: ""
-    mostraPreventivo: false
-    scrittaSuFoto: ""
-    etichettaLive: false
-  - titolo: "lezioni collettive"
-    testo: "Lezioni per gruppi organizzati (anticipatamente), dal 24/12 al 06/01 e dal 08/02 al 14/02, con tariffe dedicate a scuole, associazioni o gruppi che desiderano avvicinarsi allo sci, allo snowboard o allo sci di fondo."
-    foto: "/foto/home/servizi-lezioni-collettive.jpg"
-    link: ""
-    mostraPreventivo: true
-    scrittaSuFoto: ""
-    etichettaLive: false
-  - titolo: "lezioni di gruppo"
-    testo: ""
-    foto: "/foto/home/servizi-lezioni-di-gruppo.jpg"
-    link: "/lezioni#lezioni-collettive"
-    mostraPreventivo: false
-    scrittaSuFoto: ""
-    etichettaLive: false
-  - titolo: "corsi annuali"
-    testo: ""
-    foto: "/foto/home/servizi-corsi-annuali.jpg"
-    link: "/lezioni#corsi-annuali"
+    link: "/lezioni"
+    pulsante: "Scopri"
     mostraPreventivo: false
     scrittaSuFoto: ""
     etichettaLive: false
   - titolo: "WEBCAM LIVE"
-    testo: "Scegli tra le 6 webcam a disposizione per dare un ultimo sguardo alle piste prima di partire per la tua giornata sulla neve."
+    testo: "6 webcam per dare un ultimo sguardo alle piste di Cogne prima di partire."
     foto: "/foto/home/servizi-webcam.png"
     link: "https://www.skilife.ski/cogne/webcam/"
+    pulsante: "Guarda"
     mostraPreventivo: false
-    scrittaSuFoto: "Cogne – Webcam Live"
+    scrittaSuFoto: "Cogne · 1.534 m"
     etichettaLive: true
+eventi:
+  titolo: "Bacheca eventi"
+  lista:
+    - foto: "/foto/eventi/evento-1.jpg"
+      titolo: ""
+      testo: ""
+      scritta: "prossimi eventi…"
+    - foto: "/foto/eventi/evento-2.jpg"
+      titolo: ""
+      testo: ""
+      scritta: "presto in bacheca!"
+    - foto: "/foto/eventi/evento-3.jpg"
+      titolo: ""
+      testo: ""
+      scritta: "restate con noi ❄"
 sicurezza:
   titolo: "Vivi\nl’avventura\nin totale\nsicurezza"
   testo: "I nostri maestri della Scuola di Sci Gran Paradiso sono sempre pronti ad accompagnarti: programmi personalizzati e lezioni dedicate a bambini e adulti, all’insegna di professionalità, esperienza e sicurezza. Tutto ciò che ti serve per vivere una vacanza indimenticabile a Cogne, nel cuore della Valle d’Aosta."

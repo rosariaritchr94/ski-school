@@ -2,18 +2,24 @@
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import ServicesGrid from "@/components/ServicesGrid";
+import MeteoBar from "@/components/MeteoBar";
+import BachecaEventi from "@/components/BachecaEventi";
+import { leggiMeteo } from "@/lib/meteo";
 import Safety from "@/components/Safety";
 import Contacts from "@/components/Contacts";
 import { reader } from "@/lib/content";
 
 export default async function HomePage() {
-  const home = await reader.singletons.home.readOrThrow();
+  const [home, meteo] = await Promise.all([reader.singletons.home.readOrThrow(), leggiMeteo()]);
 
   return (
     <>
       <Hero {...home.hero} />
       <Intro {...home.intro} />
-      <ServicesGrid cards={home.servizi} email={home.contatti.email} />
+      <ServicesGrid cards={home.servizi} email={home.contatti.email}>
+        {meteo && <MeteoBar meteo={meteo} />}
+        <BachecaEventi titolo={home.eventi.titolo} eventi={home.eventi.lista} />
+      </ServicesGrid>
       <Safety
         titolo={home.sicurezza.titolo}
         testo={home.sicurezza.testo}
