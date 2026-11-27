@@ -700,3 +700,24 @@ body .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float] {
   color: #1389a8;
   font-weight: 600;
 }
+
+/* Home: galleria a strisce che scorrono (Safety.tsx) */
+.galleria-striscia { display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+.galleria-riga { display: flex; gap: 14px; width: max-content; animation: galleria-scorri 50s linear infinite; }
+.galleria-inversa { animation-direction: reverse; }
+.galleria-striscia:hover .galleria-riga { animation-play-state: paused; }
+.galleria-foto { position: relative; flex: none; height: 190px; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 12px; cursor: zoom-in; box-shadow: 0 6px 18px rgb(0 0 0 / 0.4); }
+.galleria-foto img { transition: transform 0.5s; }
+.galleria-foto:hover img { transform: scale(1.05); }
+.galleria-tondo { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 9999px; border: 1.5px solid rgb(255 255 255 / 0.5); background: rgb(0 0 0 / 0.4); color: #fff; font-size: 22px; line-height: 1; }
+.galleria-tondo:hover { background: #fff; color: #000; }
+@keyframes galleria-scorri { to { transform: translateX(calc(-50% - 7px)); } }
+@media (max-width: 767px) {
+  .galleria-striscia, .galleria-riga { gap: 10px; }
+  .galleria-foto { height: 130px; }
+  @keyframes galleria-scorri { to { transform: translateX(calc(-50% - 5px)); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .galleria-riga { animation: none; }
+  .galleria-striscia { overflow-x: auto; }
+}

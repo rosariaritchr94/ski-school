@@ -54,7 +54,7 @@ const it = {
   },
   bacheca: { presto: "presto" },
   intro: { caricamento: "Caricamento video…", errore: "Errore video", video: "Video di presentazione della Scuola di Sci" },
-  galleria: { precedente: "Foto precedente", successiva: "Foto successiva" },
+  galleria: { precedente: "Foto precedente", successiva: "Foto successiva", apri: "Apri la foto", chiudi: "Chiudi" },
   contatti: { tel: "Tel", mail: "Mail" },
   footer: {
     privacy: "Privacy Policy",
@@ -153,7 +153,7 @@ const en: Testi = {
   },
   bacheca: { presto: "soon" },
   intro: { caricamento: "Loading video…", errore: "Video error", video: "Ski School presentation video" },
-  galleria: { precedente: "Previous photo", successiva: "Next photo" },
+  galleria: { precedente: "Previous photo", successiva: "Next photo", apri: "Open photo", chiudi: "Close" },
   contatti: { tel: "Phone", mail: "Email" },
   footer: {
     privacy: "Privacy Policy",
@@ -250,7 +250,7 @@ const fr: Testi = {
   },
   bacheca: { presto: "bientôt" },
   intro: { caricamento: "Chargement de la vidéo…", errore: "Erreur vidéo", video: "Vidéo de présentation de l'École de Ski" },
-  galleria: { precedente: "Photo précédente", successiva: "Photo suivante" },
+  galleria: { precedente: "Photo précédente", successiva: "Photo suivante", apri: "Ouvrir la photo", chiudi: "Fermer" },
   contatti: { tel: "Tél", mail: "E-mail" },
   footer: {
     privacy: "Politique de confidentialité",
