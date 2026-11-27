@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Lines from "@/components/Lines";
 import PageVideoHero from "@/components/PageVideoHero";
+import PuntiRitrovo, { type PuntoRitrovo } from "@/components/PuntiRitrovo";
 import { reader } from "@/lib/content";
 import { alternative, localizza, type Lingua } from "@/lib/lingue";
 import { TESTI } from "@/lib/testi";
@@ -141,6 +142,12 @@ export default async function LezioniPage({ params }: { params: { lang: Lingua }
   const chiave = ({ it: "ita", en: "eng", fr: "fra" } as const)[lang];
   const schedaPdf = l.snowcare.scheda[chiave] || l.snowcare.scheda.ita;
   const schedaImmagine = l.snowcare.schedaImmagine[chiave] || l.snowcare.schedaImmagine.ita;
+  // punti di ritrovo: le coordinate scritte in Keystatic ("45.6, 7.35") diventano numeri
+  const punti: PuntoRitrovo[] = l.ritrovo.punti.flatMap((p) => {
+    const [lat, lng] = p.coordinate.split(",").map((x) => Number(x.trim()));
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return [];
+    return [{ nome: p.nome, luogo: p.luogo, tipo: p.tipo, nota: p.nota, lat, lng }];
+  });
   const email = home.contatti.email;
   const ca = l.corsiAnnuali;
 
@@ -544,32 +551,7 @@ export default async function LezioniPage({ params }: { params: { lang: Lingua }
             </p>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3 font-oswald text-[13px] md:text-[14px] text-white">
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-4 h-4 bg-red-500" />
-              {t.legenda.scuola}
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-4 h-4 bg-green-500" />
-              {t.legenda.campo}
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-4 h-4 bg-blue-500" />
-              {t.legenda.collettive}
-            </div>
-          </div>
-
-          <div className="mt-8 w-full rounded-[12px] overflow-hidden shadow-xl shadow-black/40">
-            <div className="aspect-[16/9] w-full">
-              <iframe
-                src={`https://www.google.com/maps?q=${encodeURIComponent(home.contatti.mappa).replace(/%20/g, "+").replace(/%2C/g, ",")}&hl=${lang}&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full border-0"
-                allowFullScreen
-              />
-            </div>
-          </div>
+          <PuntiRitrovo punti={punti} testi={t.ritrovo} />
         </div>
       </section>
     </main>

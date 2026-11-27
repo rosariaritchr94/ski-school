@@ -417,3 +417,36 @@ ritrovo:
     it: "I punti di ritrovo variano in base al tipo di corso e al livello. Nella mappa trovi indicati i luoghi principali di incontro con i maestri e gli orari di riferimento. Ti consigliamo di presentarti con qualche minuto di anticipo."
     en: "Meeting points vary depending on the type of course and level. The map shows the main places where you meet your instructors and the reference times. We recommend arriving a few minutes early."
     fr: "Les points de rendez-vous varient selon le type de cours et le niveau. La carte indique les principaux lieux de rencontre avec les moniteurs et les horaires de référence. Nous vous conseillons d’arriver quelques minutes en avance."
+  punti:
+    - nome: "Casette"
+      luogo: "Cogne"
+      tipo: fondo
+      nota:
+        it: ""
+        en: ""
+        fr: ""
+      coordinate: "45.607580, 7.353574"
+    - nome: "Champlong"
+      luogo: "Lillaz"
+      tipo: fondo
+      nota:
+        it: ""
+        en: ""
+        fr: ""
+      coordinate: "45.598864, 7.379540"
+    - nome: "Funivia"
+      luogo: "Cogne"
+      tipo: alpino
+      nota:
+        it: "Anche per le collettive 10–12 e 11–13 in seggiovia"
+        en: "Also for group lessons 10–12 and 11–13 (chairlift)"
+        fr: "Aussi pour les cours collectifs 10h–12h et 11h–13h (télésiège)"
+      coordinate: "45.605352, 7.357820"
+    - nome: "Baby"
+      luogo: "Cogne"
+      tipo: alpino
+      nota:
+        it: ""
+        en: ""
+        fr: ""
+      coordinate: "45.607877, 7.354138"

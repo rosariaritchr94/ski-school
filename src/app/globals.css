@@ -667,3 +667,36 @@ html {
 body .iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float] {
   display: none !important;
 }
+
+/* Punti di ritrovo (PuntiRitrovo): mappa OpenStreetMap scura e segnaposti numerati */
+.ritrovo-mappa .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9) saturate(0.6);
+}
+.ritrovo-pin {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: grid;
+  place-items: center;
+  border: 3px solid #101010;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+.ritrovo-pin span {
+  transform: rotate(45deg);
+  font: 900 16px var(--font-sofia), sans-serif;
+  color: #001018;
+}
+.ritrovo-popup .leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  font-family: var(--font-oswald), sans-serif;
+}
+.ritrovo-popup .leaflet-popup-content b {
+  display: block;
+  font: 800 16px var(--font-sofia), sans-serif;
+  text-transform: uppercase;
+}
+.ritrovo-popup .leaflet-popup-content a {
+  color: #1389a8;
+  font-weight: 600;
+}

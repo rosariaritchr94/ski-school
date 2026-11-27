@@ -511,6 +511,33 @@ export default config({
           {
             titolo: trBloccato("Titolo", { description: "Ogni riga va a capo sul sito.", multiline: true }),
             testo: trBloccato("Testo", { multiline: true }),
+            punti: fields.array(
+              fields.object({
+                nome: fields.text({ label: "Nome", validation: { length: { min: 1 } } }),
+                luogo: fields.text({ label: "Località", description: 'Es. "Cogne" o "Lillaz".' }),
+                tipo: fields.select({
+                  label: "Disciplina",
+                  description: "Decide l'icona. Il colore lo prende dalla posizione nella lista (azzurro, verde, giallo, rosa).",
+                  options: [
+                    { label: "Sci alpino e snowboard", value: "alpino" },
+                    { label: "Sci di fondo", value: "fondo" },
+                  ],
+                  defaultValue: "alpino",
+                }),
+                nota: tr("Nota", { description: "Facoltativa, es. per quali corsi." }),
+                coordinate: fields.text({
+                  label: "Posizione (coordinate)",
+                  description:
+                    'Latitudine e longitudine, es. "45.605352, 7.357820". In Google Maps: clic destro sul punto e clic sulle coordinate per copiarle.',
+                  validation: { length: { min: 3 } },
+                }),
+              }),
+              {
+                label: "Punti di ritrovo",
+                description: "Tessere con il pulsante \"Portami qui\"; sotto si vede la mappa del punto scelto.",
+                itemLabel: (props) => props.fields.nome.value || "Punto",
+              },
+            ),
           },
           { label: "Orari e luoghi di ritrovo" },
         ),

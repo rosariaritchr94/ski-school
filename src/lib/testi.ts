@@ -91,7 +91,7 @@ const it = {
     apriScheda: "Apri la scheda (PDF)",
     preventivo: "Richiedi il tuo preventivo.",
     oggettoCollettive: "Richiesta preventivo lezioni collettive",
-    legenda: { scuola: "Punto scuola sci", campo: "Campo scuola / debutto", collettive: "Ritrovo collettive" },
+    ritrovo: { fondo: "Sci di fondo", alpino: "Sci alpino e snowboard", portami: "Portami qui", mappa: "Mappa:" },
   },
   maestri: {
     altFoto: "Scuola di Sci Gran Paradiso",
@@ -191,7 +191,7 @@ const en: Testi = {
     apriScheda: "Open the leaflet (PDF)",
     preventivo: "Request a quote.",
     oggettoCollettive: "Quote request for group lessons",
-    legenda: { scuola: "Ski school point", campo: "Beginners' area", collettive: "Group lessons meeting point" },
+    ritrovo: { fondo: "Cross-country skiing", alpino: "Alpine skiing & snowboard", portami: "Take me there", mappa: "Map:" },
   },
   maestri: {
     altFoto: "Gran Paradiso Ski School",
@@ -289,7 +289,7 @@ const fr: Testi = {
     apriScheda: "Ouvrir la fiche (PDF)",
     preventivo: "Demandez votre devis.",
     oggettoCollettive: "Demande de devis cours collectifs",
-    legenda: { scuola: "Point école de ski", campo: "Jardin des neiges / débutants", collettive: "Rendez-vous cours collectifs" },
+    ritrovo: { fondo: "Ski de fond", alpino: "Ski alpin et snowboard", portami: "Y aller", mappa: "Carte :" },
   },
   maestri: {
     altFoto: "École de Ski Gran Paradiso",
