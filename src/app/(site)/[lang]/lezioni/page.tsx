@@ -475,8 +475,9 @@ export default async function LezioniPage({ params }: { params: { lang: Lingua }
             </div>
 
             {schedaPdf && schedaImmagine ? (
-              /* scheda Snowcare come un volantino: cliccandola si apre il PDF nella lingua della pagina */
-              <div className="w-full flex justify-center md:justify-end">
+              /* scheda Snowcare come un volantino: cliccandola si apre il PDF nella lingua della pagina.
+                 Abbassata quanto basta per partire all'altezza delle lettere di "Assicurazione". */
+              <div className="w-full flex justify-center md:justify-end md:mt-[18px] lg:mt-[30px]">
                 <a
                   href={schedaPdf}
                   target="_blank"
