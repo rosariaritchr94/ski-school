@@ -89,8 +89,7 @@ const it = {
     altSnowcare: "Assicurazione Snowcare",
     altScheda: "Scheda Snowcare: prenota senza pensieri",
     apriScheda: "Apri la scheda (PDF)",
-    preventivo: "Richiedi il tuo preventivo.",
-    oggettoCollettive: "Richiesta preventivo lezioni collettive",
+    preventivo: "Richiedi il tuo preventivo",
     ritrovo: { fondo: "Sci di fondo", alpino: "Sci alpino e snowboard", portami: "Portami qui", mappa: "Mappa:" },
   },
   maestri: {
@@ -189,8 +188,7 @@ const en: Testi = {
     altSnowcare: "Snowcare insurance",
     altScheda: "Snowcare leaflet: book worry-free",
     apriScheda: "Open the leaflet (PDF)",
-    preventivo: "Request a quote.",
-    oggettoCollettive: "Quote request for group lessons",
+    preventivo: "Request a quote",
     ritrovo: { fondo: "Cross-country skiing", alpino: "Alpine skiing & snowboard", portami: "Take me there", mappa: "Map:" },
   },
   maestri: {
@@ -287,8 +285,7 @@ const fr: Testi = {
     altSnowcare: "Assurance Snowcare",
     altScheda: "Fiche Snowcare : réservez l'esprit tranquille",
     apriScheda: "Ouvrir la fiche (PDF)",
-    preventivo: "Demandez votre devis.",
-    oggettoCollettive: "Demande de devis cours collectifs",
+    preventivo: "Demandez votre devis",
     ritrovo: { fondo: "Ski de fond", alpino: "Ski alpin et snowboard", portami: "Y aller", mappa: "Carte :" },
   },
   maestri: {

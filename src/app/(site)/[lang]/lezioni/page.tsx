@@ -133,10 +133,7 @@ function ListaPrezzi({ voci }: { voci: Voce[] }) {
 export default async function LezioniPage({ params }: { params: { lang: Lingua } }) {
   const { lang } = params;
   const t = TESTI[lang].lezioni;
-  const [contenuto, home] = await Promise.all([
-    reader.singletons.lezioni.readOrThrow(),
-    reader.singletons.home.readOrThrow(),
-  ]);
+  const contenuto = await reader.singletons.lezioni.readOrThrow();
   const l = localizza(contenuto, lang);
   // scheda Snowcare nella lingua della pagina (se manca, quella italiana)
   const chiave = ({ it: "ita", en: "eng", fr: "fra" } as const)[lang];
@@ -148,7 +145,6 @@ export default async function LezioniPage({ params }: { params: { lang: Lingua }
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) return [];
     return [{ nome: p.nome, luogo: p.luogo, tipo: p.tipo, nota: p.nota, lat, lng }];
   });
-  const email = home.contatti.email;
   const ca = l.corsiAnnuali;
 
   return (
@@ -396,7 +392,9 @@ export default async function LezioniPage({ params }: { params: { lang: Lingua }
 
             <p className="mt-6 text-center">
               <a
-                href={`mailto:${email}?subject=${encodeURIComponent(t.oggettoCollettive)}`}
+                href="https://scuolascigranparadiso.beebeeboard.com/scuolesci_ecommerce/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-[#101010] px-6 py-3 font-oswald uppercase text-[16px] sm:text-[18px] lg:text-[20px] tracking-[0.06em] text-[#37C6E6] hover:bg-black"
               >
                 {t.preventivo}
