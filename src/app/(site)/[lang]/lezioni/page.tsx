@@ -137,6 +137,10 @@ export default async function LezioniPage({ params }: { params: { lang: Lingua }
     reader.singletons.home.readOrThrow(),
   ]);
   const l = localizza(contenuto, lang);
+  // scheda Snowcare nella lingua della pagina (se manca, quella italiana)
+  const chiave = ({ it: "ita", en: "eng", fr: "fra" } as const)[lang];
+  const schedaPdf = l.snowcare.scheda[chiave] || l.snowcare.scheda.ita;
+  const schedaImmagine = l.snowcare.schedaImmagine[chiave] || l.snowcare.schedaImmagine.ita;
   const email = home.contatti.email;
   const ca = l.corsiAnnuali;
 
@@ -470,7 +474,28 @@ export default async function LezioniPage({ params }: { params: { lang: Lingua }
               ))}
             </div>
 
-            {l.snowcare.foto && (
+            {schedaPdf && schedaImmagine ? (
+              /* scheda Snowcare come un volantino: cliccandola si apre il PDF nella lingua della pagina */
+              <div className="w-full flex justify-center md:justify-end">
+                <a
+                  href={schedaPdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t.apriScheda}
+                  title={t.apriScheda}
+                  className="group relative block w-full max-w-[400px] overflow-hidden rounded-[12px] bg-white shadow-[0_20px_40px_rgba(0,0,0,.35)] rotate-[1.5deg] transition-transform duration-300 hover:rotate-0 hover:-translate-y-1 motion-reduce:rotate-0"
+                >
+                  <Image
+                    src={schedaImmagine}
+                    alt={t.altScheda}
+                    width={900}
+                    height={1273}
+                    sizes="400px"
+                    className="block h-auto w-full"
+                  />
+                </a>
+              </div>
+            ) : l.snowcare.foto && (
               <div className="w-full flex justify-center md:justify-end">
                 <div className="foto-box relative w-full max-w-[720px] aspect-[4/3] overflow-hidden">
                   <Image

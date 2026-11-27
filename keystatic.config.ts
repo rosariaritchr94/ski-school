@@ -49,6 +49,10 @@ const lezioniMedia = {
   directory: "public/foto/lezioni",
   publicPath: "/foto/lezioni/",
 } as const;
+const snowcareMedia = {
+  directory: "public/foto/lezioni/snowcare",
+  publicPath: "/foto/lezioni/snowcare/",
+} as const;
 
 const anteprima = (v: string) => (v.length > 60 ? v.slice(0, 60) + "…" : v || "Paragrafo vuoto");
 
@@ -465,7 +469,34 @@ export default config({
             titolo: trBloccato("Titolo (bianco)", { description: "Ogni riga va a capo sul sito.", multiline: true }),
             titoloColorato: trBloccato("Titolo (parte colorata)", { multiline: true }),
             paragrafi: paragrafiBloccati,
-            foto: fields.image({ label: "Foto", ...lezioniMedia }),
+            foto: fields.image({
+              label: "Foto",
+              description: "Compare solo se non c'è la scheda Snowcare.",
+              ...lezioniMedia,
+            }),
+            // scheda Snowcare per lingua: sul sito si vede l'immagine, cliccandola si apre il PDF
+            scheda: fields.object(
+              {
+                ita: fields.file({ label: "Italiano", ...snowcareMedia }),
+                eng: fields.file({ label: "English", description: "Se manca si usa quella italiana.", ...snowcareMedia }),
+                fra: fields.file({ label: "Français", description: "Se manca si usa quella italiana.", ...snowcareMedia }),
+              },
+              {
+                label: "Scheda Snowcare (PDF)",
+                description: "Si apre cliccando la scheda. Una per lingua, es. quella della nuova stagione.",
+              },
+            ),
+            schedaImmagine: fields.object(
+              {
+                ita: fields.image({ label: "Italiano", ...snowcareMedia }),
+                eng: fields.image({ label: "English", description: "Se manca si usa quella italiana.", ...snowcareMedia }),
+                fra: fields.image({ label: "Français", description: "Se manca si usa quella italiana.", ...snowcareMedia }),
+              },
+              {
+                label: "Immagine della scheda",
+                description: "La scheda come immagine (verticale): è quella che si vede sul sito al posto della foto.",
+              },
+            ),
           },
           { label: "Assicurazione Snowcare" },
         ),

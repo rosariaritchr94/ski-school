@@ -388,6 +388,14 @@ snowcare:
     en: "Ask our office for more information when you book or on the day of your lesson."
     fr: "Renseignez-vous auprès du secrétariat lors de la réservation ou le jour même du cours."
   foto: "/foto/lezioni/snowcare-ffff41.jpg"
+  scheda:
+    ita: "/foto/lezioni/snowcare/scheda-it.pdf"
+    eng: "/foto/lezioni/snowcare/scheda-en.pdf"
+    fra: "/foto/lezioni/snowcare/scheda-fr.pdf"
+  schedaImmagine:
+    ita: "/foto/lezioni/snowcare/scheda-it.jpg"
+    eng: "/foto/lezioni/snowcare/scheda-en.jpg"
+    fra: "/foto/lezioni/snowcare/scheda-fr.jpg"
 pagamenti:
   titolo:
     it: "Cancellazioni & pagamenti"
