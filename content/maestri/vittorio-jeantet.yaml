@@ -1,8 +1,9 @@
-nome: "VITTORIO JEANTET"
+nome: VITTORIO JEANTET
 ruolo:
-  it: "Maestro di SNOWBOARD"
-  en: "SNOWBOARD instructor"
-  fr: "Moniteur de SNOWBOARD"
+  it: Maestro di SNOWBOARD
+  en: SNOWBOARD instructor
+  fr: Moniteur de SNOWBOARD
 disciplina: Snowboard
-foto: "/foto/maestri/vittorio-jeantet/foto.jpg"
+foto: /foto/maestri/vittorio-jeantet/foto.jpg
 ordine: 260
+attivo: false

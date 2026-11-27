@@ -6,7 +6,7 @@
 //   le modifiche diventano un commit su GitHub e Vercel ripubblica il sito.
 //   Gli utenti si invitano da keystatic.cloud → team "scuolasci" → Members.
 import { config, collection, fields, singleton } from "@keystatic/core";
-import { trBloccato } from "./src/keystatic/bloccati";
+import { interruttore, trBloccato } from "./src/keystatic/bloccati";
 
 // progetto su keystatic.cloud (si può cambiare con NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT)
 const cloudProject = process.env.NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT || "scuolasci/ski-school";
@@ -105,7 +105,7 @@ export default config({
       slugField: "nome",
       path: "content/maestri/*",
       format: { data: "yaml" },
-      columns: ["disciplina", "ordine"],
+      columns: ["disciplina", "ordine", "attivo"],
       schema: {
         nome: fields.slug({
           name: {
@@ -137,6 +137,10 @@ export default config({
           description:
             "I maestri sono mostrati dal numero più basso al più alto. Per inserirne uno tra il 30 e il 40, usa ad esempio 35.",
           defaultValue: 1000,
+        }),
+        attivo: interruttore("Stagione", {
+          acceso: "Acceso – compare sul sito",
+          spento: "Spento – nascosto dalla pagina Maestri",
         }),
       },
     }),

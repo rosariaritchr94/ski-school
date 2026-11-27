@@ -5,6 +5,7 @@ import { reader } from "@/lib/content";
 import PageVideoHero from "@/components/PageVideoHero";
 import { alternative, localizza, type Lingua } from "@/lib/lingue";
 import { TESTI } from "@/lib/testi";
+import { ACCESO } from "@/keystatic/stato";
 
 export function generateMetadata({ params }: { params: { lang: Lingua } }) {
   return { title: TESTI[params.lang].meta.maestri, alternates: alternative("maestri", params.lang) };
@@ -17,6 +18,7 @@ export default async function MaestriPage({ params }: { params: { lang: Lingua }
   const entries = localizza(await reader.collections.maestri.all(), lang);
 
   const maestri: Maestro[] = entries
+    .filter(({ entry }) => entry.attivo === ACCESO) // spenti in Keystatic = non in questa stagione
     .sort(
       (a, b) =>
         (a.entry.ordine ?? 1000) - (b.entry.ordine ?? 1000) ||

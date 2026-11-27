@@ -5,6 +5,8 @@
 // Questo file lo legge anche il server: la parte grafica sta in CampoBloccato.tsx.
 import type { BasicFormField, FormFieldStoredValue } from "@keystatic/core";
 import { CampoBloccatoTr } from "./CampoBloccato";
+import { Interruttore } from "./Interruttore";
+import { ACCESO, SPENTO, type Stato } from "./stato";
 
 type Tr = { it: string; en: string; fr: string };
 type Opzioni = { description?: string; multiline?: boolean };
@@ -38,5 +40,33 @@ export function trBloccato(label: string, opts: Opzioni = {}): BasicFormField<Tr
     serialize: (value) => ({ value }),
     validate: (value) => value,
     reader: { parse: leggi },
+  };
+}
+
+/**
+ * Interruttore acceso/spento (es. maestro presente in questa stagione).
+ * Se manca nel file vale "acceso", così i contenuti già esistenti restano visibili.
+ */
+export function interruttore(label: string, testi: { acceso: string; spento: string }): BasicFormField<Stato> {
+  const stato = (v: FormFieldStoredValue): Stato => (v === false ? SPENTO : ACCESO);
+  return {
+    kind: "form",
+    label,
+    Input({ value, onChange }) {
+      return (
+        <Interruttore
+          label={label}
+          acceso={value === ACCESO}
+          testoAcceso={testi.acceso}
+          testoSpento={testi.spento}
+          onChange={(v) => onChange(v ? ACCESO : SPENTO)}
+        />
+      );
+    },
+    defaultValue: () => ACCESO,
+    parse: stato,
+    serialize: (value) => ({ value: value === ACCESO }),
+    validate: (value) => value,
+    reader: { parse: stato },
   };
 }
